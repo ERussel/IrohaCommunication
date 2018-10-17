@@ -1,0 +1,6 @@
+use_frameworks!
+target 'IrohaCommunication_Tests' do
+  pod 'IrohaCommunication', :path => '../'
+  
+  
+end
