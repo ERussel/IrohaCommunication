@@ -26,10 +26,10 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		74D33D817C5F7989BD3071B1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		84EA860F14455E442B5C9B29 /* IrohaCommunication.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = IrohaCommunication.podspec; path = ../IrohaCommunication.podspec; sourceTree = "<group>"; };
+		74D33D817C5F7989BD3071B1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		84EA860F14455E442B5C9B29 /* IrohaCommunication.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = IrohaCommunication.podspec; path = ../IrohaCommunication.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8EF608F629997F5F1F47D6E2 /* Pods_IrohaCommunication_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IrohaCommunication_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B877F0064619F03D2B560C12 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		B877F0064619F03D2B560C12 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FBEDEA9EB928BD52D49FE065 /* Pods-IrohaCommunication_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaCommunication_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaCommunication_Tests/Pods-IrohaCommunication_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,11 +148,6 @@
 				CLASSPREFIX = IR;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Russel;
-				TargetAttributes = {
-					6003F5AD195388D20070C39A = {
-						TestTargetID = 6003F589195388D20070C39A;
-					};
-				};
 			};
 			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "IrohaCommunication" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -193,13 +188,29 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-IrohaCommunication_Tests/Pods-IrohaCommunication_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/IrohaCommunication/IrohaCommunication.framework",
+				"${BUILT_PRODUCTS_DIR}/IrohaCrypto/IrohaCrypto.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IrohaCommunication.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IrohaCrypto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -344,7 +355,6 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IrohaCommunication_Example.app/IrohaCommunication_Example";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -363,7 +373,6 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IrohaCommunication_Example.app/IrohaCommunication_Example";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
