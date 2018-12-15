@@ -66,6 +66,8 @@ typedef GPB_ENUM(RolePermission) {
   RolePermission_CanTransfer = 12,
   RolePermission_CanReceive = 13,
   RolePermission_CanCreateDomain = 14,
+  RolePermission_CanAddDomainAssetQty = 43,
+  RolePermission_CanSubtractDomainAssetQty = 44,
 
   /** Query permissions */
   RolePermission_CanReadAssets = 15,

@@ -26,9 +26,9 @@ PODS:
     - gRPC-RxLibrary (= 1.11.0)
   - IrohaCommunication (0.1.0):
     - gRPC-ProtoRPC (= 1.11.0)
-    - IrohaCrypto (= 0.1.0)
+    - IrohaCrypto
     - Protobuf (~> 3.5.0)
-  - IrohaCrypto (0.1.0)
+  - IrohaCrypto (0.2.5)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -60,8 +60,8 @@ SPEC CHECKSUMS:
   gRPC-Core: 164639cd8ae18ca8b65477fafb2efbaecf4f181a
   gRPC-ProtoRPC: bb5fddf3424aa4fad74d76736578a79fe40e244e
   gRPC-RxLibrary: 26d53d1b1f306befd4ad4e15bd6de27839a82481
-  IrohaCommunication: 450acdc11b8114ce3e8fda99c40d2ed149a0842b
-  IrohaCrypto: 164e5e515c170aed47626d8ed049b2599194cffd
+  IrohaCommunication: 10f650422f2267ddfb1ac362867e56b6b32cfa3f
+  IrohaCrypto: d0e6e1189ce43a51b6f7916f4830605c7d466d57
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
 
