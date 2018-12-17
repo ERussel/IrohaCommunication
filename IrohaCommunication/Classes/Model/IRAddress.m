@@ -61,7 +61,7 @@ static NSString * const DOMAIN_FORMAT = @"([a-zA-Z]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0
         if (error) {
             NSString *message = [NSString stringWithFormat:@"Domain %@ is invalid. Expected: %@", domain, DOMAIN_FORMAT];
             *error = [NSError errorWithDomain:NSStringFromClass([IRAddressFactory class])
-                                         code:IRInvalidAddressIp
+                                         code:IRInvalidAddressDomain
                                      userInfo:@{NSLocalizedDescriptionKey: message}];
         }
 
@@ -88,7 +88,7 @@ static NSString * const DOMAIN_FORMAT = @"([a-zA-Z]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0
 }
 
 + (BOOL)isValidPort:(nonnull NSString*)port {
-    return [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", port] evaluateWithObject:port];
+    return [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", PORT_FORMAT] evaluateWithObject:port];
 }
 
 + (BOOL)isValidDomain:(nonnull NSString*)domain {

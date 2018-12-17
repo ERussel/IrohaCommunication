@@ -34,8 +34,14 @@
 
 @implementation IRGrantablePermissionFactory
 
-+ (nullable id<IRGrantablePermission>)permissionWithValue:(int32_t)value {
++ (nullable id<IRGrantablePermission>)permissionWithValue:(int32_t)value error:(NSError**)error {
     if (!GrantablePermission_IsValidValue(value)) {
+        if (error) {
+            NSString *message = @"Invalid grantable permission value passed.";
+            *error = [NSError errorWithDomain:NSStringFromClass([IRGrantablePermissionFactory class])
+                                         code:IRInvalidGrantablePermissionValue
+                                     userInfo:@{NSLocalizedDescriptionKey: message}];
+        }
         return nil;
     }
 
@@ -43,19 +49,19 @@
 }
 
 + (nonnull id<IRGrantablePermission>)canAddMySignatory {
-    return [self permissionWithValue:GrantablePermission_CanAddMySignatory];
+    return [self permissionWithValue:GrantablePermission_CanAddMySignatory error:nil];
 }
 
 + (nonnull id<IRGrantablePermission>)canRemoveMySignatory {
-    return [self permissionWithValue:GrantablePermission_CanRemoveMySignatory];
+    return [self permissionWithValue:GrantablePermission_CanRemoveMySignatory error:nil];
 }
 
 + (nonnull id<IRGrantablePermission>)canSetMyQuorum {
-    return [self permissionWithValue:GrantablePermission_CanSetMyQuorum];
+    return [self permissionWithValue:GrantablePermission_CanSetMyQuorum error:nil];
 }
 
 + (nonnull id<IRGrantablePermission>)canSetMyAccountDetail {
-    return [self permissionWithValue:GrantablePermission_CanSetMyAccountDetail];
+    return [self permissionWithValue:GrantablePermission_CanSetMyAccountDetail error:nil];
 }
 
 @end

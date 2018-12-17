@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
 
-  s.requires_arc = 'IrohaCommunication/Classes/**/*', 'ProtoGen/*.{h,m}'
+  s.requires_arc = 'IrohaCommunication/Classes/**/*'
   s.source_files = 'IrohaCommunication/Classes/**/*', 'ProtoGen/*.{h,m}'
 
   s.dependency 'IrohaCrypto'
@@ -26,5 +26,9 @@ Pod::Spec.new do |s|
   s.dependency 'Protobuf', '~> 3.5.0'
 
   s.pod_target_xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1' }
+
+  s.test_spec do |ts|
+      ts.source_files = 'Tests/**/*.{h,m}'
+  end
 
 end

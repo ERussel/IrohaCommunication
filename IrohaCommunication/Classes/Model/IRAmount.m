@@ -24,17 +24,29 @@ static NSString * const DECIMAL_SEPARATOR = @".";
 @implementation IRAmountFactory
 
 + (nullable id<IRAmount>)amountFromString:(nonnull NSString*)amount error:(NSError**)error {
-    NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithString:amount
-                                                                       locale:@{NSLocaleDecimalSeparator: DECIMAL_SEPARATOR}];
+    NSCharacterSet *invalidSymbols = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789."] invertedSet];
 
-    if (!decimalNumber || decimalNumber == [NSDecimalNumber notANumber]) {
+    if ([amount rangeOfCharacterFromSet:invalidSymbols].location != NSNotFound) {
         if (error) {
-            NSString *message = @"Amount must be a valid decimal number with point separator";
+            NSString *message = @"Amount must be a valid positive decimal number with point separator";
             *error = [NSError errorWithDomain:NSStringFromClass([IRAmountFactory class])
                                          code:IRInvalidAmountValue
                                      userInfo:@{NSLocalizedDescriptionKey: message}];
-            return nil;
         }
+        return nil;
+    }
+
+    NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithString:amount
+                                                                       locale:@{NSLocaleDecimalSeparator: DECIMAL_SEPARATOR}];
+
+    if (!decimalNumber || decimalNumber == [NSDecimalNumber notANumber] || [decimalNumber doubleValue] <= 0.0) {
+        if (error) {
+            NSString *message = @"Amount must be positive";
+            *error = [NSError errorWithDomain:NSStringFromClass([IRAmountFactory class])
+                                         code:IRInvalidAmountValue
+                                     userInfo:@{NSLocalizedDescriptionKey: message}];
+        }
+        return nil;
     }
 
     return [[IRAmount alloc] initWithString:[decimalNumber stringValue]];

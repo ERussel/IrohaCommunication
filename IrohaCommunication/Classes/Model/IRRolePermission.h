@@ -6,9 +6,13 @@
 
 @end
 
+typedef NS_ENUM(NSUInteger, IRRolePermissionError) {
+    IRInvalidRolePermissionValue
+};
+
 @protocol IRRolePermissionFactoryProtocol <NSObject>
 
-+ (nullable id<IRRolePermission>)permissionWithValue:(int32_t)value;
++ (nullable id<IRRolePermission>)permissionWithValue:(int32_t)value error:(NSError**)error;
 
 @end
 
