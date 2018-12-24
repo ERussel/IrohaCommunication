@@ -20,6 +20,9 @@ Pod::Spec.new do |s|
 
   s.requires_arc = 'IrohaCommunication/Classes/**/*'
   s.source_files = 'IrohaCommunication/Classes/**/*', 'ProtoGen/*.{h,m}'
+  s.public_header_files = 'IrohaCommunication/Classes/Public/**/*.h'
+  s.private_header_files = 'IrohaCommunication/Classes/Private/**/*.h', 'ProtoGen/*.h'
+  s.preserve_paths = 'ProtoGen/*.{h,m}'
 
   s.dependency 'IrohaCrypto'
   s.dependency 'gRPC-ProtoRPC', '= 1.11.0'

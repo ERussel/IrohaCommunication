@@ -15,6 +15,7 @@
 		0200347321C84E5C001A6A53 /* IRRoleNameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200347221C84E5C001A6A53 /* IRRoleNameTests.m */; };
 		0200347521C8516F001A6A53 /* IRGrantablePermissionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200347421C8516F001A6A53 /* IRGrantablePermissionTests.m */; };
 		0200347721C853E2001A6A53 /* IRRolePermissionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200347621C853E2001A6A53 /* IRRolePermissionTests.m */; };
+		02E3198B21D0FEF000B33B66 /* IRTransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */; };
 		5747BFFD6B791F5D4E211A8F /* Pods_IrohaCommunication_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF608F629997F5F1F47D6E2 /* Pods_IrohaCommunication_Tests.framework */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -31,6 +32,7 @@
 		0200347221C84E5C001A6A53 /* IRRoleNameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRRoleNameTests.m; sourceTree = "<group>"; };
 		0200347421C8516F001A6A53 /* IRGrantablePermissionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRGrantablePermissionTests.m; sourceTree = "<group>"; };
 		0200347621C853E2001A6A53 /* IRRolePermissionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRRolePermissionTests.m; sourceTree = "<group>"; };
+		02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRTransactionTests.m; sourceTree = "<group>"; };
 		23FA10B0D24502974E9385B6 /* Pods-IrohaCommunication_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaCommunication_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaCommunication_Tests/Pods-IrohaCommunication_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -78,6 +80,15 @@
 			path = ../../Tests/Model;
 			sourceTree = "<group>";
 		};
+		02E3198921D0FED500B33B66 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */,
+			);
+			name = Transaction;
+			path = ../../Tests/Transaction;
+			sourceTree = "<group>";
+		};
 		2EFE64D960ACD758C9C23090 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +132,7 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				02E3198921D0FED500B33B66 /* Transaction */,
 				0200345B21C62D3F001A6A53 /* Model */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
@@ -276,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02E3198B21D0FEF000B33B66 /* IRTransactionTests.m in Sources */,
 				0200346F21C840D1001A6A53 /* IRAmountTests.m in Sources */,
 				0200347521C8516F001A6A53 /* IRGrantablePermissionTests.m in Sources */,
 				0200347121C849FF001A6A53 /* IRAssetIdTests.m in Sources */,

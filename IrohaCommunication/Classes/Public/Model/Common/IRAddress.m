@@ -26,6 +26,12 @@ static NSString * const DOMAIN_FORMAT = @"([a-zA-Z]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0
     return self;
 }
 
+#pragma mark - NSCopying
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+    return [[IRAddress alloc] initWithString:_value];
+}
+
 @end
 
 @implementation IRAddressFactory

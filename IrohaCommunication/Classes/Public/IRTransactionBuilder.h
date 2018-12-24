@@ -1,30 +1,26 @@
 @import Foundation;
 @import IrohaCrypto;
 
+#import "IRCommand.h"
 #import "IRTransaction.h"
-#import "IRAccountId.h"
-#import "IRDomain.h"
-#import "IRAssetId.h"
-#import "IRRoleName.h"
-#import "IRGrantablePermission.h"
-#import "IRRolePermission.h"
-#import "IRAmount.h"
-#import "IRAddress.h"
-
-@class Command;
 
 @protocol IRTransactionBuilderProtocol <NSObject>
 
 - (nonnull instancetype)withCreatorAccountId:(nonnull id<IRAccountId>)creatorAccountId;
 - (nonnull instancetype)withCreatedDate:(nonnull NSDate*)date;
 - (nonnull instancetype)withQuorum:(NSUInteger)quorum;
-- (nonnull instancetype)addCommand:(nonnull Command*)command;
-
-- (nullable IRTransaction*)build:(NSError **)error;
+- (nonnull instancetype)addCommand:(nonnull id<IRCommand>)command;
+- (nullable id<IRTransaction>)build:(NSError*_Nullable*_Nullable)error;
 
 @end
 
+typedef NS_ENUM(NSUInteger, IRTransactionBuilderError) {
+    IRTransactionBuilderErrorMissingCreator
+};
+
 @interface IRTransactionBuilder : NSObject<IRTransactionBuilderProtocol>
+
++ (nonnull instancetype)builderWithCreatorAccountId:(nonnull id<IRAccountId>)creator;
 
 - (nonnull instancetype)addAssetQuantity:(nonnull id<IRAssetId>)assetId
                           amount:(nonnull id<IRAmount>)amount;
@@ -51,10 +47,10 @@
                           precision:(UInt32)precision;
 
 - (nonnull instancetype)createDomain:(nonnull id<IRDomain>)domainId
-                         defaultRole:(nonnull id<IRRoleName>)defaultRole;
+                         defaultRole:(nullable id<IRRoleName>)defaultRole;
 
 - (nonnull instancetype)createRole:(nonnull id<IRRoleName>)roleName
-                       permissions:(nonnull NSSet<id<IRRolePermission>>*)permissions;
+                       permissions:(nonnull NSArray<id<IRRolePermission>>*)permissions;
 
 - (nonnull instancetype)detachRole:(nonnull id<IRAccountId>)accountId
                           roleName:(nonnull id<IRRoleName>)roleName;
