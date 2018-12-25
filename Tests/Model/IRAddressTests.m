@@ -71,6 +71,7 @@ static NSString * const INVALID_ADDRESS_DOMAINS[] = {
                                                            port:VALID_PORT
                                                           error:&error];
         XCTAssertNil(address);
+        XCTAssertNotNil(error);
         XCTAssertEqual(error.code, IRInvalidAddressIp);
     }
 }
@@ -91,6 +92,7 @@ static NSString * const INVALID_ADDRESS_DOMAINS[] = {
                                                            port:INVALID_PORTS[i]
                                                           error:&error];
         XCTAssertNil(address);
+        XCTAssertNotNil(error);
         XCTAssertEqual(error.code, IRInvalidAddressPort);
     }
 }
@@ -125,6 +127,7 @@ static NSString * const INVALID_ADDRESS_DOMAINS[] = {
                                                               error:&error];
 
         XCTAssertNil(address);
+        XCTAssertNotNil(error);
         XCTAssertEqual(error.code, IRInvalidAddressDomain);
     }
 }
@@ -146,6 +149,7 @@ static NSString * const INVALID_ADDRESS_DOMAINS[] = {
                                                                port:INVALID_PORTS[i]
                                                               error:&error];
         XCTAssertNil(address);
+        XCTAssertNotNil(error);
         XCTAssertEqual(error.code, IRInvalidAddressPort);
     }
 }

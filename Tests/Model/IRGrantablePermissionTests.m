@@ -22,6 +22,7 @@
         id<IRGrantablePermission> permission = [IRGrantablePermissionFactory permissionWithValue:i
                                                                                            error:&error];
         XCTAssertNil(permission);
+        XCTAssertNotNil(error);
         XCTAssertEqual(error.code, IRInvalidGrantablePermissionValue);
     }
 }

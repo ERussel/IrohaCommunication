@@ -40,6 +40,7 @@ static NSString * const INVALID_STRING_AMOUNT[] = {
                                                           error:&error];
 
         XCTAssertNil(amount);
+        XCTAssertNotNil(error);
         XCTAssertEqual(error.code, IRInvalidAmountValue);
     }
 }
@@ -60,7 +61,7 @@ static NSString * const INVALID_STRING_AMOUNT[] = {
                                                                    error:&error];
 
         XCTAssertNotNil(amount);
-        XCTAssertEqual(error.code, IRInvalidAmountValue);
+        XCTAssertNil(error);
     }
 }
 

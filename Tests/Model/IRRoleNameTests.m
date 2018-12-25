@@ -42,6 +42,7 @@ static NSString* const INVALID_ROLE_NAMES[] = {
         id<IRRoleName> roleName = [IRRoleNameFactory roleWithName:INVALID_ROLE_NAMES[i]
                                                             error:&error];
         XCTAssertNil(roleName);
+        XCTAssertNotNil(error);
         XCTAssertEqual(error.code, IRInvalidRoleName);
     }
 }

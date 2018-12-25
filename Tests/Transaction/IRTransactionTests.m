@@ -59,13 +59,15 @@ static NSString * const VALID_ROLE = @"admin";
                          description:@"Test transfer"
                               amount:amount];
 
-    NSError *error;
+    NSError *error = nil;
 
     id<IRTransaction> transaction = [builder build:&error];
 
     XCTAssertNotNil(transaction);
     XCTAssertEqualObjects([transaction.creator identifier], [accountId identifier]);
     XCTAssertNil(error);
+
+    error = nil;
 
     id<IRSignatureCreatorProtocol> signatory = [[IREd25519Sha512Signer alloc] initWithPrivateKey:[keypair privateKey]];
     id<IRTransaction> signedTransaction = [transaction signedWithSignatories:@[signatory]
@@ -75,9 +77,11 @@ static NSString * const VALID_ROLE = @"admin";
     XCTAssertNotNil(signedTransaction);
     XCTAssertNil(error);
 
+    error = nil;
+
     id<IRPeerSignature> peerSignature = [transaction signWithSignatory:signatory
                                                     signatoryPublicKey:[keypair publicKey]
-                                                                 error:nil];
+                                                                 error:&error];
 
     XCTAssertNotNil(peerSignature);
     XCTAssertNil(error);

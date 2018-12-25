@@ -22,6 +22,7 @@
         id<IRRolePermission> permission = [IRRolePermissionFactory permissionWithValue:i
                                                                                  error:&error];
         XCTAssertNil(permission);
+        XCTAssertNotNil(error);
         XCTAssertEqual(error.code, IRInvalidRolePermissionValue);
     }
 }

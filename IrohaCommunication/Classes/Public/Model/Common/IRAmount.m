@@ -39,7 +39,7 @@ static NSString * const DECIMAL_SEPARATOR = @".";
     NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithString:amount
                                                                        locale:@{NSLocaleDecimalSeparator: DECIMAL_SEPARATOR}];
 
-    if (!decimalNumber || decimalNumber == [NSDecimalNumber notANumber] || [decimalNumber doubleValue] <= 0.0) {
+    if (!decimalNumber || [decimalNumber isEqualToNumber:[NSDecimalNumber notANumber]] || [decimalNumber doubleValue] <= 0.0) {
         if (error) {
             NSString *message = @"Amount must be positive";
             *error = [NSError errorWithDomain:NSStringFromClass([IRAmountFactory class])

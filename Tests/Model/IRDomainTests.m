@@ -40,6 +40,7 @@ static NSString * const INVALID_DOMAINS[] = {
         id<IRDomain> domain = [IRDomainFactory domainWithIdentitifer:INVALID_DOMAINS[i]
                                                                error:&error];
         XCTAssertNil(domain);
+        XCTAssertNotNil(error);
         XCTAssertEqual(error.code, IRInvalidDomainIdentifier);
     }
 }
