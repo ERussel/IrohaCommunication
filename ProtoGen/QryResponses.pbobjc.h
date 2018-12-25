@@ -42,6 +42,7 @@ CF_EXTERN_C_BEGIN
 @class RolesResponse;
 @class SignatoriesResponse;
 @class Transaction;
+@class TransactionsPageResponse;
 @class TransactionsResponse;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -274,6 +275,7 @@ typedef GPB_ENUM(RolePermissionsResponse_FieldNumber) {
 typedef GPB_ENUM(ErrorResponse_FieldNumber) {
   ErrorResponse_FieldNumber_Reason = 1,
   ErrorResponse_FieldNumber_Message = 2,
+  ErrorResponse_FieldNumber_ErrorCode = 3,
 };
 
 @interface ErrorResponse : GPBMessage
@@ -281,6 +283,8 @@ typedef GPB_ENUM(ErrorResponse_FieldNumber) {
 @property(nonatomic, readwrite) ErrorResponse_Reason reason;
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *message;
+
+@property(nonatomic, readwrite) uint32_t errorCode;
 
 @end
 
@@ -324,6 +328,38 @@ typedef GPB_ENUM(TransactionsResponse_FieldNumber) {
 
 @end
 
+#pragma mark - TransactionsPageResponse
+
+typedef GPB_ENUM(TransactionsPageResponse_FieldNumber) {
+  TransactionsPageResponse_FieldNumber_TransactionsArray = 1,
+  TransactionsPageResponse_FieldNumber_AllTransactionsSize = 2,
+  TransactionsPageResponse_FieldNumber_NextTxHash = 3,
+};
+
+typedef GPB_ENUM(TransactionsPageResponse_NextPageTag_OneOfCase) {
+  TransactionsPageResponse_NextPageTag_OneOfCase_GPBUnsetOneOfCase = 0,
+  TransactionsPageResponse_NextPageTag_OneOfCase_NextTxHash = 3,
+};
+
+@interface TransactionsPageResponse : GPBMessage
+
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<Transaction*> *transactionsArray;
+/** The number of items in @c transactionsArray without causing the array to be created. */
+@property(nonatomic, readonly) NSUInteger transactionsArray_Count;
+
+@property(nonatomic, readwrite) uint32_t allTransactionsSize;
+
+@property(nonatomic, readonly) TransactionsPageResponse_NextPageTag_OneOfCase nextPageTagOneOfCase;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *nextTxHash;
+
+@end
+
+/**
+ * Clears whatever value was set for the oneof 'nextPageTag'.
+ **/
+void TransactionsPageResponse_ClearNextPageTagOneOfCase(TransactionsPageResponse *message);
+
 #pragma mark - QueryResponse
 
 typedef GPB_ENUM(QueryResponse_FieldNumber) {
@@ -337,6 +373,7 @@ typedef GPB_ENUM(QueryResponse_FieldNumber) {
   QueryResponse_FieldNumber_RolesResponse = 8,
   QueryResponse_FieldNumber_RolePermissionsResponse = 9,
   QueryResponse_FieldNumber_QueryHash = 10,
+  QueryResponse_FieldNumber_TransactionsPageResponse = 11,
 };
 
 typedef GPB_ENUM(QueryResponse_Response_OneOfCase) {
@@ -350,6 +387,7 @@ typedef GPB_ENUM(QueryResponse_Response_OneOfCase) {
   QueryResponse_Response_OneOfCase_AssetResponse = 7,
   QueryResponse_Response_OneOfCase_RolesResponse = 8,
   QueryResponse_Response_OneOfCase_RolePermissionsResponse = 9,
+  QueryResponse_Response_OneOfCase_TransactionsPageResponse = 11,
 };
 
 @interface QueryResponse : GPBMessage
@@ -373,6 +411,8 @@ typedef GPB_ENUM(QueryResponse_Response_OneOfCase) {
 @property(nonatomic, readwrite, strong, null_resettable) RolesResponse *rolesResponse;
 
 @property(nonatomic, readwrite, strong, null_resettable) RolePermissionsResponse *rolePermissionsResponse;
+
+@property(nonatomic, readwrite, strong, null_resettable) TransactionsPageResponse *transactionsPageResponse;
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *queryHash;
 

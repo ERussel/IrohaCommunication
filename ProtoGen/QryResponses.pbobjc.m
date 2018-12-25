@@ -581,10 +581,12 @@ typedef struct RolePermissionsResponse__storage_ {
 
 @dynamic reason;
 @dynamic message;
+@dynamic errorCode;
 
 typedef struct ErrorResponse__storage_ {
   uint32_t _has_storage_[1];
   ErrorResponse_Reason reason;
+  uint32_t errorCode;
   NSString *message;
 } ErrorResponse__storage_;
 
@@ -611,6 +613,15 @@ typedef struct ErrorResponse__storage_ {
         .offset = (uint32_t)offsetof(ErrorResponse__storage_, message),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "errorCode",
+        .dataTypeSpecific.className = NULL,
+        .number = ErrorResponse_FieldNumber_ErrorCode,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(ErrorResponse__storage_, errorCode),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt32,
       },
     };
     GPBDescriptor *localDescriptor =
@@ -777,6 +788,83 @@ typedef struct TransactionsResponse__storage_ {
 
 @end
 
+#pragma mark - TransactionsPageResponse
+
+@implementation TransactionsPageResponse
+
+@dynamic nextPageTagOneOfCase;
+@dynamic transactionsArray, transactionsArray_Count;
+@dynamic allTransactionsSize;
+@dynamic nextTxHash;
+
+typedef struct TransactionsPageResponse__storage_ {
+  uint32_t _has_storage_[2];
+  uint32_t allTransactionsSize;
+  NSMutableArray *transactionsArray;
+  NSString *nextTxHash;
+} TransactionsPageResponse__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "transactionsArray",
+        .dataTypeSpecific.className = GPBStringifySymbol(Transaction),
+        .number = TransactionsPageResponse_FieldNumber_TransactionsArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(TransactionsPageResponse__storage_, transactionsArray),
+        .flags = GPBFieldRepeated,
+        .dataType = GPBDataTypeMessage,
+      },
+      {
+        .name = "allTransactionsSize",
+        .dataTypeSpecific.className = NULL,
+        .number = TransactionsPageResponse_FieldNumber_AllTransactionsSize,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(TransactionsPageResponse__storage_, allTransactionsSize),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt32,
+      },
+      {
+        .name = "nextTxHash",
+        .dataTypeSpecific.className = NULL,
+        .number = TransactionsPageResponse_FieldNumber_NextTxHash,
+        .hasIndex = -1,
+        .offset = (uint32_t)offsetof(TransactionsPageResponse__storage_, nextTxHash),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[TransactionsPageResponse class]
+                                     rootClass:[QryResponsesRoot class]
+                                          file:QryResponsesRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(TransactionsPageResponse__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    static const char *oneofs[] = {
+      "nextPageTag",
+    };
+    [localDescriptor setupOneofs:oneofs
+                           count:(uint32_t)(sizeof(oneofs) / sizeof(char*))
+                   firstHasIndex:-1];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+void TransactionsPageResponse_ClearNextPageTagOneOfCase(TransactionsPageResponse *message) {
+  GPBDescriptor *descriptor = [message descriptor];
+  GPBOneofDescriptor *oneof = [descriptor.oneofs objectAtIndex:0];
+  GPBMaybeClearOneof(message, oneof, -1, 0);
+}
 #pragma mark - QueryResponse
 
 @implementation QueryResponse
@@ -791,6 +879,7 @@ typedef struct TransactionsResponse__storage_ {
 @dynamic assetResponse;
 @dynamic rolesResponse;
 @dynamic rolePermissionsResponse;
+@dynamic transactionsPageResponse;
 @dynamic queryHash;
 
 typedef struct QueryResponse__storage_ {
@@ -805,6 +894,7 @@ typedef struct QueryResponse__storage_ {
   RolesResponse *rolesResponse;
   RolePermissionsResponse *rolePermissionsResponse;
   NSString *queryHash;
+  TransactionsPageResponse *transactionsPageResponse;
 } QueryResponse__storage_;
 
 // This method is threadsafe because it is initially called
@@ -902,6 +992,15 @@ typedef struct QueryResponse__storage_ {
         .offset = (uint32_t)offsetof(QueryResponse__storage_, queryHash),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "transactionsPageResponse",
+        .dataTypeSpecific.className = GPBStringifySymbol(TransactionsPageResponse),
+        .number = QueryResponse_FieldNumber_TransactionsPageResponse,
+        .hasIndex = -1,
+        .offset = (uint32_t)offsetof(QueryResponse__storage_, transactionsPageResponse),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeMessage,
       },
     };
     GPBDescriptor *localDescriptor =

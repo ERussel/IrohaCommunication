@@ -27,7 +27,8 @@
 
 CF_EXTERN_C_BEGIN
 
-@class Block_Payload;
+@class Block_v1;
+@class Block_v1_Payload;
 @class Signature;
 @class Transaction;
 
@@ -48,16 +49,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BlockRoot : GPBRootObject
 @end
 
-#pragma mark - Block
+#pragma mark - Block_v1
 
-typedef GPB_ENUM(Block_FieldNumber) {
-  Block_FieldNumber_Payload = 1,
-  Block_FieldNumber_SignaturesArray = 2,
+typedef GPB_ENUM(Block_v1_FieldNumber) {
+  Block_v1_FieldNumber_Payload = 1,
+  Block_v1_FieldNumber_SignaturesArray = 2,
 };
 
-@interface Block : GPBMessage
+@interface Block_v1 : GPBMessage
 
-@property(nonatomic, readwrite, strong, null_resettable) Block_Payload *payload;
+@property(nonatomic, readwrite, strong, null_resettable) Block_v1_Payload *payload;
 /** Test to see if @c payload has been set. */
 @property(nonatomic, readwrite) BOOL hasPayload;
 
@@ -67,37 +68,71 @@ typedef GPB_ENUM(Block_FieldNumber) {
 
 @end
 
-#pragma mark - Block_Payload
+#pragma mark - Block_v1_Payload
 
-typedef GPB_ENUM(Block_Payload_FieldNumber) {
-  Block_Payload_FieldNumber_TransactionsArray = 1,
-  Block_Payload_FieldNumber_TxNumber = 2,
-  Block_Payload_FieldNumber_Height = 3,
-  Block_Payload_FieldNumber_PrevBlockHash = 5,
-  Block_Payload_FieldNumber_CreatedTime = 6,
+typedef GPB_ENUM(Block_v1_Payload_FieldNumber) {
+  Block_v1_Payload_FieldNumber_TransactionsArray = 1,
+  Block_v1_Payload_FieldNumber_TxNumber = 2,
+  Block_v1_Payload_FieldNumber_Height = 3,
+  Block_v1_Payload_FieldNumber_PrevBlockHash = 4,
+  Block_v1_Payload_FieldNumber_CreatedTime = 5,
+  Block_v1_Payload_FieldNumber_RejectedTransactionsHashesArray = 6,
 };
 
 /**
  * everything that should be signed:
  **/
-@interface Block_Payload : GPBMessage
+@interface Block_v1_Payload : GPBMessage
 
 @property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<Transaction*> *transactionsArray;
 /** The number of items in @c transactionsArray without causing the array to be created. */
 @property(nonatomic, readonly) NSUInteger transactionsArray_Count;
 
-/** the number of transactions inside. Maximum 16384 or 2^14 */
+/** /< The number of accepted transactions inside. */
 @property(nonatomic, readwrite) uint32_t txNumber;
 
-/** the current block number in a ledger */
+/** /< Maximum 16384 or 2^14. */
 @property(nonatomic, readwrite) uint64_t height;
 
-/** Previous block hash */
+/** /< Previous block hash. */
 @property(nonatomic, readwrite, copy, null_resettable) NSData *prevBlockHash;
 
 @property(nonatomic, readwrite) uint64_t createdTime;
 
+/**
+ * / Hashes of the transactions that did not pass stateful validation.
+ * / Needed here to be able to guarantee the client that this transaction
+ * / was not and will never be executed.
+ **/
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<NSData*> *rejectedTransactionsHashesArray;
+/** The number of items in @c rejectedTransactionsHashesArray without causing the array to be created. */
+@property(nonatomic, readonly) NSUInteger rejectedTransactionsHashesArray_Count;
+
 @end
+
+#pragma mark - Block
+
+typedef GPB_ENUM(Block_FieldNumber) {
+  Block_FieldNumber_BlockV1 = 1,
+};
+
+typedef GPB_ENUM(Block_BlockVersion_OneOfCase) {
+  Block_BlockVersion_OneOfCase_GPBUnsetOneOfCase = 0,
+  Block_BlockVersion_OneOfCase_BlockV1 = 1,
+};
+
+@interface Block : GPBMessage
+
+@property(nonatomic, readonly) Block_BlockVersion_OneOfCase blockVersionOneOfCase;
+
+@property(nonatomic, readwrite, strong, null_resettable) Block_v1 *blockV1;
+
+@end
+
+/**
+ * Clears whatever value was set for the oneof 'blockVersion'.
+ **/
+void Block_ClearBlockVersionOneOfCase(Block *message);
 
 NS_ASSUME_NONNULL_END
 

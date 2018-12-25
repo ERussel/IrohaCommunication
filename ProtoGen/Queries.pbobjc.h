@@ -41,6 +41,7 @@ CF_EXTERN_C_BEGIN
 @class QueryPayloadMeta;
 @class Query_Payload;
 @class Signature;
+@class TxPaginationMeta;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -58,6 +59,33 @@ NS_ASSUME_NONNULL_BEGIN
  **/
 @interface QueriesRoot : GPBRootObject
 @end
+
+#pragma mark - TxPaginationMeta
+
+typedef GPB_ENUM(TxPaginationMeta_FieldNumber) {
+  TxPaginationMeta_FieldNumber_PageSize = 1,
+  TxPaginationMeta_FieldNumber_FirstTxHash = 2,
+};
+
+typedef GPB_ENUM(TxPaginationMeta_OptFirstTxHash_OneOfCase) {
+  TxPaginationMeta_OptFirstTxHash_OneOfCase_GPBUnsetOneOfCase = 0,
+  TxPaginationMeta_OptFirstTxHash_OneOfCase_FirstTxHash = 2,
+};
+
+@interface TxPaginationMeta : GPBMessage
+
+@property(nonatomic, readwrite) uint32_t pageSize;
+
+@property(nonatomic, readonly) TxPaginationMeta_OptFirstTxHash_OneOfCase optFirstTxHashOneOfCase;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *firstTxHash;
+
+@end
+
+/**
+ * Clears whatever value was set for the oneof 'optFirstTxHash'.
+ **/
+void TxPaginationMeta_ClearOptFirstTxHashOneOfCase(TxPaginationMeta *message);
 
 #pragma mark - GetAccount
 
@@ -87,11 +115,16 @@ typedef GPB_ENUM(GetSignatories_FieldNumber) {
 
 typedef GPB_ENUM(GetAccountTransactions_FieldNumber) {
   GetAccountTransactions_FieldNumber_AccountId = 1,
+  GetAccountTransactions_FieldNumber_PaginationMeta = 2,
 };
 
 @interface GetAccountTransactions : GPBMessage
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *accountId;
+
+@property(nonatomic, readwrite, strong, null_resettable) TxPaginationMeta *paginationMeta;
+/** Test to see if @c paginationMeta has been set. */
+@property(nonatomic, readwrite) BOOL hasPaginationMeta;
 
 @end
 
@@ -100,6 +133,7 @@ typedef GPB_ENUM(GetAccountTransactions_FieldNumber) {
 typedef GPB_ENUM(GetAccountAssetTransactions_FieldNumber) {
   GetAccountAssetTransactions_FieldNumber_AccountId = 1,
   GetAccountAssetTransactions_FieldNumber_AssetId = 2,
+  GetAccountAssetTransactions_FieldNumber_PaginationMeta = 3,
 };
 
 @interface GetAccountAssetTransactions : GPBMessage
@@ -107,6 +141,10 @@ typedef GPB_ENUM(GetAccountAssetTransactions_FieldNumber) {
 @property(nonatomic, readwrite, copy, null_resettable) NSString *accountId;
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *assetId;
+
+@property(nonatomic, readwrite, strong, null_resettable) TxPaginationMeta *paginationMeta;
+/** Test to see if @c paginationMeta has been set. */
+@property(nonatomic, readwrite) BOOL hasPaginationMeta;
 
 @end
 

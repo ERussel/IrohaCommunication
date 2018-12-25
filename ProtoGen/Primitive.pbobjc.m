@@ -53,20 +53,22 @@ GPBEnumDescriptor *RolePermission_EnumDescriptor(void) {
         "AddPeer\000CanAddSignatory\000CanRemoveSignato"
         "ry\000CanSetQuorum\000CanCreateAccount\000CanSetD"
         "etail\000CanCreateAsset\000CanTransfer\000CanRece"
-        "ive\000CanCreateDomain\000CanReadAssets\000CanGet"
-        "Roles\000CanGetMyAccount\000CanGetAllAccounts\000"
-        "CanGetDomainAccounts\000CanGetMySignatories"
-        "\000CanGetAllSignatories\000CanGetDomainSignat"
-        "ories\000CanGetMyAccAst\000CanGetAllAccAst\000Can"
-        "GetDomainAccAst\000CanGetMyAccDetail\000CanGet"
-        "AllAccDetail\000CanGetDomainAccDetail\000CanGe"
-        "tMyAccTxs\000CanGetAllAccTxs\000CanGetDomainAc"
-        "cTxs\000CanGetMyAccAstTxs\000CanGetAllAccAstTx"
-        "s\000CanGetDomainAccAstTxs\000CanGetMyTxs\000CanG"
-        "etAllTxs\000CanGetBlocks\000CanGrantCanSetMyQu"
-        "orum\000CanGrantCanAddMySignatory\000CanGrantC"
-        "anRemoveMySignatory\000CanGrantCanTransferM"
-        "yAssets\000CanGrantCanSetMyAccountDetail\000";
+        "ive\000CanCreateDomain\000CanAddDomainAssetQty"
+        "\000CanSubtractDomainAssetQty\000CanReadAssets"
+        "\000CanGetRoles\000CanGetMyAccount\000CanGetAllAc"
+        "counts\000CanGetDomainAccounts\000CanGetMySign"
+        "atories\000CanGetAllSignatories\000CanGetDomai"
+        "nSignatories\000CanGetMyAccAst\000CanGetAllAcc"
+        "Ast\000CanGetDomainAccAst\000CanGetMyAccDetail"
+        "\000CanGetAllAccDetail\000CanGetDomainAccDetai"
+        "l\000CanGetMyAccTxs\000CanGetAllAccTxs\000CanGetD"
+        "omainAccTxs\000CanGetMyAccAstTxs\000CanGetAllA"
+        "ccAstTxs\000CanGetDomainAccAstTxs\000CanGetMyT"
+        "xs\000CanGetAllTxs\000CanGetBlocks\000CanGrantCan"
+        "SetMyQuorum\000CanGrantCanAddMySignatory\000Ca"
+        "nGrantCanRemoveMySignatory\000CanGrantCanTr"
+        "ansferMyAssets\000CanGrantCanSetMyAccountDe"
+        "tail\000";
     static const int32_t values[] = {
         RolePermission_CanAppendRole,
         RolePermission_CanCreateRole,
@@ -83,6 +85,8 @@ GPBEnumDescriptor *RolePermission_EnumDescriptor(void) {
         RolePermission_CanTransfer,
         RolePermission_CanReceive,
         RolePermission_CanCreateDomain,
+        RolePermission_CanAddDomainAssetQty,
+        RolePermission_CanSubtractDomainAssetQty,
         RolePermission_CanReadAssets,
         RolePermission_CanGetRoles,
         RolePermission_CanGetMyAccount,
@@ -112,7 +116,7 @@ GPBEnumDescriptor *RolePermission_EnumDescriptor(void) {
         RolePermission_CanGrantCanTransferMyAssets,
         RolePermission_CanGrantCanSetMyAccountDetail,
     };
-    static const char *extraTextFormatInfo = "+\000#\246\244\000\001#\246\244\000\002#\246\244\000\003#\243\245\243\000\004#\250\245\243\000\005#\243\244\000\006#\243\251\000\007#\246\251\000\010#\243\246\000\t#\246\247\000\n#\243\246\000\013#\246\245\000\014#\250\000\r#\247\000\016#\246\246\000\017#\244\246\000\020#\243\245\000\021#\243\242\247\000\022#\243\243\250\000\023#\243\246\250\000\024#\243\242\253\000\025#\243\243\253\000\026#\243\246\253\000\027#\243\242\243\243\000\030#\243\243\243\243\000\031#\243\246\243\243\000\032#\243\242\243\246\000\033#\243\243\243\246\000\034#\243\246\243\246\000\035#\243\242\243\243\000\036#\243\243\243\243\000\037#\243\246\243\243\000 #\243\242\243\243\243\000!#\243\243\243\243\243\000\"#\243\246\243\243\243\000##\243\242\243\000$#\243\243\243\000%#\243\246\000&#\245\243\243\242\246\000\'#\245\243\243\242\251\000(#\245\243\246\242\251\000)#\245\243\250\242\246\000*#\245\243\243\242\247\246\000";
+    static const char *extraTextFormatInfo = "-\000#\246\244\000\001#\246\244\000\002#\246\244\000\003#\243\245\243\000\004#\250\245\243\000\005#\243\244\000\006#\243\251\000\007#\246\251\000\010#\243\246\000\t#\246\247\000\n#\243\246\000\013#\246\245\000\014#\250\000\r#\247\000\016#\246\246\000\017#\243\246\245\243\000\020#\250\246\245\243\000\021#\244\246\000\022#\243\245\000\023#\243\242\247\000\024#\243\243\250\000\025#\243\246\250\000\026#\243\242\253\000\027#\243\243\253\000\030#\243\246\253\000\031#\243\242\243\243\000\032#\243\243\243\243\000\033#\243\246\243\243\000\034#\243\242\243\246\000\035#\243\243\243\246\000\036#\243\246\243\246\000\037#\243\242\243\243\000 #\243\243\243\243\000!#\243\246\243\243\000\"#\243\242\243\243\243\000##\243\243\243\243\243\000$#\243\246\243\243\243\000%#\243\242\243\000&#\243\243\243\000\'#\243\246\000(#\245\243\243\242\246\000)#\245\243\243\242\251\000*#\245\243\246\242\251\000+#\245\243\250\242\246\000,#\245\243\243\242\247\246\000";
     GPBEnumDescriptor *worker =
         [GPBEnumDescriptor allocDescriptorForName:GPBNSStringifySymbol(RolePermission)
                                        valueNames:valueNames
@@ -144,6 +148,8 @@ BOOL RolePermission_IsValidValue(int32_t value__) {
     case RolePermission_CanTransfer:
     case RolePermission_CanReceive:
     case RolePermission_CanCreateDomain:
+    case RolePermission_CanAddDomainAssetQty:
+    case RolePermission_CanSubtractDomainAssetQty:
     case RolePermission_CanReadAssets:
     case RolePermission_CanGetRoles:
     case RolePermission_CanGetMyAccount:

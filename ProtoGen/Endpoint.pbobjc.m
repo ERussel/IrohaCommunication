@@ -111,13 +111,17 @@ BOOL TxStatus_IsValidValue(int32_t value__) {
 
 @dynamic txStatus;
 @dynamic txHash;
-@dynamic errorMessage;
+@dynamic errOrCmdName;
+@dynamic failedCmdIndex;
+@dynamic errorCode;
 
 typedef struct ToriiResponse__storage_ {
   uint32_t _has_storage_[1];
   TxStatus txStatus;
+  uint32_t errorCode;
   NSData *txHash;
-  NSString *errorMessage;
+  NSString *errOrCmdName;
+  uint64_t failedCmdIndex;
 } ToriiResponse__storage_;
 
 // This method is threadsafe because it is initially called
@@ -145,13 +149,31 @@ typedef struct ToriiResponse__storage_ {
         .dataType = GPBDataTypeBytes,
       },
       {
-        .name = "errorMessage",
+        .name = "errOrCmdName",
         .dataTypeSpecific.className = NULL,
-        .number = ToriiResponse_FieldNumber_ErrorMessage,
+        .number = ToriiResponse_FieldNumber_ErrOrCmdName,
         .hasIndex = 2,
-        .offset = (uint32_t)offsetof(ToriiResponse__storage_, errorMessage),
+        .offset = (uint32_t)offsetof(ToriiResponse__storage_, errOrCmdName),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "failedCmdIndex",
+        .dataTypeSpecific.className = NULL,
+        .number = ToriiResponse_FieldNumber_FailedCmdIndex,
+        .hasIndex = 3,
+        .offset = (uint32_t)offsetof(ToriiResponse__storage_, failedCmdIndex),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt64,
+      },
+      {
+        .name = "errorCode",
+        .dataTypeSpecific.className = NULL,
+        .number = ToriiResponse_FieldNumber_ErrorCode,
+        .hasIndex = 4,
+        .offset = (uint32_t)offsetof(ToriiResponse__storage_, errorCode),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt32,
       },
     };
     GPBDescriptor *localDescriptor =

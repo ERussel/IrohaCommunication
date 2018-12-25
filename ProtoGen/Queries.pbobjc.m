@@ -44,6 +44,72 @@ static GPBFileDescriptor *QueriesRoot_FileDescriptor(void) {
   return descriptor;
 }
 
+#pragma mark - TxPaginationMeta
+
+@implementation TxPaginationMeta
+
+@dynamic optFirstTxHashOneOfCase;
+@dynamic pageSize;
+@dynamic firstTxHash;
+
+typedef struct TxPaginationMeta__storage_ {
+  uint32_t _has_storage_[2];
+  uint32_t pageSize;
+  NSString *firstTxHash;
+} TxPaginationMeta__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "pageSize",
+        .dataTypeSpecific.className = NULL,
+        .number = TxPaginationMeta_FieldNumber_PageSize,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(TxPaginationMeta__storage_, pageSize),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt32,
+      },
+      {
+        .name = "firstTxHash",
+        .dataTypeSpecific.className = NULL,
+        .number = TxPaginationMeta_FieldNumber_FirstTxHash,
+        .hasIndex = -1,
+        .offset = (uint32_t)offsetof(TxPaginationMeta__storage_, firstTxHash),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[TxPaginationMeta class]
+                                     rootClass:[QueriesRoot class]
+                                          file:QueriesRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(TxPaginationMeta__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    static const char *oneofs[] = {
+      "optFirstTxHash",
+    };
+    [localDescriptor setupOneofs:oneofs
+                           count:(uint32_t)(sizeof(oneofs) / sizeof(char*))
+                   firstHasIndex:-1];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+void TxPaginationMeta_ClearOptFirstTxHashOneOfCase(TxPaginationMeta *message) {
+  GPBDescriptor *descriptor = [message descriptor];
+  GPBOneofDescriptor *oneof = [descriptor.oneofs objectAtIndex:0];
+  GPBMaybeClearOneof(message, oneof, -1, 0);
+}
 #pragma mark - GetAccount
 
 @implementation GetAccount
@@ -135,10 +201,12 @@ typedef struct GetSignatories__storage_ {
 @implementation GetAccountTransactions
 
 @dynamic accountId;
+@dynamic hasPaginationMeta, paginationMeta;
 
 typedef struct GetAccountTransactions__storage_ {
   uint32_t _has_storage_[1];
   NSString *accountId;
+  TxPaginationMeta *paginationMeta;
 } GetAccountTransactions__storage_;
 
 // This method is threadsafe because it is initially called
@@ -155,6 +223,15 @@ typedef struct GetAccountTransactions__storage_ {
         .offset = (uint32_t)offsetof(GetAccountTransactions__storage_, accountId),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "paginationMeta",
+        .dataTypeSpecific.className = GPBStringifySymbol(TxPaginationMeta),
+        .number = GetAccountTransactions_FieldNumber_PaginationMeta,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(GetAccountTransactions__storage_, paginationMeta),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeMessage,
       },
     };
     GPBDescriptor *localDescriptor =
@@ -179,11 +256,13 @@ typedef struct GetAccountTransactions__storage_ {
 
 @dynamic accountId;
 @dynamic assetId;
+@dynamic hasPaginationMeta, paginationMeta;
 
 typedef struct GetAccountAssetTransactions__storage_ {
   uint32_t _has_storage_[1];
   NSString *accountId;
   NSString *assetId;
+  TxPaginationMeta *paginationMeta;
 } GetAccountAssetTransactions__storage_;
 
 // This method is threadsafe because it is initially called
@@ -209,6 +288,15 @@ typedef struct GetAccountAssetTransactions__storage_ {
         .offset = (uint32_t)offsetof(GetAccountAssetTransactions__storage_, assetId),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "paginationMeta",
+        .dataTypeSpecific.className = GPBStringifySymbol(TxPaginationMeta),
+        .number = GetAccountAssetTransactions_FieldNumber_PaginationMeta,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(GetAccountAssetTransactions__storage_, paginationMeta),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeMessage,
       },
     };
     GPBDescriptor *localDescriptor =

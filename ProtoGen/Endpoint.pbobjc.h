@@ -80,7 +80,9 @@ BOOL TxStatus_IsValidValue(int32_t value);
 typedef GPB_ENUM(ToriiResponse_FieldNumber) {
   ToriiResponse_FieldNumber_TxStatus = 1,
   ToriiResponse_FieldNumber_TxHash = 2,
-  ToriiResponse_FieldNumber_ErrorMessage = 3,
+  ToriiResponse_FieldNumber_ErrOrCmdName = 3,
+  ToriiResponse_FieldNumber_FailedCmdIndex = 4,
+  ToriiResponse_FieldNumber_ErrorCode = 5,
 };
 
 @interface ToriiResponse : GPBMessage
@@ -89,7 +91,11 @@ typedef GPB_ENUM(ToriiResponse_FieldNumber) {
 
 @property(nonatomic, readwrite, copy, null_resettable) NSData *txHash;
 
-@property(nonatomic, readwrite, copy, null_resettable) NSString *errorMessage;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *errOrCmdName;
+
+@property(nonatomic, readwrite) uint64_t failedCmdIndex;
+
+@property(nonatomic, readwrite) uint32_t errorCode;
 
 @end
 

@@ -20,6 +20,7 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#pragma clang diagnostic ignored "-Wdirect-ivar-access"
 
 #pragma mark - BlockRoot
 
@@ -44,18 +45,18 @@ static GPBFileDescriptor *BlockRoot_FileDescriptor(void) {
   return descriptor;
 }
 
-#pragma mark - Block
+#pragma mark - Block_v1
 
-@implementation Block
+@implementation Block_v1
 
 @dynamic hasPayload, payload;
 @dynamic signaturesArray, signaturesArray_Count;
 
-typedef struct Block__storage_ {
+typedef struct Block_v1__storage_ {
   uint32_t _has_storage_[1];
-  Block_Payload *payload;
+  Block_v1_Payload *payload;
   NSMutableArray *signaturesArray;
-} Block__storage_;
+} Block_v1__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -65,20 +66,163 @@ typedef struct Block__storage_ {
     static GPBMessageFieldDescription fields[] = {
       {
         .name = "payload",
-        .dataTypeSpecific.className = GPBStringifySymbol(Block_Payload),
-        .number = Block_FieldNumber_Payload,
+        .dataTypeSpecific.className = GPBStringifySymbol(Block_v1_Payload),
+        .number = Block_v1_FieldNumber_Payload,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(Block__storage_, payload),
+        .offset = (uint32_t)offsetof(Block_v1__storage_, payload),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeMessage,
       },
       {
         .name = "signaturesArray",
         .dataTypeSpecific.className = GPBStringifySymbol(Signature),
-        .number = Block_FieldNumber_SignaturesArray,
+        .number = Block_v1_FieldNumber_SignaturesArray,
         .hasIndex = GPBNoHasBit,
-        .offset = (uint32_t)offsetof(Block__storage_, signaturesArray),
+        .offset = (uint32_t)offsetof(Block_v1__storage_, signaturesArray),
         .flags = GPBFieldRepeated,
+        .dataType = GPBDataTypeMessage,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[Block_v1 class]
+                                     rootClass:[BlockRoot class]
+                                          file:BlockRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(Block_v1__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - Block_v1_Payload
+
+@implementation Block_v1_Payload
+
+@dynamic transactionsArray, transactionsArray_Count;
+@dynamic txNumber;
+@dynamic height;
+@dynamic prevBlockHash;
+@dynamic createdTime;
+@dynamic rejectedTransactionsHashesArray, rejectedTransactionsHashesArray_Count;
+
+typedef struct Block_v1_Payload__storage_ {
+  uint32_t _has_storage_[1];
+  uint32_t txNumber;
+  NSMutableArray *transactionsArray;
+  NSData *prevBlockHash;
+  NSMutableArray *rejectedTransactionsHashesArray;
+  uint64_t height;
+  uint64_t createdTime;
+} Block_v1_Payload__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "transactionsArray",
+        .dataTypeSpecific.className = GPBStringifySymbol(Transaction),
+        .number = Block_v1_Payload_FieldNumber_TransactionsArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(Block_v1_Payload__storage_, transactionsArray),
+        .flags = GPBFieldRepeated,
+        .dataType = GPBDataTypeMessage,
+      },
+      {
+        .name = "txNumber",
+        .dataTypeSpecific.className = NULL,
+        .number = Block_v1_Payload_FieldNumber_TxNumber,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(Block_v1_Payload__storage_, txNumber),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt32,
+      },
+      {
+        .name = "height",
+        .dataTypeSpecific.className = NULL,
+        .number = Block_v1_Payload_FieldNumber_Height,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(Block_v1_Payload__storage_, height),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt64,
+      },
+      {
+        .name = "prevBlockHash",
+        .dataTypeSpecific.className = NULL,
+        .number = Block_v1_Payload_FieldNumber_PrevBlockHash,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(Block_v1_Payload__storage_, prevBlockHash),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeBytes,
+      },
+      {
+        .name = "createdTime",
+        .dataTypeSpecific.className = NULL,
+        .number = Block_v1_Payload_FieldNumber_CreatedTime,
+        .hasIndex = 3,
+        .offset = (uint32_t)offsetof(Block_v1_Payload__storage_, createdTime),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt64,
+      },
+      {
+        .name = "rejectedTransactionsHashesArray",
+        .dataTypeSpecific.className = NULL,
+        .number = Block_v1_Payload_FieldNumber_RejectedTransactionsHashesArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(Block_v1_Payload__storage_, rejectedTransactionsHashesArray),
+        .flags = GPBFieldRepeated,
+        .dataType = GPBDataTypeBytes,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[Block_v1_Payload class]
+                                     rootClass:[BlockRoot class]
+                                          file:BlockRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(Block_v1_Payload__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    [localDescriptor setupContainingMessageClassName:GPBStringifySymbol(Block_v1)];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - Block
+
+@implementation Block
+
+@dynamic blockVersionOneOfCase;
+@dynamic blockV1;
+
+typedef struct Block__storage_ {
+  uint32_t _has_storage_[2];
+  Block_v1 *blockV1;
+} Block__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "blockV1",
+        .dataTypeSpecific.className = GPBStringifySymbol(Block_v1),
+        .number = Block_FieldNumber_BlockV1,
+        .hasIndex = -1,
+        .offset = (uint32_t)offsetof(Block__storage_, blockV1),
+        .flags = GPBFieldOptional,
         .dataType = GPBDataTypeMessage,
       },
     };
@@ -90,94 +234,12 @@ typedef struct Block__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(Block__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
-    descriptor = localDescriptor;
-  }
-  return descriptor;
-}
-
-@end
-
-#pragma mark - Block_Payload
-
-@implementation Block_Payload
-
-@dynamic transactionsArray, transactionsArray_Count;
-@dynamic txNumber;
-@dynamic height;
-@dynamic prevBlockHash;
-@dynamic createdTime;
-
-typedef struct Block_Payload__storage_ {
-  uint32_t _has_storage_[1];
-  uint32_t txNumber;
-  NSMutableArray *transactionsArray;
-  NSData *prevBlockHash;
-  uint64_t height;
-  uint64_t createdTime;
-} Block_Payload__storage_;
-
-// This method is threadsafe because it is initially called
-// in +initialize for each subclass.
-+ (GPBDescriptor *)descriptor {
-  static GPBDescriptor *descriptor = nil;
-  if (!descriptor) {
-    static GPBMessageFieldDescription fields[] = {
-      {
-        .name = "transactionsArray",
-        .dataTypeSpecific.className = GPBStringifySymbol(Transaction),
-        .number = Block_Payload_FieldNumber_TransactionsArray,
-        .hasIndex = GPBNoHasBit,
-        .offset = (uint32_t)offsetof(Block_Payload__storage_, transactionsArray),
-        .flags = GPBFieldRepeated,
-        .dataType = GPBDataTypeMessage,
-      },
-      {
-        .name = "txNumber",
-        .dataTypeSpecific.className = NULL,
-        .number = Block_Payload_FieldNumber_TxNumber,
-        .hasIndex = 0,
-        .offset = (uint32_t)offsetof(Block_Payload__storage_, txNumber),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeUInt32,
-      },
-      {
-        .name = "height",
-        .dataTypeSpecific.className = NULL,
-        .number = Block_Payload_FieldNumber_Height,
-        .hasIndex = 1,
-        .offset = (uint32_t)offsetof(Block_Payload__storage_, height),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeUInt64,
-      },
-      {
-        .name = "prevBlockHash",
-        .dataTypeSpecific.className = NULL,
-        .number = Block_Payload_FieldNumber_PrevBlockHash,
-        .hasIndex = 2,
-        .offset = (uint32_t)offsetof(Block_Payload__storage_, prevBlockHash),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeBytes,
-      },
-      {
-        .name = "createdTime",
-        .dataTypeSpecific.className = NULL,
-        .number = Block_Payload_FieldNumber_CreatedTime,
-        .hasIndex = 3,
-        .offset = (uint32_t)offsetof(Block_Payload__storage_, createdTime),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeUInt64,
-      },
+    static const char *oneofs[] = {
+      "blockVersion",
     };
-    GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[Block_Payload class]
-                                     rootClass:[BlockRoot class]
-                                          file:BlockRoot_FileDescriptor()
-                                        fields:fields
-                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(Block_Payload__storage_)
-                                         flags:GPBDescriptorInitializationFlag_None];
-    [localDescriptor setupContainingMessageClassName:GPBStringifySymbol(Block)];
+    [localDescriptor setupOneofs:oneofs
+                           count:(uint32_t)(sizeof(oneofs) / sizeof(char*))
+                   firstHasIndex:-1];
     NSAssert(descriptor == nil, @"Startup recursed!");
     descriptor = localDescriptor;
   }
@@ -186,6 +248,11 @@ typedef struct Block_Payload__storage_ {
 
 @end
 
+void Block_ClearBlockVersionOneOfCase(Block *message) {
+  GPBDescriptor *descriptor = [message descriptor];
+  GPBOneofDescriptor *oneof = [descriptor.oneofs objectAtIndex:0];
+  GPBMaybeClearOneof(message, oneof, -1, 0);
+}
 
 #pragma clang diagnostic pop
 

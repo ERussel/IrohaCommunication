@@ -7,15 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0200345E21C62D3F001A6A53 /* IRDomainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200345C21C62D3F001A6A53 /* IRDomainTests.m */; };
+		0200345F21C62D3F001A6A53 /* IRAccountIdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200345D21C62D3F001A6A53 /* IRAccountIdTests.m */; };
+		0200346121C63F45001A6A53 /* IRAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200346021C63F45001A6A53 /* IRAddressTests.m */; };
+		0200346F21C840D1001A6A53 /* IRAmountTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200346E21C840D1001A6A53 /* IRAmountTests.m */; };
+		0200347121C849FF001A6A53 /* IRAssetIdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200347021C849FF001A6A53 /* IRAssetIdTests.m */; };
+		0200347321C84E5C001A6A53 /* IRRoleNameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200347221C84E5C001A6A53 /* IRRoleNameTests.m */; };
+		0200347521C8516F001A6A53 /* IRGrantablePermissionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200347421C8516F001A6A53 /* IRGrantablePermissionTests.m */; };
+		0200347721C853E2001A6A53 /* IRRolePermissionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200347621C853E2001A6A53 /* IRRolePermissionTests.m */; };
+		02E3198B21D0FEF000B33B66 /* IRTransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */; };
 		5747BFFD6B791F5D4E211A8F /* Pods_IrohaCommunication_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF608F629997F5F1F47D6E2 /* Pods_IrohaCommunication_Tests.framework */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0200345C21C62D3F001A6A53 /* IRDomainTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRDomainTests.m; sourceTree = "<group>"; };
+		0200345D21C62D3F001A6A53 /* IRAccountIdTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRAccountIdTests.m; sourceTree = "<group>"; };
+		0200346021C63F45001A6A53 /* IRAddressTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRAddressTests.m; sourceTree = "<group>"; };
+		0200346E21C840D1001A6A53 /* IRAmountTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRAmountTests.m; sourceTree = "<group>"; };
+		0200347021C849FF001A6A53 /* IRAssetIdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRAssetIdTests.m; sourceTree = "<group>"; };
+		0200347221C84E5C001A6A53 /* IRRoleNameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRRoleNameTests.m; sourceTree = "<group>"; };
+		0200347421C8516F001A6A53 /* IRGrantablePermissionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRGrantablePermissionTests.m; sourceTree = "<group>"; };
+		0200347621C853E2001A6A53 /* IRRolePermissionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRRolePermissionTests.m; sourceTree = "<group>"; };
+		02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRTransactionTests.m; sourceTree = "<group>"; };
 		23FA10B0D24502974E9385B6 /* Pods-IrohaCommunication_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaCommunication_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaCommunication_Tests/Pods-IrohaCommunication_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -24,7 +41,6 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		74D33D817C5F7989BD3071B1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		84EA860F14455E442B5C9B29 /* IrohaCommunication.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = IrohaCommunication.podspec; path = ../IrohaCommunication.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -48,6 +64,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0200345B21C62D3F001A6A53 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0200345C21C62D3F001A6A53 /* IRDomainTests.m */,
+				0200345D21C62D3F001A6A53 /* IRAccountIdTests.m */,
+				0200346021C63F45001A6A53 /* IRAddressTests.m */,
+				0200346E21C840D1001A6A53 /* IRAmountTests.m */,
+				0200347021C849FF001A6A53 /* IRAssetIdTests.m */,
+				0200347221C84E5C001A6A53 /* IRRoleNameTests.m */,
+				0200347421C8516F001A6A53 /* IRGrantablePermissionTests.m */,
+				0200347621C853E2001A6A53 /* IRRolePermissionTests.m */,
+			);
+			name = Model;
+			path = ../../Tests/Model;
+			sourceTree = "<group>";
+		};
+		02E3198921D0FED500B33B66 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */,
+			);
+			name = Transaction;
+			path = ../../Tests/Transaction;
+			sourceTree = "<group>";
+		};
 		2EFE64D960ACD758C9C23090 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,7 +132,8 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
+				02E3198921D0FED500B33B66 /* Transaction */,
+				0200345B21C62D3F001A6A53 /* Model */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -246,7 +288,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				02E3198B21D0FEF000B33B66 /* IRTransactionTests.m in Sources */,
+				0200346F21C840D1001A6A53 /* IRAmountTests.m in Sources */,
+				0200347521C8516F001A6A53 /* IRGrantablePermissionTests.m in Sources */,
+				0200347121C849FF001A6A53 /* IRAssetIdTests.m in Sources */,
+				0200347721C853E2001A6A53 /* IRRolePermissionTests.m in Sources */,
+				0200345E21C62D3F001A6A53 /* IRDomainTests.m in Sources */,
+				0200345F21C62D3F001A6A53 /* IRAccountIdTests.m in Sources */,
+				0200346121C63F45001A6A53 /* IRAddressTests.m in Sources */,
+				0200347321C84E5C001A6A53 /* IRRoleNameTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,7 +392,6 @@
 			baseConfigurationReference = FBEDEA9EB928BD52D49FE065 /* Pods-IrohaCommunication_Tests.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
@@ -364,7 +413,6 @@
 			baseConfigurationReference = 23FA10B0D24502974E9385B6 /* Pods-IrohaCommunication_Tests.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
