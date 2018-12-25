@@ -1,4 +1,5 @@
 #import "IRTransferAsset.h"
+#import "Commands.pbobjc.h"
 
 @implementation IRTransferAsset
 @synthesize sourceAccountId = _sourceAccountId;
@@ -22,6 +23,22 @@
     }
 
     return self;
+}
+
+#pragma mark - Protobuf Transformable
+
+- (nullable id)transform:(NSError *__autoreleasing *)error {
+    TransferAsset *transferAsset = [[TransferAsset alloc] init];
+    transferAsset.srcAccountId = [_sourceAccountId identifier];
+    transferAsset.destAccountId = [_destinationAccountId identifier];
+    transferAsset.assetId = [_assetId identifier];
+    transferAsset.amount = [_amount value];
+    transferAsset.description_p = _transferDescription;
+
+    Command *command = [[Command alloc] init];
+    command.transferAsset = transferAsset;
+
+    return command;
 }
 
 @end

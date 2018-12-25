@@ -64,7 +64,27 @@ static NSString * const VALID_ROLE = @"admin";
     id<IRTransaction> transaction = [builder build:&error];
 
     XCTAssertNotNil(transaction);
+    XCTAssertEqualObjects([transaction.creator identifier], [accountId identifier]);
     XCTAssertNil(error);
+
+    id<IRSignatureCreatorProtocol> signatory = [[IREd25519Sha512Signer alloc] initWithPrivateKey:[keypair privateKey]];
+    id<IRTransaction> signedTransaction = [transaction signedWithSignatories:@[signatory]
+                                                         signatoryPublicKeys:@[[keypair publicKey]]
+                                                                       error:&error];
+
+    XCTAssertNotNil(signedTransaction);
+    XCTAssertNil(error);
+
+    id<IRPeerSignature> peerSignature = [transaction signWithSignatory:signatory
+                                                    signatoryPublicKey:[keypair publicKey]
+                                                                 error:nil];
+
+    XCTAssertNotNil(peerSignature);
+    XCTAssertNil(error);
+
+    id<IRPeerSignature> resultSignature = [signedTransaction.signatures firstObject];
+    XCTAssertEqualObjects(peerSignature.signature.rawData, resultSignature.signature.rawData);
+    XCTAssertEqualObjects(peerSignature.publicKey.rawData, resultSignature.publicKey.rawData);
 }
 
 @end

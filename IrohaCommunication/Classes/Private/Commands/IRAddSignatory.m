@@ -1,4 +1,5 @@
 #import "IRAddSignatory.h"
+#import "Commands.pbobjc.h"
 
 @implementation IRAddSignatory
 @synthesize accountId = _accountId;
@@ -13,6 +14,19 @@
     }
 
     return self;
+}
+
+#pragma mark - Protobuf Transformable
+
+- (nullable id)transform:(NSError *__autoreleasing *)error {
+    AddSignatory *addSignatory = [[AddSignatory alloc] init];
+    addSignatory.accountId = [_accountId identifier];
+    addSignatory.publicKey = [_publicKey rawData];
+
+    Command *command = [[Command alloc] init];
+    command.addSignatory = addSignatory;
+
+    return command;
 }
 
 @end

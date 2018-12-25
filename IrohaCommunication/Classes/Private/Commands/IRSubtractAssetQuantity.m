@@ -1,4 +1,5 @@
 #import "IRSubtractAssetQuantity.h"
+#import "Commands.pbobjc.h"
 
 @implementation IRSubtractAssetQuantity
 @synthesize assetId = _assetId;
@@ -13,6 +14,19 @@
     }
 
     return self;
+}
+
+#pragma mark - Protobuf Transformable
+
+- (nullable id)transform:(NSError *__autoreleasing *)error {
+    SubtractAssetQuantity *subtractAssetQuantity = [[SubtractAssetQuantity alloc] init];
+    subtractAssetQuantity.assetId = [_assetId identifier];
+    subtractAssetQuantity.amount = [_amount value];
+
+    Command *command = [[Command alloc] init];
+    command.subtractAssetQuantity = subtractAssetQuantity;
+
+    return command;
 }
 
 @end

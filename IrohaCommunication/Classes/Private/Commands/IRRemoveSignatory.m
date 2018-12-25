@@ -1,4 +1,5 @@
 #import "IRRemoveSignatory.h"
+#import "Commands.pbobjc.h"
 
 @implementation IRRemoveSignatory
 @synthesize accountId = _accountId;
@@ -13,6 +14,19 @@
     }
 
     return self;
+}
+
+#pragma mark - Protobuf Transformable
+
+- (nullable id)transform:(NSError *__autoreleasing *)error {
+    RemoveSignatory *removeSignatory = [[RemoveSignatory alloc] init];
+    removeSignatory.accountId = [_accountId identifier];
+    removeSignatory.publicKey = [_publicKey rawData];
+
+    Command *command = [[Command alloc] init];
+    command.removeSignatory = removeSignatory;
+
+    return command;
 }
 
 @end

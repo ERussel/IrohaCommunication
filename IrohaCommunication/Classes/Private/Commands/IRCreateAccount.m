@@ -1,4 +1,5 @@
 #import "IRCreateAccount.h"
+#import "Commands.pbobjc.h"
 
 @implementation IRCreateAccount
 @synthesize accountId = _accountId;
@@ -13,6 +14,20 @@
     }
 
     return self;
+}
+
+#pragma mark - Protobuf Transformable
+
+- (nullable id)transform:(NSError *__autoreleasing *)error {
+    CreateAccount *createAccount = [[CreateAccount alloc] init];
+    createAccount.accountName = _accountId.name;
+    createAccount.domainId = [_accountId.domain identifier];
+    createAccount.publicKey = [_publicKey rawData];
+
+    Command *command = [[Command alloc] init];
+    command.createAccount = createAccount;
+
+    return command;
 }
 
 @end

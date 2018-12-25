@@ -1,4 +1,5 @@
 #import "IRSetAccountQuorum.h"
+#import "Commands.pbobjc.h"
 
 @implementation IRSetAccountQuorum
 @synthesize accountId = _accountId;
@@ -13,6 +14,19 @@
     }
 
     return self;
+}
+
+#pragma mark - Protobuf Transformable
+
+- (nullable id)transform:(NSError *__autoreleasing *)error {
+    SetAccountQuorum *setAccountQuorum = [[SetAccountQuorum alloc] init];
+    setAccountQuorum.accountId = [_accountId identifier];
+    setAccountQuorum.quorum = _quorum;
+
+    Command *command = [[Command alloc] init];
+    command.setAccountQuorum = setAccountQuorum;
+
+    return command;
 }
 
 @end

@@ -1,4 +1,6 @@
 #import "IRAddPeer.h"
+#import "Commands.pbobjc.h"
+#import "Primitive.pbobjc.h"
 
 @implementation IRAddPeer
 @synthesize address = _address;
@@ -13,6 +15,23 @@
     }
 
     return self;
+}
+
+#pragma mark - Protobuf Transformable
+
+- (nullable id)transform:(NSError *__autoreleasing *)error {
+    AddPeer *addPeer = [[AddPeer alloc] init];
+
+    Peer *peer = [[Peer alloc] init];
+    peer.address = [_address value];
+    peer.peerKey = [_publicKey rawData];
+
+    addPeer.peer = peer;
+
+    Command *command = [[Command alloc] init];
+    command.addPeer = addPeer;
+
+    return command;
 }
 
 @end
