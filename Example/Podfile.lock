@@ -1,10 +1,10 @@
 PODS:
-  - BoringSSL (10.0.6):
-    - BoringSSL/Implementation (= 10.0.6)
-    - BoringSSL/Interface (= 10.0.6)
-  - BoringSSL/Implementation (10.0.6):
-    - BoringSSL/Interface (= 10.0.6)
-  - BoringSSL/Interface (10.0.6)
+  - BoringSSL (10.0.3):
+    - BoringSSL/Implementation (= 10.0.3)
+    - BoringSSL/Interface (= 10.0.3)
+  - BoringSSL/Implementation (10.0.3):
+    - BoringSSL/Interface (= 10.0.3)
+  - BoringSSL/Interface (10.0.3)
   - gRPC (1.11.0):
     - gRPC-RxLibrary (= 1.11.0)
     - gRPC/Main (= 1.11.0)
@@ -25,8 +25,10 @@ PODS:
     - gRPC-Core (= 1.11.0)
     - gRPC-RxLibrary (= 1.11.0)
   - IrohaCommunication (0.1.0):
+    - BoringSSL (= 10.0.3)
     - gRPC-ProtoRPC (= 1.11.0)
     - IrohaCrypto
+    - nanopb (= 0.3.8)
     - Protobuf (~> 3.5.0)
   - IrohaCrypto (0.2.5)
   - nanopb (0.3.8):
@@ -55,16 +57,16 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
+  BoringSSL: c46efb47593135382bc0934196f16d2f726f5f36
   gRPC: 70703dc9ba31c72341fc7f37745cc1c379edee96
   gRPC-Core: 164639cd8ae18ca8b65477fafb2efbaecf4f181a
   gRPC-ProtoRPC: bb5fddf3424aa4fad74d76736578a79fe40e244e
   gRPC-RxLibrary: 26d53d1b1f306befd4ad4e15bd6de27839a82481
-  IrohaCommunication: 8fe0752793d4e4372b16ac81f60f446c0a2b9175
+  IrohaCommunication: e40a8540f7fd1c4e81765fbfa12dc7291a070dcb
   IrohaCrypto: d0e6e1189ce43a51b6f7916f4830605c7d466d57
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
 
-PODFILE CHECKSUM: 81af14fc40903ea087cd5647cd319a2c84cfa0d6
+PODFILE CHECKSUM: 7f5089e555882e36fa768b8c498307139d76f125
 
 COCOAPODS: 1.5.3

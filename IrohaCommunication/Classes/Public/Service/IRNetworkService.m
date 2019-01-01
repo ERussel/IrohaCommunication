@@ -13,7 +13,7 @@
 
 @implementation IRNetworkService
 
-- (instancetype)initWithAddress:(id<IRAddress>)address {
+- (nonnull instancetype)initWithAddress:(nonnull id<IRAddress>)address {
     if (self = [super init]) {
         _commandService = [[CommandService_v1 alloc] initWithHost:address.value];
         _queryService = [[QueryService_v1 alloc] initWithHost:address.value];

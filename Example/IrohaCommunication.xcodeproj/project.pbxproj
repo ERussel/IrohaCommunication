@@ -17,12 +17,28 @@
 		0200347721C853E2001A6A53 /* IRRolePermissionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200347621C853E2001A6A53 /* IRRolePermissionTests.m */; };
 		02E3198B21D0FEF000B33B66 /* IRTransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */; };
 		02E319DD21DBB18500B33B66 /* IRPromiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E319DC21DBB18500B33B66 /* IRPromiseTests.m */; };
+		02E31A2721DC050E00B33B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E31A2621DC050E00B33B66 /* AppDelegate.swift */; };
+		02E31A2921DC050E00B33B66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E31A2821DC050E00B33B66 /* ViewController.swift */; };
+		02E31A2C21DC050E00B33B66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02E31A2A21DC050E00B33B66 /* Main.storyboard */; };
+		02E31A2E21DC050E00B33B66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02E31A2D21DC050E00B33B66 /* Assets.xcassets */; };
+		02E31A3121DC050E00B33B66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02E31A2F21DC050E00B33B66 /* LaunchScreen.storyboard */; };
+		45A7E684E1D1F39915CA840F /* Pods_IrohaExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F09ACAD13C939D198160D383 /* Pods_IrohaExample.framework */; };
 		5747BFFD6B791F5D4E211A8F /* Pods_IrohaCommunication_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF608F629997F5F1F47D6E2 /* Pods_IrohaCommunication_Tests.framework */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		02E31A3621DC110300B33B66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6003F582195388D10070C39A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 02E31A2321DC050E00B33B66;
+			remoteInfo = IrohaExample;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0200345C21C62D3F001A6A53 /* IRDomainTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRDomainTests.m; sourceTree = "<group>"; };
@@ -35,6 +51,13 @@
 		0200347621C853E2001A6A53 /* IRRolePermissionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRRolePermissionTests.m; sourceTree = "<group>"; };
 		02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRTransactionTests.m; sourceTree = "<group>"; };
 		02E319DC21DBB18500B33B66 /* IRPromiseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRPromiseTests.m; sourceTree = "<group>"; };
+		02E31A2421DC050E00B33B66 /* IrohaExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IrohaExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02E31A2621DC050E00B33B66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		02E31A2821DC050E00B33B66 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		02E31A2B21DC050E00B33B66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		02E31A2D21DC050E00B33B66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		02E31A3021DC050E00B33B66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		02E31A3221DC050E00B33B66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		23FA10B0D24502974E9385B6 /* Pods-IrohaCommunication_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaCommunication_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaCommunication_Tests/Pods-IrohaCommunication_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,10 +71,21 @@
 		84EA860F14455E442B5C9B29 /* IrohaCommunication.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = IrohaCommunication.podspec; path = ../IrohaCommunication.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8EF608F629997F5F1F47D6E2 /* Pods_IrohaCommunication_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IrohaCommunication_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B877F0064619F03D2B560C12 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		CA280E5B4FA46A10164A60F1 /* Pods-IrohaExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaExample/Pods-IrohaExample.debug.xcconfig"; sourceTree = "<group>"; };
+		E071421D678DD5101663263F /* Pods-IrohaExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaExample/Pods-IrohaExample.release.xcconfig"; sourceTree = "<group>"; };
+		F09ACAD13C939D198160D383 /* Pods_IrohaExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IrohaExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBEDEA9EB928BD52D49FE065 /* Pods-IrohaCommunication_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaCommunication_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaCommunication_Tests/Pods-IrohaCommunication_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		02E31A2121DC050E00B33B66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45A7E684E1D1F39915CA840F /* Pods_IrohaExample.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6003F5AB195388D20070C39A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -100,11 +134,26 @@
 			path = ../../Tests/Promise;
 			sourceTree = "<group>";
 		};
+		02E31A2521DC050E00B33B66 /* IrohaExample */ = {
+			isa = PBXGroup;
+			children = (
+				02E31A2621DC050E00B33B66 /* AppDelegate.swift */,
+				02E31A2821DC050E00B33B66 /* ViewController.swift */,
+				02E31A2A21DC050E00B33B66 /* Main.storyboard */,
+				02E31A2D21DC050E00B33B66 /* Assets.xcassets */,
+				02E31A2F21DC050E00B33B66 /* LaunchScreen.storyboard */,
+				02E31A3221DC050E00B33B66 /* Info.plist */,
+			);
+			path = IrohaExample;
+			sourceTree = "<group>";
+		};
 		2EFE64D960ACD758C9C23090 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				FBEDEA9EB928BD52D49FE065 /* Pods-IrohaCommunication_Tests.debug.xcconfig */,
 				23FA10B0D24502974E9385B6 /* Pods-IrohaCommunication_Tests.release.xcconfig */,
+				CA280E5B4FA46A10164A60F1 /* Pods-IrohaExample.debug.xcconfig */,
+				E071421D678DD5101663263F /* Pods-IrohaExample.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -114,6 +163,7 @@
 			children = (
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F5B5195388D20070C39A /* Tests */,
+				02E31A2521DC050E00B33B66 /* IrohaExample */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
 				2EFE64D960ACD758C9C23090 /* Pods */,
@@ -124,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				6003F5AE195388D20070C39A /* IrohaCommunication_Tests.xctest */,
+				02E31A2421DC050E00B33B66 /* IrohaExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,6 +187,7 @@
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
 				8EF608F629997F5F1F47D6E2 /* Pods_IrohaCommunication_Tests.framework */,
+				F09ACAD13C939D198160D383 /* Pods_IrohaExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,6 +226,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		02E31A2321DC050E00B33B66 /* IrohaExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02E31A3521DC050E00B33B66 /* Build configuration list for PBXNativeTarget "IrohaExample" */;
+			buildPhases = (
+				61C741C1BEB08954483D478B /* [CP] Check Pods Manifest.lock */,
+				02E31A2021DC050E00B33B66 /* Sources */,
+				02E31A2121DC050E00B33B66 /* Frameworks */,
+				02E31A2221DC050E00B33B66 /* Resources */,
+				F038CD8710A254DFB6ADBE4A /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IrohaExample;
+			productName = IrohaExample;
+			productReference = 02E31A2421DC050E00B33B66 /* IrohaExample.app */;
+			productType = "com.apple.product-type.application";
+		};
 		6003F5AD195388D20070C39A /* IrohaCommunication_Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "IrohaCommunication_Tests" */;
@@ -182,11 +253,11 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				1F9E00D4090E3ECE6B7ADBFA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				02E31A3721DC110300B33B66 /* PBXTargetDependency */,
 			);
 			name = IrohaCommunication_Tests;
 			productName = IrohaCommunicationTests;
@@ -200,8 +271,19 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = IR;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Russel;
+				TargetAttributes = {
+					02E31A2321DC050E00B33B66 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = YLWWUD25VZ;
+						ProvisioningStyle = Automatic;
+					};
+					6003F5AD195388D20070C39A = {
+						TestTargetID = 02E31A2321DC050E00B33B66;
+					};
+				};
 			};
 			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "IrohaCommunication" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -217,11 +299,22 @@
 			projectRoot = "";
 			targets = (
 				6003F5AD195388D20070C39A /* IrohaCommunication_Tests */,
+				02E31A2321DC050E00B33B66 /* IrohaExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		02E31A2221DC050E00B33B66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02E31A3121DC050E00B33B66 /* LaunchScreen.storyboard in Resources */,
+				02E31A2E21DC050E00B33B66 /* Assets.xcassets in Resources */,
+				02E31A2C21DC050E00B33B66 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6003F5AC195388D20070C39A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -233,7 +326,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1F9E00D4090E3ECE6B7ADBFA /* [CP] Embed Pods Frameworks */ = {
+		20D9708930E539B477DDBC93 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -241,7 +334,51 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-IrohaCommunication_Tests/Pods-IrohaCommunication_Tests-frameworks.sh",
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IrohaCommunication_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		61C741C1BEB08954483D478B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IrohaExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F038CD8710A254DFB6ADBE4A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-IrohaExample/Pods-IrohaExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/IrohaCommunication/IrohaCommunication.framework",
 				"${BUILT_PRODUCTS_DIR}/IrohaCrypto/IrohaCrypto.framework",
@@ -268,34 +405,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IrohaCommunication_Tests/Pods-IrohaCommunication_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		20D9708930E539B477DDBC93 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-IrohaCommunication_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IrohaExample/Pods-IrohaExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		02E31A2021DC050E00B33B66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02E31A2921DC050E00B33B66 /* ViewController.swift in Sources */,
+				02E31A2721DC050E00B33B66 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6003F5AA195388D20070C39A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -315,7 +439,31 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		02E31A3721DC110300B33B66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 02E31A2321DC050E00B33B66 /* IrohaExample */;
+			targetProxy = 02E31A3621DC110300B33B66 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		02E31A2A21DC050E00B33B66 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02E31A2B21DC050E00B33B66 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		02E31A2F21DC050E00B33B66 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02E31A3021DC050E00B33B66 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		6003F5B8195388D20070C39A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -327,6 +475,92 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		02E31A3321DC050E00B33B66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA280E5B4FA46A10164A60F1 /* Pods-IrohaExample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YLWWUD25VZ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = IrohaExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = co.jp.soramitsu.IrohaExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		02E31A3421DC050E00B33B66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E071421D678DD5101663263F /* Pods-IrohaExample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = YLWWUD25VZ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = IrohaExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = co.jp.soramitsu.IrohaExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		6003F5BD195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -404,6 +638,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FBEDEA9EB928BD52D49FE065 /* Pods-IrohaCommunication_Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -418,6 +653,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IrohaExample.app/IrohaExample";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -426,6 +662,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 23FA10B0D24502974E9385B6 /* Pods-IrohaCommunication_Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -436,6 +673,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IrohaExample.app/IrohaExample";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -443,6 +681,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		02E31A3521DC050E00B33B66 /* Build configuration list for PBXNativeTarget "IrohaExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02E31A3321DC050E00B33B66 /* Debug */,
+				02E31A3421DC050E00B33B66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6003F585195388D10070C39A /* Build configuration list for PBXProject "IrohaCommunication" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

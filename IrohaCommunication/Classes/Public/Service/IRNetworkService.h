@@ -11,7 +11,7 @@ typedef NS_ENUM(NSUInteger, IRNetworkServiceError) {
 
 @interface IRNetworkService : NSObject
 
-- (instancetype)initWithAddress:(id<IRAddress>)address;
+- (nonnull instancetype)initWithAddress:(nonnull id<IRAddress>)address;
 
 - (nonnull IRPromise *)sendTransaction:(nonnull id<IRTransaction>)transaction;
 

@@ -27,7 +27,7 @@
 
 #pragma mark - IRPromiseProtocol
 
-- (IRPromise* _Nonnull (^)(IRPromiseResultHandler))onThen {
+- (IRPromise* _Nonnull (^)(IRPromiseResultHandler _Nonnull))onThen {
     return ^(IRPromiseResultHandler block) {
         IRPromise* promise = [[IRPromise alloc] init];
 
@@ -44,7 +44,7 @@
     };
 }
 
-- (IRPromise* _Nonnull (^)(IRPromiseErrorHandler))onError {
+- (IRPromise* _Nonnull (^)(IRPromiseErrorHandler _Nonnull))onError {
     return ^(IRPromiseErrorHandler block) {
         IRPromise* promise = [[IRPromise alloc] init];
 

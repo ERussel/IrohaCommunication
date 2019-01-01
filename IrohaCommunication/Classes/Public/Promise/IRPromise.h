@@ -15,8 +15,8 @@ typedef IRPromise* _Nullable (^IRPromiseErrorHandler)(NSError* _Nonnull);
 + (instancetype)promise;
 + (instancetype)promiseWithResult:(id)result;
 
-- (IRPromise* _Nonnull (^)(IRPromiseResultHandler))onThen;
-- (IRPromise* _Nonnull (^)(IRPromiseErrorHandler))onError;
+@property(nonatomic, readonly)IRPromise* _Nonnull (^onThen)(IRPromiseResultHandler _Nonnull);
+@property(nonatomic, readonly)IRPromise* _Nonnull (^onError)(IRPromiseErrorHandler _Nonnull);
 
 - (void)fulfillWithResult:(id _Nullable)result;
 
