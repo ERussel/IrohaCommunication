@@ -4,7 +4,8 @@
 
 typedef NS_ENUM(NSUInteger, IRTransactionError) {
     IRTransactionErrorSigning,
-    IRTransactionErrorSerialization
+    IRTransactionErrorSerialization,
+    IRTransactionErrorHashing
 };
 
 @interface IRTransaction : NSObject<IRTransaction, IRProtobufTransformable>

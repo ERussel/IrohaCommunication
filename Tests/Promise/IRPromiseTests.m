@@ -100,4 +100,28 @@
     [self waitForExpectations:@[expectation] timeout:10];
 }
 
+- (void)testFirstFullWithError {
+    XCTestExpectation *expectation = [[XCTestExpectation alloc] init];
+
+    NSError *error = [NSError errorWithDomain:@"Test domain"
+                                         code:0
+                                     userInfo:nil];
+
+    [IRPromise promiseWithResult:error].onThen(^IRPromise*(id result){
+        XCTFail();
+
+        return [IRPromise promiseWithResult:@(0)];
+    }).onThen(^IRPromise*(id result) {
+        XCTFail();
+
+        return nil;
+    }).onError(^IRPromise*(NSError *error) {
+        [expectation fulfill];
+
+        return nil;
+    });
+
+    [self waitForExpectations:@[expectation] timeout:10.0];
+}
+
 @end

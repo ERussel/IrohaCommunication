@@ -8,10 +8,6 @@
 
 @property(strong, nonatomic)IRPromiseErrorHandler _Nullable errorHandler;
 
-@property(strong, nonatomic)id _Nullable result;
-
-@property(nonatomic, readwrite)BOOL hasResult;
-
 @end
 
 @implementation IRPromise
@@ -40,6 +36,10 @@
 
         self.next = promise;
 
+        if (self.isFulfilled) {
+            [self triggerResultProcessing];
+        }
+
         return promise;
     };
 }
@@ -52,17 +52,21 @@
         self.errorHandler = block;
         self.next = promise;
 
+        if (self.isFulfilled) {
+            [self triggerResultProcessing];
+        }
+
         return promise;
     };
 }
 
 - (void)fulfillWithResult:(id _Nullable)result {
-    if (_hasResult) {
+    if (_isFulfilled) {
         return;
     }
 
     _result = result;
-    _hasResult = true;
+    _isFulfilled = true;
 
     if (_next) {
         [self triggerResultProcessing];
@@ -70,8 +74,14 @@
 }
 
 - (void)triggerResultProcessing {
+    if (_isProcessed) {
+        return;
+    }
+
     if (![_result isKindOfClass:[NSError class]]) {
         if (_resultHandler) {
+            _isProcessed = YES;
+
             IRPromise* resultPromise = _resultHandler(_result);
 
             if (!resultPromise) {
@@ -80,12 +90,14 @@
 
             [resultPromise copyHandlersFromPromise:_next];
 
-            if (resultPromise.hasResult) {
+            if (resultPromise.isFulfilled) {
                 [resultPromise triggerResultProcessing];
             }
         }
     } else {
         if (_errorHandler) {
+            _isProcessed = YES;
+
             IRPromise *resultPromise = _errorHandler(_result);
 
             if (!resultPromise) {
@@ -94,11 +106,13 @@
 
             [resultPromise copyHandlersFromPromise:_next];
 
-            if (resultPromise.hasResult) {
+            if (resultPromise.isFulfilled) {
                 [self triggerResultProcessing];
             }
 
-        } else {
+        } else if(_next) {
+            _isProcessed = YES;
+
             [_next fulfillWithResult:_result];
         }
     }

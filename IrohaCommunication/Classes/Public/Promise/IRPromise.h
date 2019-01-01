@@ -7,6 +7,11 @@ typedef IRPromise* _Nullable (^IRPromiseErrorHandler)(NSError* _Nonnull);
 
 @interface IRPromise : NSObject
 
+@property(nonatomic, readonly)BOOL isFulfilled;
+@property(nonatomic, readonly)BOOL isProcessed;
+
+@property(nonatomic, readonly)id _Nullable result;
+
 + (instancetype)promise;
 + (instancetype)promiseWithResult:(id)result;
 
