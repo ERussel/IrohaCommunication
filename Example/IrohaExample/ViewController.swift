@@ -75,8 +75,20 @@ class ViewController: UIViewController {
                 return nil
             }).onError({ (error) -> IRPromise? in
                 print("Transaction error received: \(error)")
+                return irohaService.fetchTransactionStatus(transactionHash)
+            }).onThen({ (result) -> IRPromise? in
+                if let transactionResponse = result as? IRTransactionStatusResponse {
+                    print("Current transaction status: \(transactionResponse.status.rawValue)")
+                } else {
+                    print("Unexpected response object \(String(describing: result))")
+                }
+
+                return nil;
+            }).onError({ (error) -> IRPromise? in
+                print("Receive error on status request: \(error)")
+
                 return nil
-            })
+            });
 
         } catch {
             print("Error: \(error)")

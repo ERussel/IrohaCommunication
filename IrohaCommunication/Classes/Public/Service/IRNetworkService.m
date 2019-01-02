@@ -59,6 +59,33 @@
     return promise;
 }
 
+- (nonnull IRPromise *)fetchTransactionStatus:(nonnull NSData*)transactionHash {
+    TxStatusRequest *statusRequest = [[TxStatusRequest alloc] init];
+    statusRequest.txHash = transactionHash;
+
+    __weak typeof(self) weakSelf = self;
+
+    IRPromise *promise = [[IRPromise alloc] init];
+
+    IRTransactionStatusBlock handler = ^(id<IRTransactionStatusResponse> response, BOOL done, NSError *error) {
+        if (response) {
+            [promise fulfillWithResult:response];
+        } else {
+            [promise fulfillWithResult:error];
+        }
+    };
+
+    [_commandService statusWithRequest:statusRequest
+                               handler:^(ToriiResponse * _Nullable response, NSError * _Nullable error) {
+                                   [weakSelf proccessTransactionStatusResponse:response
+                                                                         error:error
+                                                                          done:YES
+                                                                       handler:handler];
+                               }];
+
+    return promise;
+}
+
 - (nonnull IRPromise *)onTransactionStatus:(IRTransactionStatus)transactionStatus
                                   withHash:(nonnull NSData*)transactionHash {
     TxStatusRequest *statusRequest = [[TxStatusRequest alloc] init];

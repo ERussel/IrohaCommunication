@@ -18,6 +18,8 @@ typedef NS_ENUM(NSUInteger, IRNetworkServiceError) {
 - (nonnull IRPromise *)onTransactionStatus:(IRTransactionStatus)transactionStatus
                                   withHash:(nonnull NSData*)transactionHash;
 
+- (nonnull IRPromise *)fetchTransactionStatus:(nonnull NSData*)transactionHash;
+
 - (void)listenTransactionStatus:(nonnull NSData*)transactionHash
                       withBlock:(nonnull IRTransactionStatusBlock)block;
 
