@@ -1,6 +1,9 @@
 use_frameworks!
-target 'IrohaCommunication_Tests' do
-  pod 'IrohaCommunication', :path => '../'
-  
-  
+
+target 'IrohaExample' do
+    pod 'IrohaCommunication', :path => '../'
+
+    target 'IrohaCommunication_Tests' do
+        inherit! :search_paths
+    end
 end

@@ -32,7 +32,7 @@
 
 #pragma mark - Protobuf Transformable
 
-- (nullable id)transform:(NSError *__autoreleasing *)error {
+- (nullable id)transform:(NSError*_Nullable*_Nullable)error {
     Transaction_Payload *payload = [self createPayload:error];
 
     if (!payload) {
@@ -57,6 +57,38 @@
 }
 
 #pragma mark - Signable
+
+- (nullable NSData*)transactionHashWithError:(NSError **)error {
+    Transaction_Payload *payload = [self createPayload:error];
+
+    if (!payload) {
+        return nil;
+    }
+
+    NSData *payloadData = [payload data];
+
+    if (!payloadData) {
+        if (error) {
+            NSString *message = @"Empty payload received";
+            *error = [IRTransaction errorWithType:IRTransactionErrorHashing
+                                          message:message];
+        }
+        return nil;
+    }
+
+    NSData *sha3Data = [payloadData sha3:IRSha3Variant256];
+
+    if (!sha3Data) {
+        if (error) {
+            NSString *message = @"Hashing function failed";
+            *error = [IRTransaction errorWithType:IRTransactionErrorHashing
+                                          message:message];
+        }
+        return nil;
+    }
+
+    return sha3Data;
+}
 
 - (nullable id<IRPeerSignature>)signWithSignatory:(nonnull id<IRSignatureCreatorProtocol>)signatory
                                signatoryPublicKey:(nonnull id<IRPublicKeyProtocol>)signatoryPublicKey
@@ -86,7 +118,8 @@
     if ([signatories count] != [signatoryPublicKeys count]) {
         if (error) {
             NSString *message = @"Number of signatories must be the same as number of public keys.";
-            *error = [IRTransaction signingErrorWithMessage:message];
+            *error = [IRTransaction errorWithType:IRTransactionErrorSigning
+                                          message:message];
         }
 
         return nil;
@@ -141,7 +174,8 @@
                                      NSStringFromClass([command class]),
                                      NSStringFromProtocol(@protocol(IRProtobufTransformable))];
 
-                *error = [IRTransaction serializationErrorWithMessage:message];
+                *error = [IRTransaction errorWithType:IRTransactionErrorSerialization
+                                              message:message];
             }
             return nil;
         }
@@ -154,7 +188,8 @@
                                      NSStringFromClass([command class]),
                                      NSStringFromProtocol(@protocol(IRProtobufTransformable))];
 
-                *error = [IRTransaction serializationErrorWithMessage:message];
+                *error = [IRTransaction errorWithType:IRTransactionErrorSerialization
+                                              message:message];
             }
             return nil;
         }
@@ -182,7 +217,8 @@
     if (!payloadData) {
         if (error) {
             NSString *message = @"Empty payload received";
-            *error = [IRTransaction signingErrorWithMessage:message];
+            *error = [IRTransaction errorWithType:IRTransactionErrorSigning
+                                          message:message];
         }
         return nil;
     }
@@ -192,7 +228,8 @@
     if (!sha3Data) {
         if (error) {
             NSString *message = @"Hashing function failed";
-            *error = [IRTransaction signingErrorWithMessage:message];
+            *error = [IRTransaction errorWithType:IRTransactionErrorSigning
+                                          message:message];
         }
         return nil;
     }
@@ -202,7 +239,8 @@
     if (!signature) {
         if (error) {
             NSString *message = @"Signing function failed";
-            *error = [IRTransaction signingErrorWithMessage:message];
+            *error = [IRTransaction errorWithType:IRTransactionErrorSigning
+                                          message:message];
         }
         return nil;
     }
@@ -212,15 +250,9 @@
 
 #pragma mark - Helpers
 
-+ (nonnull NSError*)signingErrorWithMessage:(nonnull NSString*)message {
++ (nonnull NSError*)errorWithType:(IRTransactionError)errorType message:(nonnull NSString*)message {
     return [NSError errorWithDomain:NSStringFromClass([IRTransaction class])
-                               code:IRTransactionErrorSigning
-                           userInfo:@{NSLocalizedDescriptionKey: message}];
-}
-
-+ (nonnull NSError*)serializationErrorWithMessage:(nonnull NSString*)message {
-    return [NSError errorWithDomain:NSStringFromClass([IRTransaction class])
-                               code:IRTransactionErrorSerialization
+                               code:errorType
                            userInfo:@{NSLocalizedDescriptionKey: message}];
 }
 

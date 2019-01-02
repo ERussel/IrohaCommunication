@@ -18,6 +18,8 @@
                            signatoryPublicKeys:(nonnull NSArray<id<IRPublicKeyProtocol>> *)signatoryPublicKeys
                                          error:(NSError**)error;
 
+- (nullable NSData*)transactionHashWithError:(NSError **)error;
+
 @end
 
 #endif /* IRTransaction_h */

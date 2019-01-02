@@ -3,7 +3,7 @@
 
 @protocol IRProtobufTransformable <NSObject>
 
-- (nullable id)transform:(NSError**)error;
+- (nullable id)transform:(NSError*_Nullable*_Nullable)error;
 
 @end
 
