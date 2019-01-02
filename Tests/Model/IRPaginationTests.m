@@ -11,7 +11,7 @@
     NSData *itemHash = [[@"Test Hash" dataUsingEncoding:NSUTF8StringEncoding] sha3:IRSha3Variant256];
     UInt32 pageSize = 10;
 
-    NSError *error;
+    NSError *error = nil;
     id<IRPagination> pagination = [IRPaginationFactory pagination:pageSize
                                                     firstItemHash:itemHash
                                                             error:&error];
@@ -24,7 +24,7 @@
 - (void)testNilItemHashPagination {
     UInt32 pageSize = 10;
 
-    NSError *error;
+    NSError *error = nil;
     id<IRPagination> pagination = [IRPaginationFactory pagination:pageSize
                                                     firstItemHash:nil
                                                             error:&error];
@@ -37,7 +37,7 @@
     NSData *itemHash = [@"Test Hash" dataUsingEncoding:NSUTF8StringEncoding];
     UInt32 pageSize = 10;
 
-    NSError *error;
+    NSError *error = nil;
     id<IRPagination> pagination = [IRPaginationFactory pagination:pageSize
                                                     firstItemHash:itemHash
                                                             error:&error];
