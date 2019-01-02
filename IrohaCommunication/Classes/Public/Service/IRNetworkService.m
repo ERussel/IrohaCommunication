@@ -3,6 +3,7 @@
 #import "IRTransactionImpl.h"
 #import "Transaction.pbobjc.h"
 #import "IRTransactionStatusResponseImpl+Proto.h"
+#import "GRPCCall+Tests.h"
 
 @interface IRNetworkService()
 
@@ -15,6 +16,8 @@
 
 - (nonnull instancetype)initWithAddress:(nonnull id<IRAddress>)address {
     if (self = [super init]) {
+        [GRPCCall useInsecureConnectionsForHost:address.value];
+
         _commandService = [[CommandService_v1 alloc] initWithHost:address.value];
         _queryService = [[QueryService_v1 alloc] initWithHost:address.value];
     }
@@ -43,26 +46,29 @@
         return promise;
     }
 
-    [_commandService toriiWithRequest:pbTransaction
-                              handler:^(GPBEmpty * _Nullable response, NSError * _Nullable error) {
-                                  if (error) {
-                                      [promise fulfillWithResult: error];
-                                  } else {
-                                      [promise fulfillWithResult:nil];
-                                  }
-                              }];
+    GRPCProtoCall *call = [_commandService RPCToToriiWithRequest:pbTransaction
+                                   handler:^(GPBEmpty * _Nullable response, NSError * _Nullable error) {
+                                       if (error) {
+                                           [promise fulfillWithResult: error];
+                                       } else {
+                                           [promise fulfillWithResult:nil];
+                                       }
+                                   }];
+    [call start];
 
     return promise;
 }
 
 - (nonnull IRPromise *)onTransactionStatus:(IRTransactionStatus)transactionStatus
-                                  withHash:(NSData*)transactionHash {
+                                  withHash:(nonnull NSData*)transactionHash {
     TxStatusRequest *statusRequest = [[TxStatusRequest alloc] init];
     statusRequest.txHash = transactionHash;
 
     __block __weak GRPCProtoCall *weakCall = nil;
 
     IRPromise *promise = [IRPromise promise];
+
+    __block NSMutableArray<NSNumber*> *receivedStatuses = [NSMutableArray array];
 
     id eventHandler = ^(BOOL done, ToriiResponse *response, NSError *error) {
         if (!weakCall) {
@@ -75,6 +81,8 @@
             id<IRTransactionStatusResponse> statusResponse = [IRTransactionStatusResponseImpl statusResponseWithToriiResponse:response
                                                                                                                   error:&parsingError];
 
+            [receivedStatuses addObject:@(statusResponse.status)];
+
             if (statusResponse && statusResponse.status == transactionStatus) {
                 [promise fulfillWithResult:nil];
 
@@ -85,7 +93,8 @@
             if (error) {
                 [promise fulfillWithResult:error];
             } else {
-                NSString *message = @"Streaming completed but waiting status has not been received yet";
+                NSString *message = [NSString stringWithFormat:@"Received statuses [%@], but waited for %@. Streaming closed.",
+                                     [receivedStatuses componentsJoinedByString:@","], @(transactionStatus)];
                 NSError *networkError = [NSError errorWithDomain:NSStringFromClass([IRNetworkService class])
                                                             code:IRNetworkServiceErrorTransactionStatusNotReceived
                                                         userInfo:@{NSLocalizedDescriptionKey: message}];

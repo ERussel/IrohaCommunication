@@ -89,6 +89,13 @@ static NSString * const VALID_ROLE = @"admin";
     id<IRPeerSignature> resultSignature = [signedTransaction.signatures firstObject];
     XCTAssertEqualObjects(peerSignature.signature.rawData, resultSignature.signature.rawData);
     XCTAssertEqualObjects(peerSignature.publicKey.rawData, resultSignature.publicKey.rawData);
+
+    IREd25519Sha512Verifier *verifier = [[IREd25519Sha512Verifier alloc] init];
+    BOOL verified = [verifier verify:resultSignature.signature
+                     forOriginalData:[transaction transactionHashWithError:nil]
+                      usingPublicKey:resultSignature.publicKey];
+
+    XCTAssertTrue(verified);
 }
 
 @end

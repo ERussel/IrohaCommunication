@@ -13,20 +13,27 @@ class ViewController: UIViewController {
         static let adminPrivateKey = "f101537e319568c765b2cc89698325604991dca57b9716b58016b253506cab70"
     }
 
+    private var networkService: IRNetworkService?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        createAccount()
+        do {
+            let irohaAddress = try IRAddressFactory.address(withIp: Constants.irohaIp, port: Constants.irohaPort)
+
+            networkService = IRNetworkService(address: irohaAddress)
+
+            createAccount(irohaService: networkService!)
+
+        } catch {
+            print("Error: \(error)")
+        }
     }
 
     // MARK: Private
 
-    private func createAccount() {
+    private func createAccount(irohaService: IRNetworkService) {
         do {
-            let irohaAddress = try IRAddressFactory.address(withIp: Constants.irohaIp, port: Constants.irohaPort)
-
-            let irohaService = IRNetworkService(address: irohaAddress)
-
             let domain = try IRDomainFactory.domain(withIdentitifer: Constants.domainId)
             let adminAccountId = try IRAccountIdFactory.accountId(withName: Constants.adminAccountName, domain: domain)
             let newAccountId = try IRAccountIdFactory.accountId(withName: Constants.newAccountName, domain: domain)
@@ -42,7 +49,7 @@ class ViewController: UIViewController {
                 return
             }
 
-            let adminPrivateKeyData = NSData(hexString: Constants.adminPublicKey)! as Data
+            let adminPrivateKeyData = NSData(hexString: Constants.adminPrivateKey)! as Data
             guard let adminPrivateKey = IREd25519PrivateKey(rawData: adminPrivateKeyData) else {
                 print("Admin private key invalid")
                 return
@@ -62,8 +69,7 @@ class ViewController: UIViewController {
 
             _ = irohaService.send(transaction).onThen({ (result) -> IRPromise? in
                 print("Transaction has been sent")
-                return irohaService.onTransactionStatus(.committed,
-                                                        withHash: transactionHash)
+                return irohaService.onTransactionStatus(.committed, withHash: transactionHash)
             }).onThen({ (result) -> IRPromise? in
                 print("Transaction has been commited")
                 return nil

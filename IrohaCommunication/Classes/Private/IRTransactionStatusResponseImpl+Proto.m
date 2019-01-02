@@ -50,7 +50,7 @@
 
     NSString *statusDescription;
 
-    if (toriiResponse.errOrCmdName) {
+    if (toriiResponse.errOrCmdName && toriiResponse.errOrCmdName.length > 0) {
         statusDescription = [NSString stringWithFormat:@"Error: %@; code=%@",
                              toriiResponse.errOrCmdName, @(toriiResponse.errorCode)];
     }
