@@ -2,6 +2,8 @@
 @import IrohaCommunication;
 @import IrohaCrypto;
 
+#import "IrohaCommunication/IRTransactionImpl+Proto.h"
+
 static NSString * const VALID_ACCOUNT_NAME = @"bob";
 static NSString * const VALID_DOMAIN = @"gmail.com";
 static NSString * const VALID_ASSET_NAME = @"testcoin";
@@ -16,6 +18,99 @@ static NSString * const VALID_ROLE = @"admin";
 @implementation IRTransactionTests
 
 - (void)testTransactionBuildWithAllCommandsAndSingleSignature {
+    NSError *error = nil;
+    id<IRTransaction> transaction = [self createTransactionWithAllCommands:&error];
+
+    XCTAssertNotNil(transaction);
+    XCTAssertNil(error);
+
+    error = nil;
+
+    id<IRCryptoKeypairProtocol> keypair = [[[IREd25519KeyFactory alloc] init] createRandomKeypair];
+
+    id<IRTransaction> signedTransaction = [self createSignedFromTransaction:transaction
+                                                                    keypair:keypair
+                                                                      error:&error];
+
+    XCTAssertNotNil(signedTransaction);
+    XCTAssertNil(error);
+
+    error = nil;
+
+    id<IRSignatureCreatorProtocol> signatory = [[IREd25519Sha512Signer alloc] initWithPrivateKey:[keypair privateKey]];
+    id<IRPeerSignature> peerSignature = [transaction signWithSignatory:signatory
+                                                    signatoryPublicKey:[keypair publicKey]
+                                                                 error:&error];
+
+    XCTAssertNotNil(peerSignature);
+    XCTAssertNil(error);
+
+    id<IRPeerSignature> resultSignature = [signedTransaction.signatures firstObject];
+    XCTAssertEqualObjects(peerSignature.signature.rawData, resultSignature.signature.rawData);
+    XCTAssertEqualObjects(peerSignature.publicKey.rawData, resultSignature.publicKey.rawData);
+
+    IREd25519Sha512Verifier *verifier = [[IREd25519Sha512Verifier alloc] init];
+    BOOL verified = [verifier verify:resultSignature.signature
+                     forOriginalData:[transaction transactionHashWithError:nil]
+                      usingPublicKey:resultSignature.publicKey];
+
+    XCTAssertTrue(verified);
+}
+
+- (void)testInitializationFromRawTransaction {
+    NSError *error = nil;
+    id<IRTransaction> transaction = [self createTransactionWithAllCommands:&error];
+
+    XCTAssertNotNil(transaction);
+    XCTAssertNil(error);
+
+    error = nil;
+
+    id<IRCryptoKeypairProtocol> keypair = [[[IREd25519KeyFactory alloc] init] createRandomKeypair];
+
+    id<IRTransaction> signedTransaction = [self createSignedFromTransaction:transaction
+                                                                    keypair:keypair
+                                                                      error:&error];
+
+    error = nil;
+    id rawTransaction = [(IRTransaction*)signedTransaction transform:&error];
+
+    XCTAssertNotNil(rawTransaction);
+    XCTAssertNil(error);
+
+    error = nil;
+    id<IRTransaction> restoredTransaction = [IRTransaction transactionFromPbTransaction:rawTransaction
+                                                                                  error:&error];
+
+    XCTAssertNotNil(restoredTransaction);
+    XCTAssertNil(error);
+
+    error = nil;
+    NSData *restoredHash = [restoredTransaction transactionHashWithError:&error];
+
+    XCTAssertNotNil(restoredHash);
+    XCTAssertNil(error);
+
+    error = nil;
+    NSData *originalHash = [signedTransaction transactionHashWithError:&error];
+
+    XCTAssertNotNil(originalHash);
+    XCTAssertNil(error);
+
+    XCTAssertEqualObjects(restoredHash, originalHash);
+
+    XCTAssertEqual(signedTransaction.signatures.count, restoredTransaction.signatures.count);
+
+    id<IRPeerSignature> originalSignature = signedTransaction.signatures.firstObject;
+    id<IRPeerSignature> restoredSignature = restoredTransaction.signatures.firstObject;
+
+    XCTAssertEqualObjects(originalSignature.signature.rawData, restoredSignature.signature.rawData);
+    XCTAssertEqualObjects(originalSignature.publicKey.rawData, restoredSignature.publicKey.rawData);
+}
+
+#pragma mark - Private
+
+- (nullable id<IRTransaction>)createTransactionWithAllCommands:(NSError**)error {
     id<IRDomain> domain = [IRDomainFactory domainWithIdentitifer:VALID_DOMAIN error:nil];
 
     id<IRAccountId> accountId = [IRAccountIdFactory accountIdWithName:VALID_ACCOUNT_NAME
@@ -43,7 +138,6 @@ static NSString * const VALID_ROLE = @"admin";
     builder = [builder appendRole:accountId roleName:roleName];
     builder = [builder createAccount:accountId publicKey:[keypair publicKey]];
     builder = [builder createAsset:assetId precision:18];
-    builder = [builder createDomain:domain defaultRole:nil];
     builder = [builder createDomain:domain defaultRole:roleName];
     builder = [builder createRole:roleName permissions:@[]];
     builder = [builder detachRole:accountId roleName:roleName];
@@ -59,43 +153,21 @@ static NSString * const VALID_ROLE = @"admin";
                          description:@"Test transfer"
                               amount:amount];
 
-    NSError *error = nil;
+    id<IRTransaction> transaction = [builder build:error];
 
-    id<IRTransaction> transaction = [builder build:&error];
-
-    XCTAssertNotNil(transaction);
     XCTAssertEqualObjects([transaction.creator identifier], [accountId identifier]);
-    XCTAssertNil(error);
 
-    error = nil;
+    return transaction;
+}
+
+- (nullable id<IRTransaction>)createSignedFromTransaction:(id<IRTransaction>)transaction
+                                                  keypair:(id<IRCryptoKeypairProtocol>)keypair
+                                                    error:(NSError**)error {
 
     id<IRSignatureCreatorProtocol> signatory = [[IREd25519Sha512Signer alloc] initWithPrivateKey:[keypair privateKey]];
-    id<IRTransaction> signedTransaction = [transaction signedWithSignatories:@[signatory]
-                                                         signatoryPublicKeys:@[[keypair publicKey]]
-                                                                       error:&error];
-
-    XCTAssertNotNil(signedTransaction);
-    XCTAssertNil(error);
-
-    error = nil;
-
-    id<IRPeerSignature> peerSignature = [transaction signWithSignatory:signatory
-                                                    signatoryPublicKey:[keypair publicKey]
-                                                                 error:&error];
-
-    XCTAssertNotNil(peerSignature);
-    XCTAssertNil(error);
-
-    id<IRPeerSignature> resultSignature = [signedTransaction.signatures firstObject];
-    XCTAssertEqualObjects(peerSignature.signature.rawData, resultSignature.signature.rawData);
-    XCTAssertEqualObjects(peerSignature.publicKey.rawData, resultSignature.publicKey.rawData);
-
-    IREd25519Sha512Verifier *verifier = [[IREd25519Sha512Verifier alloc] init];
-    BOOL verified = [verifier verify:resultSignature.signature
-                     forOriginalData:[transaction transactionHashWithError:nil]
-                      usingPublicKey:resultSignature.publicKey];
-
-    XCTAssertTrue(verified);
+    return [transaction signedWithSignatories:@[signatory]
+                          signatoryPublicKeys:@[[keypair publicKey]]
+                                        error:error];
 }
 
 @end

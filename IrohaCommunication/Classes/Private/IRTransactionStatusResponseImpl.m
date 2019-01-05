@@ -1,6 +1,6 @@
 #import "IRTransactionStatusResponseImpl.h"
 
-@implementation IRTransactionStatusResponseImpl
+@implementation IRTransactionStatusResponse
 @synthesize status = _status;
 @synthesize transactionHash = _transactionHash;
 @synthesize statusDescription = _statusDescription;

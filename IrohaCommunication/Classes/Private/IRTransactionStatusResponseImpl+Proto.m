@@ -1,7 +1,7 @@
 #import "IRTransactionStatusResponseImpl+Proto.h"
 #import "Endpoint.pbobjc.h"
 
-@implementation IRTransactionStatusResponseImpl (Proto)
+@implementation IRTransactionStatusResponse (Proto)
 
 + (nullable instancetype)statusResponseWithToriiResponse:(nonnull ToriiResponse *)toriiResponse error:(NSError **)error {
     IRTransactionStatus status;
@@ -55,9 +55,9 @@
                              toriiResponse.errOrCmdName, @(toriiResponse.errorCode)];
     }
 
-    return [[IRTransactionStatusResponseImpl alloc] initWithStatus:status
-                                                   transactionHash:toriiResponse.txHash
-                                                       description:statusDescription];
+    return [[IRTransactionStatusResponse alloc] initWithStatus:status
+                                               transactionHash:toriiResponse.txHash
+                                                   description:statusDescription];
 }
 
 - (int32_t)protobufTransactionStatus {

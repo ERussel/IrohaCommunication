@@ -89,6 +89,35 @@ static NSString * const DOMAIN_FORMAT = @"([a-zA-Z]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0
     return [[IRAddress alloc] initWithString:value];
 }
 
++ (nullable id<IRAddress>)addressWithValue:(nonnull NSString*)value error:(NSError**)error {
+    NSArray<NSString*> *components = [value componentsSeparatedByString:ADDRESS_PORT_SEPARATOR];
+
+    if ([components count] != 2) {
+        if (error) {
+            *error = [self invalidValueError:value];
+        }
+        return nil;
+    }
+
+    id<IRAddress> address = [self addressWithIp:components[0]
+                                           port:components[1]
+                                          error:error];
+
+    if (address) {
+        return address;
+    }
+
+    address = [self addressWithDomain:components[0]
+                                 port:components[1]
+                                error:error];
+
+    if (!address && error) {
+        *error = [self invalidValueError:value];
+    }
+
+    return address;
+}
+
 + (BOOL)isValidIpV4:(nonnull NSString*)ipV4 {
     return [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", IP_V4_FORMAT] evaluateWithObject:ipV4];
 }
@@ -99,6 +128,13 @@ static NSString * const DOMAIN_FORMAT = @"([a-zA-Z]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0
 
 + (BOOL)isValidDomain:(nonnull NSString*)domain {
     return [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", DOMAIN_FORMAT] evaluateWithObject:domain];
+}
+
++ (nonnull NSError*)invalidValueError:(nonnull NSString*)value {
+    NSString *message = [NSString stringWithFormat:@"Invalid address value: %@", value];
+    return [NSError errorWithDomain:NSStringFromClass([IRAddressFactory class])
+                               code:IRInvalidAddressValue
+                           userInfo:@{NSLocalizedDescriptionKey: message}];
 }
 
 @end

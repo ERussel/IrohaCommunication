@@ -14,6 +14,6 @@ typedef NS_ENUM(NSUInteger, IRTransactionError) {
                                        createdAt:(nonnull NSDate*)createdAt
                                         commands:(nonnull NSArray<id<IRCommand>>*)commands
                                           quorum:(NSUInteger)quorum
-                                      signatures:(nonnull NSArray<id<IRSignatureProtocol>>*)signatures;
+                                      signatures:(nonnull NSArray<id<IRPeerSignature>>*)signatures;
 
 @end

@@ -7,7 +7,7 @@ typedef NS_ENUM(NSUInteger, IRTransactionStatusResponseProtoError) {
     IRTransactionStatusResponseProtoErrorUnexpedProtoStatus
 };
 
-@interface IRTransactionStatusResponseImpl (Proto)
+@interface IRTransactionStatusResponse (Proto)
 
 + (nullable instancetype)statusResponseWithToriiResponse:(nonnull ToriiResponse *)toriiResponse error:(NSError *_Nullable*_Nullable)error;
 

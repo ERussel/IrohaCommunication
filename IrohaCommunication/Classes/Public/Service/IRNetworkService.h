@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "IRTransaction.h"
+#import "IRQueryRequest.h"
 #import "IRTransactionStatusResponse.h"
 #import "IRPromise.h"
 
@@ -22,5 +23,7 @@ typedef NS_ENUM(NSUInteger, IRNetworkServiceError) {
 
 - (void)listenTransactionStatus:(nonnull NSData*)transactionHash
                       withBlock:(nonnull IRTransactionStatusBlock)block;
+
+- (nonnull IRPromise*)performQuery:(nonnull id<IRQueryRequest>)queryRequest;
 
 @end
