@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "IRTransactionStatusResponse.h"
 
-@interface IRTransactionStatusResponseImpl : NSObject<IRTransactionStatusResponse>
+@interface IRTransactionStatusResponse : NSObject<IRTransactionStatusResponse>
 
 - (nonnull instancetype)initWithStatus:(IRTransactionStatus)status
                        transactionHash:(nonnull NSData*)transactionHash

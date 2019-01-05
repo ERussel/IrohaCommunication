@@ -2,7 +2,7 @@
 #import "IRQueryRequestImpl.h"
 #import "IRQueryAll.h"
 
-static const UInt64 DEFAULT_QUERY_COUNTER = 0;
+static const UInt64 DEFAULT_QUERY_COUNTER = 1;
 
 @interface IRQueryBuilder()
 
@@ -122,7 +122,7 @@ static const UInt64 DEFAULT_QUERY_COUNTER = 0;
 }
 
 - (nonnull instancetype)withQueryCounter:(UInt64)queryCounter {
-    _queryCounter = queryCounter;
+    _queryCounter = queryCounter > 0 ? queryCounter : DEFAULT_QUERY_COUNTER;
 
     return self;
 }

@@ -123,7 +123,7 @@ static const NSUInteger DEFAULT_QUORUM = 1;
 }
 
 - (nonnull instancetype)createDomain:(nonnull id<IRDomain>)domainId
-                         defaultRole:(nullable id<IRRoleName>)defaultRole {
+                         defaultRole:(nonnull id<IRRoleName>)defaultRole {
 
     IRCreateDomain *command = [[IRCreateDomain alloc] initWithDomain:domainId
                                                          defaultRole:defaultRole];

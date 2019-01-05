@@ -1,9 +1,11 @@
 #import "IRNetworkService.h"
 #import "Endpoint.pbrpc.h"
+#import "Queries.pbobjc.h"
 #import "IRTransactionImpl.h"
 #import "Transaction.pbobjc.h"
 #import "IRTransactionStatusResponseImpl+Proto.h"
 #import "GRPCCall+Tests.h"
+#import "IRQueryResponse+Proto.h"
 
 @interface IRNetworkService()
 
@@ -13,6 +15,8 @@
 @end
 
 @implementation IRNetworkService
+
+#pragma mark - Initialize
 
 - (nonnull instancetype)initWithAddress:(nonnull id<IRAddress>)address {
     if (self = [super init]) {
@@ -24,6 +28,8 @@
 
     return self;
 }
+
+#pragma mark - Transaction
 
 - (nonnull IRPromise *)sendTransaction:(nonnull id<IRTransaction>)transaction {
     IRPromise *promise = [IRPromise promise];
@@ -105,8 +111,8 @@
         if (response) {
             NSError *parsingError;
 
-            id<IRTransactionStatusResponse> statusResponse = [IRTransactionStatusResponseImpl statusResponseWithToriiResponse:response
-                                                                                                                  error:&parsingError];
+            id<IRTransactionStatusResponse> statusResponse = [IRTransactionStatusResponse statusResponseWithToriiResponse:response
+                                                                                                                    error:&parsingError];
 
             [receivedStatuses addObject:@(statusResponse.status)];
 
@@ -155,6 +161,48 @@
     }];
 }
 
+#pragma mark - Query
+
+- (nonnull IRPromise*)performQuery:(nonnull id<IRQueryRequest>)queryRequest {
+    IRPromise *promise = [IRPromise promise];
+
+    if (![queryRequest conformsToProtocol:@protocol(IRProtobufTransformable)]) {
+        NSString *message = @"Unsupported query implementation";
+        NSError *error = [NSError errorWithDomain:NSStringFromClass([IRNetworkService class])
+                                             code:IRTransactionErrorSerialization
+                                         userInfo:@{NSLocalizedDescriptionKey: message}];
+
+        [promise fulfillWithResult:error];
+        return promise;
+    }
+
+    NSError *error;
+    Query *protobufQuery = [(id<IRProtobufTransformable>)queryRequest transform:&error];
+
+    if (!protobufQuery) {
+        [promise fulfillWithResult:error];
+        return promise;
+    }
+
+    [_queryService findWithRequest:protobufQuery handler:^(QueryResponse* _Nullable response, NSError* _Nullable error) {
+        if (response) {
+            NSError *parsingError = nil;
+            id<IRQueryResponse> queryResponse = [IRQueryResponseProtoFactory responseFromProtobuf:response
+                                                                                            error:&parsingError];
+
+            if (queryResponse) {
+                [promise fulfillWithResult:queryResponse];
+            } else {
+                [promise fulfillWithResult:parsingError];
+            }
+        } else {
+            [promise fulfillWithResult:error];
+        }
+    }];
+
+    return promise;
+}
+
 #pragma mark - Private
 
 - (void)proccessTransactionStatusResponse:(nullable ToriiResponse *)toriiResponse
@@ -163,8 +211,8 @@
                                   handler:(nonnull IRTransactionStatusBlock)handler {
     if (toriiResponse) {
         NSError *parsingError;
-        id<IRTransactionStatusResponse> statusResponse = [IRTransactionStatusResponseImpl statusResponseWithToriiResponse:toriiResponse
-                                                                                                                    error:&parsingError];
+        id<IRTransactionStatusResponse> statusResponse = [IRTransactionStatusResponse statusResponseWithToriiResponse:toriiResponse
+                                                                                                                error:&parsingError];
 
         handler(statusResponse, done, parsingError);
     } else {

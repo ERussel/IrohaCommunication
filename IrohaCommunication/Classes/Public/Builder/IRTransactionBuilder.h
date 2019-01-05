@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger, IRTransactionBuilderError) {
                           precision:(UInt32)precision;
 
 - (nonnull instancetype)createDomain:(nonnull id<IRDomain>)domainId
-                         defaultRole:(nullable id<IRRoleName>)defaultRole;
+                         defaultRole:(nonnull id<IRRoleName>)defaultRole;
 
 - (nonnull instancetype)createRole:(nonnull id<IRRoleName>)roleName
                        permissions:(nonnull NSArray<id<IRRolePermission>>*)permissions;
