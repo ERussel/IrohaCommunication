@@ -6,6 +6,8 @@
 #import "IRTransactionStatusResponseImpl+Proto.h"
 #import "GRPCCall+Tests.h"
 #import "IRQueryResponse+Proto.h"
+#import "IRBlockQueryRequestImpl.h"
+#import "IRBlockQueryResponse+Proto.h"
 
 @interface IRNetworkService()
 
@@ -31,7 +33,7 @@
 
 #pragma mark - Transaction
 
-- (nonnull IRPromise *)sendTransaction:(nonnull id<IRTransaction>)transaction {
+- (nonnull IRPromise *)executeTransaction:(nonnull id<IRTransaction>)transaction {
     IRPromise *promise = [IRPromise promise];
 
     if (![transaction conformsToProtocol:@protocol(IRProtobufTransformable)]) {
@@ -145,7 +147,7 @@
     return promise;
 }
 
-- (void)listenTransactionStatus:(nonnull NSData*)transactionHash
+- (void)streamTransactionStatus:(nonnull NSData*)transactionHash
                       withBlock:(nonnull IRTransactionStatusBlock)block {
     TxStatusRequest *statusRequest = [[TxStatusRequest alloc] init];
     statusRequest.txHash = transactionHash;
@@ -163,7 +165,7 @@
 
 #pragma mark - Query
 
-- (nonnull IRPromise*)performQuery:(nonnull id<IRQueryRequest>)queryRequest {
+- (nonnull IRPromise*)executeQueryRequest:(nonnull id<IRQueryRequest>)queryRequest {
     IRPromise *promise = [IRPromise promise];
 
     if (![queryRequest conformsToProtocol:@protocol(IRProtobufTransformable)]) {
@@ -201,6 +203,40 @@
     }];
 
     return promise;
+}
+
+#pragma mark - Commits
+
+- (void)streamCommits:(nonnull id<IRBlockQueryRequest>)request
+            withBlock:(nonnull IRCommitStreamBlock)block {
+    if (![request conformsToProtocol:@protocol(IRProtobufTransformable)]) {
+        NSString *message = @"Unsupported block query request implementation";
+        NSError *error = [NSError errorWithDomain:NSStringFromClass([IRNetworkService class])
+                                             code:IRQueryRequestErrorSerialization
+                                         userInfo:@{NSLocalizedDescriptionKey: message}];
+        block(nil, true, error);
+        return;
+    }
+
+    NSError *pbError = nil;
+    BlocksQuery *pbBlockQuery = [(id<IRProtobufTransformable>)request transform:&pbError];
+
+    if (!pbBlockQuery) {
+        block(nil, true, pbError);
+        return;
+    }
+
+    [_queryService fetchCommitsWithRequest:pbBlockQuery
+                              eventHandler:^(BOOL done, BlockQueryResponse * _Nullable pbResponse, NSError * _Nullable error) {
+                                  if (pbResponse) {
+                                      NSError *parsingError = nil;
+                                      id<IRBlockQueryResponse> response = [IRBlockQueryResponse responseFromPbResponse:pbResponse
+                                                                                                                 error:&parsingError];
+                                      block(response, done, parsingError);
+                                  } else {
+                                      block(nil, done, error);
+                                  }
+                              }];
 }
 
 #pragma mark - Private
