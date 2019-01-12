@@ -16,8 +16,9 @@
 		0200347521C8516F001A6A53 /* IRGrantablePermissionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200347421C8516F001A6A53 /* IRGrantablePermissionTests.m */; };
 		0200347721C853E2001A6A53 /* IRRolePermissionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200347621C853E2001A6A53 /* IRRolePermissionTests.m */; };
 		021C24AF21DCDDE3005D5304 /* IRPaginationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 021C24AE21DCDDE3005D5304 /* IRPaginationTests.m */; };
-		021C24E821DD3C90005D5304 /* IRQueryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 021C24E721DD3C90005D5304 /* IRQueryTests.m */; };
+		021C24E821DD3C90005D5304 /* IRQueryBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 021C24E721DD3C90005D5304 /* IRQueryBuilderTests.m */; };
 		021C24F021DDF706005D5304 /* IRAccountAssetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 021C24EF21DDF706005D5304 /* IRAccountAssetTests.m */; };
+		021C843D21EA6E950037F633 /* IRBlockQueryBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 021C843C21EA6E950037F633 /* IRBlockQueryBuilderTests.m */; };
 		02E3198B21D0FEF000B33B66 /* IRTransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */; };
 		02E319DD21DBB18500B33B66 /* IRPromiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E319DC21DBB18500B33B66 /* IRPromiseTests.m */; };
 		02E31A2721DC050E00B33B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E31A2621DC050E00B33B66 /* AppDelegate.swift */; };
@@ -53,8 +54,9 @@
 		0200347421C8516F001A6A53 /* IRGrantablePermissionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRGrantablePermissionTests.m; sourceTree = "<group>"; };
 		0200347621C853E2001A6A53 /* IRRolePermissionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRRolePermissionTests.m; sourceTree = "<group>"; };
 		021C24AE21DCDDE3005D5304 /* IRPaginationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRPaginationTests.m; sourceTree = "<group>"; };
-		021C24E721DD3C90005D5304 /* IRQueryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRQueryTests.m; sourceTree = "<group>"; };
+		021C24E721DD3C90005D5304 /* IRQueryBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRQueryBuilderTests.m; sourceTree = "<group>"; };
 		021C24EF21DDF706005D5304 /* IRAccountAssetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRAccountAssetTests.m; sourceTree = "<group>"; };
+		021C843C21EA6E950037F633 /* IRBlockQueryBuilderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRBlockQueryBuilderTests.m; sourceTree = "<group>"; };
 		02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRTransactionTests.m; sourceTree = "<group>"; };
 		02E319DC21DBB18500B33B66 /* IRPromiseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRPromiseTests.m; sourceTree = "<group>"; };
 		02E31A2421DC050E00B33B66 /* IrohaExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IrohaExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,7 +129,8 @@
 		021C24E621DD3C90005D5304 /* Query */ = {
 			isa = PBXGroup;
 			children = (
-				021C24E721DD3C90005D5304 /* IRQueryTests.m */,
+				021C24E721DD3C90005D5304 /* IRQueryBuilderTests.m */,
+				021C843C21EA6E950037F633 /* IRBlockQueryBuilderTests.m */,
 			);
 			name = Query;
 			path = ../../Tests/Query;
@@ -447,10 +450,11 @@
 				02E319DD21DBB18500B33B66 /* IRPromiseTests.m in Sources */,
 				0200347521C8516F001A6A53 /* IRGrantablePermissionTests.m in Sources */,
 				0200347121C849FF001A6A53 /* IRAssetIdTests.m in Sources */,
-				021C24E821DD3C90005D5304 /* IRQueryTests.m in Sources */,
+				021C24E821DD3C90005D5304 /* IRQueryBuilderTests.m in Sources */,
 				0200347721C853E2001A6A53 /* IRRolePermissionTests.m in Sources */,
 				021C24F021DDF706005D5304 /* IRAccountAssetTests.m in Sources */,
 				0200345E21C62D3F001A6A53 /* IRDomainTests.m in Sources */,
+				021C843D21EA6E950037F633 /* IRBlockQueryBuilderTests.m in Sources */,
 				0200345F21C62D3F001A6A53 /* IRAccountIdTests.m in Sources */,
 				0200346121C63F45001A6A53 /* IRAddressTests.m in Sources */,
 				021C24AF21DCDDE3005D5304 /* IRPaginationTests.m in Sources */,
