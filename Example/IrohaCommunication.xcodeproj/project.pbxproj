@@ -19,6 +19,7 @@
 		021C24E821DD3C90005D5304 /* IRQueryBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 021C24E721DD3C90005D5304 /* IRQueryBuilderTests.m */; };
 		021C24F021DDF706005D5304 /* IRAccountAssetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 021C24EF21DDF706005D5304 /* IRAccountAssetTests.m */; };
 		021C843D21EA6E950037F633 /* IRBlockQueryBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 021C843C21EA6E950037F633 /* IRBlockQueryBuilderTests.m */; };
+		021C844521EB54080037F633 /* Error+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C844421EB54080037F633 /* Error+String.swift */; };
 		02E3198B21D0FEF000B33B66 /* IRTransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */; };
 		02E319DD21DBB18500B33B66 /* IRPromiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E319DC21DBB18500B33B66 /* IRPromiseTests.m */; };
 		02E31A2721DC050E00B33B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E31A2621DC050E00B33B66 /* AppDelegate.swift */; };
@@ -57,6 +58,7 @@
 		021C24E721DD3C90005D5304 /* IRQueryBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRQueryBuilderTests.m; sourceTree = "<group>"; };
 		021C24EF21DDF706005D5304 /* IRAccountAssetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRAccountAssetTests.m; sourceTree = "<group>"; };
 		021C843C21EA6E950037F633 /* IRBlockQueryBuilderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRBlockQueryBuilderTests.m; sourceTree = "<group>"; };
+		021C844421EB54080037F633 /* Error+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+String.swift"; sourceTree = "<group>"; };
 		02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRTransactionTests.m; sourceTree = "<group>"; };
 		02E319DC21DBB18500B33B66 /* IRPromiseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRPromiseTests.m; sourceTree = "<group>"; };
 		02E31A2421DC050E00B33B66 /* IrohaExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IrohaExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +161,7 @@
 			children = (
 				02E31A2621DC050E00B33B66 /* AppDelegate.swift */,
 				02E31A2821DC050E00B33B66 /* ViewController.swift */,
+				021C844421EB54080037F633 /* Error+String.swift */,
 				02E31A2A21DC050E00B33B66 /* Main.storyboard */,
 				02E31A2D21DC050E00B33B66 /* Assets.xcassets */,
 				02E31A2F21DC050E00B33B66 /* LaunchScreen.storyboard */,
@@ -438,6 +441,7 @@
 			files = (
 				02E31A2921DC050E00B33B66 /* ViewController.swift in Sources */,
 				02E31A2721DC050E00B33B66 /* AppDelegate.swift in Sources */,
+				021C844521EB54080037F633 /* Error+String.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -108,6 +108,42 @@ static NSString * const VALID_ROLE = @"admin";
     XCTAssertEqualObjects(originalSignature.publicKey.rawData, restoredSignature.publicKey.rawData);
 }
 
+- (void)testBatchInitialization {
+    id<IRTransaction> transaction = [self createTransactionWithAllCommands:nil];
+
+    NSError *error = nil;
+    NSData *batchHash = [transaction batchHashWithError:&error];
+
+    XCTAssertNotNil(batchHash);
+    XCTAssertNil(error);
+
+    id<IRCryptoKeypairProtocol> keypair = [[[IREd25519KeyFactory alloc] init] createRandomKeypair];
+
+    id<IRTransaction> signedTransaction = [self createSignedFromTransaction:transaction
+                                                                    keypair:keypair
+                                                                      error:nil];
+
+    XCTAssertEqualObjects([signedTransaction batchHashWithError:nil], batchHash);
+
+    error = nil;
+
+    IRTransactionBatchType batchType = IRTransactionBatchTypeAtomic;
+    NSArray<NSData*> *batchHashes = @[batchHash];
+    id<IRTransaction> batchedTransaction = [signedTransaction batched:batchHashes
+                                                            batchType:batchType
+                                                                error:&error];
+
+    XCTAssertNotNil(batchedTransaction);
+    XCTAssertNil(error);
+
+    XCTAssertEqualObjects(batchedTransaction.batchHashes, batchHashes);
+    XCTAssertEqual(batchedTransaction.batchType, batchType);
+
+    XCTAssertNil(batchedTransaction.signatures);
+
+    XCTAssertEqualObjects([batchedTransaction batchHashWithError:nil], batchHash);
+}
+
 #pragma mark - Private
 
 - (nullable id<IRTransaction>)createTransactionWithAllCommands:(NSError**)error {

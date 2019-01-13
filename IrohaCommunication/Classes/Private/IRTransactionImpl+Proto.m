@@ -65,7 +65,9 @@
                                                  createdAt:createdAt
                                                   commands:commands
                                                     quorum:pbTransaction.payload.reducedPayload.quorum
-                                                signatures:signatures];
+                                                signatures:signatures
+                                               batchHashes:@[]
+                                                 batchType:IRTransactionBatchTypeNone];
 }
 
 @end

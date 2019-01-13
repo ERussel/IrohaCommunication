@@ -12,12 +12,16 @@
 @synthesize commands = _commands;
 @synthesize quorum = _quorum;
 @synthesize signatures = _signatures;
+@synthesize batchHashes = _batchHashes;
+@synthesize batchType = _batchType;
 
 - (nonnull instancetype)initWithCreatorAccountId:(nonnull id<IRAccountId>)creatorAccountId
                                        createdAt:(nonnull NSDate*)createdAt
                                         commands:(nonnull NSArray<id<IRCommand>>*)commands
                                           quorum:(NSUInteger)quorum
-                                      signatures:(nonnull NSArray<id<IRPeerSignature>>*)signatures {
+                                      signatures:(nullable NSArray<id<IRPeerSignature>>*)signatures
+                                     batchHashes:(nullable NSArray<NSData*>*)batchHashes
+                                       batchType:(IRTransactionBatchType)batchType {
 
     if (self = [super init]) {
         _creator = creatorAccountId;
@@ -25,6 +29,8 @@
         _commands = commands;
         _quorum = quorum;
         _signatures = signatures;
+        _batchHashes = batchHashes;
+        _batchType = batchType;
     }
 
     return self;
@@ -115,10 +121,19 @@
                            signatoryPublicKeys:(nonnull NSArray<id<IRPublicKeyProtocol>> *)signatoryPublicKeys
                                          error:(NSError**)error {
 
+    if ([signatories count] == 0) {
+        if (error) {
+            *error = [IRTransaction errorWithType:IRTransactionErrorInvalidField
+                                          message:@"Unexpected empty signatories list found"];
+        }
+
+        return nil;
+    }
+
     if ([signatories count] != [signatoryPublicKeys count]) {
         if (error) {
             NSString *message = @"Number of signatories must be the same as number of public keys.";
-            *error = [IRTransaction errorWithType:IRTransactionErrorSigning
+            *error = [IRTransaction errorWithType:IRTransactionErrorInvalidField
                                           message:message];
         }
 
@@ -132,6 +147,11 @@
     }
 
     NSMutableArray<id<IRPeerSignature>> *peerSignatures = [NSMutableArray array];
+
+    if (_signatures) {
+        [peerSignatures addObjectsFromArray:_signatures];
+    }
+
     for(NSUInteger i = 0; i < [signatories count]; i++) {
         id<IRSignatureProtocol> signature = [self signPayload:payload
                                                     signatory:signatories[i]
@@ -152,19 +172,84 @@
         [peerSignatures addObject:peerSignature];
     }
 
-    NSMutableArray *appendedSignatures = [_signatures mutableCopy];
-    [appendedSignatures addObjectsFromArray:peerSignatures];
+    return [[IRTransaction alloc] initWithCreatorAccountId:_creator
+                                                 createdAt:_createdAt
+                                                  commands:_commands
+                                                    quorum:_quorum
+                                                signatures:peerSignatures
+                                               batchHashes:_batchHashes
+                                                 batchType:_batchType];
+}
+
+#pragma mark - Batch
+
+- (nullable instancetype)batched:(nullable NSArray<NSData*>*)transactionBatchHashes
+                       batchType:(IRTransactionBatchType)batchType
+                           error:(NSError**)error {
+
+    if (batchType == IRTransactionBatchTypeNone) {
+        return [[IRTransaction alloc] initWithCreatorAccountId:_creator
+                                                     createdAt:_createdAt
+                                                      commands:_commands
+                                                        quorum:_quorum
+                                                    signatures:nil
+                                                   batchHashes:nil
+                                                     batchType:IRTransactionBatchTypeNone];
+    }
+
+    if (!transactionBatchHashes || [transactionBatchHashes count] == 0) {
+        if (error) {
+            *error = [IRTransaction errorWithType:IRTransactionErrorInvalidField
+                                          message:@"Unexpected empty batch hash list found"];
+        }
+
+        return nil;
+    }
 
     return [[IRTransaction alloc] initWithCreatorAccountId:_creator
                                                  createdAt:_createdAt
                                                   commands:_commands
                                                     quorum:_quorum
-                                                signatures:appendedSignatures];
+                                                signatures:nil
+                                               batchHashes:transactionBatchHashes
+                                                 batchType:batchType];
+}
+
+- (nullable NSData*)batchHashWithError:(NSError **)error {
+    Transaction_Payload_ReducedPayload *reducedPayload = [self createReducedPayload:error];
+
+    if (!reducedPayload) {
+        return nil;
+    }
+
+    NSData *reducedPayloadData = [reducedPayload data];
+
+    if (!reducedPayload) {
+        if (error) {
+            NSString *message = @"Empty reduced payload received";
+            *error = [IRTransaction errorWithType:IRTransactionErrorHashing
+                                          message:message];
+        }
+        return nil;
+    }
+
+    NSData *sha3Data = [reducedPayloadData sha3:IRSha3Variant256];
+
+    if (!sha3Data) {
+        if (error) {
+            NSString *message = @"Hashing function failed";
+            *error = [IRTransaction errorWithType:IRTransactionErrorHashing
+                                          message:message];
+        }
+        return nil;
+    }
+
+    return sha3Data;
 }
 
 #pragma mark - Private
 
-- (nullable Transaction_Payload*)createPayload:(NSError**)error {
+- (nullable Transaction_Payload_ReducedPayload*)createReducedPayload:(NSError**)error {
     NSMutableArray<Command*> *protobufCommands = [NSMutableArray array];
 
     for (id<IRCommand> command in _commands) {
@@ -203,8 +288,39 @@
     reducedPayload.createdTime = [_createdAt milliseconds];
     reducedPayload.quorum = (uint32_t)_quorum;
 
+    return reducedPayload;
+}
+
+- (nullable Transaction_Payload*)createPayload:(NSError**)error {
+    Transaction_Payload_ReducedPayload *reducedPayload = [self createReducedPayload:error];
+
+    if (!reducedPayload) {
+        return nil;
+    }
+
     Transaction_Payload *payload = [[Transaction_Payload alloc] init];
     payload.reducedPayload = reducedPayload;
+
+    Transaction_Payload_BatchMeta_BatchType pbBatchType = Transaction_Payload_BatchMeta_BatchType_GPBUnrecognizedEnumeratorValue;
+
+    switch (_batchType) {
+        case IRTransactionBatchTypeAtomic:
+            pbBatchType = Transaction_Payload_BatchMeta_BatchType_Atomic;
+            break;
+        case IRTransactionBatchTypeOrdered:
+            pbBatchType = Transaction_Payload_BatchMeta_BatchType_Ordered;
+            break;
+        default:
+            break;
+    }
+
+    if (pbBatchType != Transaction_Payload_BatchMeta_BatchType_GPBUnrecognizedEnumeratorValue) {
+        Transaction_Payload_BatchMeta *pbBatchMeta = [[Transaction_Payload_BatchMeta alloc] init];
+        pbBatchMeta.type = pbBatchType;
+        pbBatchMeta.reducedHashesArray = [_batchHashes mutableCopy];
+
+        payload.batch = pbBatchMeta;
+    }
 
     return payload;
 }

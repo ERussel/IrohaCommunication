@@ -1,7 +1,7 @@
 #import "IRAssetId.h"
 
 static NSString * const ASSET_NAME_FORMAT = @"[a-z_0-9]{1,32}";
-static NSString * const ASSET_ID_SEPARATOR = @"@";
+static NSString * const ASSET_ID_SEPARATOR = @"#";
 
 @interface IRAssetId : NSObject <IRAssetId>
 

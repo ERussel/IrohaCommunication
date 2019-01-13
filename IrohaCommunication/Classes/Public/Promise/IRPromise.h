@@ -13,7 +13,7 @@ typedef IRPromise* _Nullable (^IRPromiseErrorHandler)(NSError* _Nonnull);
 @property(nonatomic, readonly)id _Nullable result;
 
 + (instancetype)promise;
-+ (instancetype)promiseWithResult:(id)result;
++ (instancetype)promiseWithResult:(nullable id)result;
 
 @property(nonatomic, readonly)IRPromise* _Nonnull (^onThen)(IRPromiseResultHandler _Nonnull);
 @property(nonatomic, readonly)IRPromise* _Nonnull (^onError)(IRPromiseErrorHandler _Nonnull);

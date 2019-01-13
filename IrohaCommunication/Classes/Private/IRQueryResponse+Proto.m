@@ -101,15 +101,8 @@
 + (nullable id<IRAssetResponse>)assetResponseFromProtobuf:(nonnull AssetResponse*)pbResponse
                                                 queryHash:(nonnull NSData*)queryHash
                                                     error:(NSError **)error {
-    id<IRDomain> domain = [IRDomainFactory domainWithIdentitifer:pbResponse.asset.domainId error:error];
-
-    if (!domain) {
-        return nil;
-    }
-
-    id<IRAssetId> assetId = [IRAssetIdFactory assetIdWithName:pbResponse.asset.assetId
-                                                       domain:domain
-                                                        error:error];
+    id<IRAssetId> assetId = [IRAssetIdFactory assetWithIdentifier:pbResponse.asset.assetId
+                                                            error:error];
 
     if (!assetId) {
         return nil;

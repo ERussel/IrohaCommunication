@@ -18,7 +18,7 @@
     return [[IRPromise alloc] init];
 }
 
-+ (instancetype)promiseWithResult:(id)result {
++ (instancetype)promiseWithResult:(nullable id)result {
     IRPromise *promise = [self promise];
     [promise fulfillWithResult:result];
 

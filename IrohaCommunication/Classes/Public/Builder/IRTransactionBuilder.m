@@ -262,7 +262,9 @@ static const NSUInteger DEFAULT_QUORUM = 1;
                                                                        createdAt:createdAt
                                                                         commands:_commands
                                                                           quorum:_quorum
-                                                                      signatures:@[]];
+                                                                      signatures:nil
+                                                                     batchHashes:nil
+                                                                       batchType:IRTransactionBatchTypeNone];
 
     return transaction;
 }

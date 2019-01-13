@@ -46,10 +46,17 @@
         return promise;
     }
 
-    NSError *error;
+    NSError *error = nil;
     Transaction *pbTransaction = [(id<IRProtobufTransformable>)transaction transform:&error];
 
     if (!pbTransaction) {
+        [promise fulfillWithResult:error];
+        return promise;
+    }
+
+    error = nil;
+    NSData *transactionHash = [transaction transactionHashWithError:&error];
+    if (!transaction) {
         [promise fulfillWithResult:error];
         return promise;
     }
@@ -59,7 +66,7 @@
                                        if (error) {
                                            [promise fulfillWithResult: error];
                                        } else {
-                                           [promise fulfillWithResult:nil];
+                                           [promise fulfillWithResult:transactionHash];
                                        }
                                    }];
     [call start];
@@ -119,7 +126,7 @@
             [receivedStatuses addObject:@(statusResponse.status)];
 
             if (statusResponse && statusResponse.status == transactionStatus) {
-                [promise fulfillWithResult:nil];
+                [promise fulfillWithResult:@(transactionStatus)];
 
                 [weakCall cancel];
                 weakCall = nil;
