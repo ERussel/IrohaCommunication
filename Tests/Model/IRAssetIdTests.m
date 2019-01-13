@@ -69,7 +69,7 @@ static NSString * const VALID_DOMAIN = @"gmail.com";
 
 - (void)testValidIdentifier {
     for (NSUInteger i = 0; i < VALID_ASSET_NAMES_COUNT; i++) {
-        NSString *identifier = [NSString stringWithFormat:@"%@@%@", VALID_ASSET_NAMES[i], VALID_DOMAIN];
+        NSString *identifier = [NSString stringWithFormat:@"%@#%@", VALID_ASSET_NAMES[i], VALID_DOMAIN];
         id<IRAssetId> assetId = [IRAssetIdFactory assetWithIdentifier:identifier
                                                                 error:nil];
         XCTAssertNotNil(assetId);

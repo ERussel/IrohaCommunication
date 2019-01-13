@@ -2,7 +2,7 @@
 @import IrohaCommunication;
 
 static NSString * const VALID_ACCOUNT_IDENTIFIER = @"bob@gmail.com";
-static NSString * const VALID_ASSET_IDENTIFIER = @"testcoin@gmail.com";
+static NSString * const VALID_ASSET_IDENTIFIER = @"testcoin#gmail.com";
 static NSString * const VALID_BALANCE = @"10.1";
 
 @interface IRAccountAssetTests : XCTestCase

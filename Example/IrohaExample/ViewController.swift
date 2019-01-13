@@ -59,7 +59,7 @@ class ViewController: UIViewController {
 
         do {
             try startCommitStream()
-            _ = try createAccount()
+            _ = createAccount()
                 .onThen({ (result) -> IRPromise? in
                     return self.mintAsset()
                 }).onThen({ (result) -> IRPromise? in

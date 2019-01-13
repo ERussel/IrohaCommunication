@@ -2,7 +2,7 @@
 @import IrohaCommunication;
 
 static NSString * const VALID_ACCOUNT_IDENTIFIER = @"bob@gmail.com";
-static NSString * const VALID_ASSET_IDENTIFIER = @"testcoin@gmail.com";
+static NSString * const VALID_ASSET_IDENTIFIER = @"testcoin#gmail.com";
 static NSString * const VALID_ROLE = @"admin";
 static UInt64 VALID_QUERY_COUNTER = 10;
 
