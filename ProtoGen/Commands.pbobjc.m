@@ -151,7 +151,7 @@ typedef struct AddPeer__storage_ {
 typedef struct AddSignatory__storage_ {
   uint32_t _has_storage_[1];
   NSString *accountId;
-  NSData *publicKey;
+  NSString *publicKey;
 } AddSignatory__storage_;
 
 // This method is threadsafe because it is initially called
@@ -176,7 +176,7 @@ typedef struct AddSignatory__storage_ {
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(AddSignatory__storage_, publicKey),
         .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeBytes,
+        .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =
@@ -272,7 +272,7 @@ typedef struct CreateAccount__storage_ {
   uint32_t _has_storage_[1];
   NSString *accountName;
   NSString *domainId;
-  NSData *publicKey;
+  NSString *publicKey;
 } CreateAccount__storage_;
 
 // This method is threadsafe because it is initially called
@@ -306,7 +306,7 @@ typedef struct CreateAccount__storage_ {
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(CreateAccount__storage_, publicKey),
         .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeBytes,
+        .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =
@@ -454,7 +454,7 @@ typedef struct CreateDomain__storage_ {
 typedef struct RemoveSignatory__storage_ {
   uint32_t _has_storage_[1];
   NSString *accountId;
-  NSData *publicKey;
+  NSString *publicKey;
 } RemoveSignatory__storage_;
 
 // This method is threadsafe because it is initially called
@@ -479,7 +479,7 @@ typedef struct RemoveSignatory__storage_ {
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(RemoveSignatory__storage_, publicKey),
         .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeBytes,
+        .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =

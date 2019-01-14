@@ -160,9 +160,9 @@ typedef GPB_ENUM(Signature_FieldNumber) {
 
 @interface Signature : GPBMessage
 
-@property(nonatomic, readwrite, copy, null_resettable) NSData *publicKey;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *publicKey;
 
-@property(nonatomic, readwrite, copy, null_resettable) NSData *signature;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *signature;
 
 @end
 
@@ -177,7 +177,8 @@ typedef GPB_ENUM(Peer_FieldNumber) {
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *address;
 
-@property(nonatomic, readwrite, copy, null_resettable) NSData *peerKey;
+/** hex string */
+@property(nonatomic, readwrite, copy, null_resettable) NSString *peerKey;
 
 @end
 

@@ -1,5 +1,6 @@
 #import "IRAddSignatory.h"
 #import "Commands.pbobjc.h"
+#import <IrohaCrypto/NSData+Hex.h>
 
 @implementation IRAddSignatory
 @synthesize accountId = _accountId;
@@ -21,7 +22,7 @@
 - (nullable id)transform:(NSError *__autoreleasing *)error {
     AddSignatory *addSignatory = [[AddSignatory alloc] init];
     addSignatory.accountId = [_accountId identifier];
-    addSignatory.publicKey = [_publicKey rawData];
+    addSignatory.publicKey = [_publicKey.rawData toHexString];
 
     Command *command = [[Command alloc] init];
     command.addSignatory = addSignatory;

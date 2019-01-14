@@ -4,6 +4,7 @@
 #import "IRPeerSignature+Proto.h"
 #import "IRTransactionImpl+Proto.h"
 #import "NSDate+IrohaCommunication.h"
+#import <IrohaCrypto/NSData+Hex.h>
 
 @implementation IRBlock (Proto)
 
@@ -52,16 +53,41 @@
 
     NSDate *createdAt = [NSDate dateWithTimestampInMilliseconds:block.blockV1.payload.createdTime];
 
-    NSArray<NSData*> *rejectedHashes = block.blockV1.payload.rejectedTransactionsHashesArray;
-    if (!rejectedHashes) {
+    NSMutableArray<NSData*> *rejectedHashes = [NSMutableArray array];
+
+    if (!block.blockV1.payload.rejectedTransactionsHashesArray) {
         if (error) {
             *error = [IRBlock errorWithMessage:@"Expected rejected transaction hashes list but nil found"];
         }
         return nil;
     }
 
+    for (NSString *pbRejectedHash in block.blockV1.payload.rejectedTransactionsHashesArray)  {
+        NSData *rejectedHash = [[NSData alloc] initWithHexString:pbRejectedHash];
+
+        if (!rejectedHash) {
+            if (error) {
+                NSString *message = [NSString stringWithFormat:@"Can't parse rejected hash hex string: %@", pbRejectedHash];
+                *error = [IRBlock errorWithMessage:message];
+            }
+            return nil;
+        }
+
+        [rejectedHashes addObject:rejectedHash];
+    }
+
+    NSData *previousBlockHash = [[NSData alloc] initWithHexString:block.blockV1.payload.prevBlockHash];
+
+    if (!previousBlockHash) {
+        if (error) {
+            NSString *message = [NSString stringWithFormat:@"Can't parse previous block hash hex string: %@", block.blockV1.payload.prevBlockHash];
+            *error = [IRBlock errorWithMessage:message];
+        }
+        return nil;
+    }
+
     return [[IRBlock alloc] initWithHeight:block.blockV1.payload.height
-                         previousBlockHash:block.blockV1.payload.prevBlockHash
+                         previousBlockHash:previousBlockHash
                                  createdAt:createdAt
                               transactions:transactions
                  rejectedTransactionHashes:rejectedHashes

@@ -1,5 +1,6 @@
 #import "IRGetTransactions.h"
 #import "Queries.pbobjc.h"
+#import <IrohaCrypto/NSData+Hex.h>
 
 @implementation IRGetTransactions
 @synthesize transactionHashes = _transactionHashes;
@@ -16,7 +17,14 @@
 
 - (nullable id)transform:(NSError**)error {
     GetTransactions *query = [[GetTransactions alloc] init];
-    query.txHashesArray = [_transactionHashes mutableCopy];
+
+    NSMutableArray<NSString*> *pbHashes = [NSMutableArray array];
+
+    for (NSData *transactionHash in _transactionHashes) {
+        [pbHashes addObject:[transactionHash toHexString]];
+    }
+
+    query.txHashesArray = pbHashes;
 
     Query_Payload *payload = [[Query_Payload alloc] init];
     payload.getTransactions = query;

@@ -119,7 +119,7 @@ typedef struct ToriiResponse__storage_ {
   uint32_t _has_storage_[1];
   TxStatus txStatus;
   uint32_t errorCode;
-  NSData *txHash;
+  NSString *txHash;
   NSString *errOrCmdName;
   uint64_t failedCmdIndex;
 } ToriiResponse__storage_;
@@ -146,7 +146,7 @@ typedef struct ToriiResponse__storage_ {
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(ToriiResponse__storage_, txHash),
         .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeBytes,
+        .dataType = GPBDataTypeString,
       },
       {
         .name = "errOrCmdName",
@@ -212,7 +212,7 @@ void SetToriiResponse_TxStatus_RawValue(ToriiResponse *message, int32_t value) {
 
 typedef struct TxStatusRequest__storage_ {
   uint32_t _has_storage_[1];
-  NSData *txHash;
+  NSString *txHash;
 } TxStatusRequest__storage_;
 
 // This method is threadsafe because it is initially called
@@ -228,7 +228,7 @@ typedef struct TxStatusRequest__storage_ {
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(TxStatusRequest__storage_, txHash),
         .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeBytes,
+        .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =

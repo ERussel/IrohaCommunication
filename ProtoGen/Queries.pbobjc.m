@@ -339,7 +339,7 @@ typedef struct GetTransactions__storage_ {
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(GetTransactions__storage_, txHashesArray),
         .flags = GPBFieldRepeated,
-        .dataType = GPBDataTypeBytes,
+        .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =

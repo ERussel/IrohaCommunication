@@ -1,6 +1,7 @@
 #import "IRAddPeer.h"
 #import "Commands.pbobjc.h"
 #import "Primitive.pbobjc.h"
+#import <IrohaCrypto/NSData+Hex.h>
 
 @implementation IRAddPeer
 @synthesize address = _address;
@@ -24,7 +25,7 @@
 
     Peer *peer = [[Peer alloc] init];
     peer.address = [_address value];
-    peer.peerKey = [_publicKey rawData];
+    peer.peerKey = [_publicKey.rawData toHexString];
 
     addPeer.peer = peer;
 

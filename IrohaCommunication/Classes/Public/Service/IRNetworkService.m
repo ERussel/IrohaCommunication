@@ -8,6 +8,7 @@
 #import "IRQueryResponse+Proto.h"
 #import "IRBlockQueryRequestImpl.h"
 #import "IRBlockQueryResponse+Proto.h"
+#import <IrohaCrypto/NSData+Hex.h>
 
 @interface IRNetworkService()
 
@@ -76,7 +77,7 @@
 
 - (nonnull IRPromise *)fetchTransactionStatus:(nonnull NSData*)transactionHash {
     TxStatusRequest *statusRequest = [[TxStatusRequest alloc] init];
-    statusRequest.txHash = transactionHash;
+    statusRequest.txHash = [transactionHash toHexString];
 
     __weak typeof(self) weakSelf = self;
 
@@ -104,7 +105,7 @@
 - (nonnull IRPromise *)onTransactionStatus:(IRTransactionStatus)transactionStatus
                                   withHash:(nonnull NSData*)transactionHash {
     TxStatusRequest *statusRequest = [[TxStatusRequest alloc] init];
-    statusRequest.txHash = transactionHash;
+    statusRequest.txHash = [transactionHash toHexString];
 
     __block __weak GRPCProtoCall *weakCall = nil;
 
@@ -157,7 +158,7 @@
 - (void)streamTransactionStatus:(nonnull NSData*)transactionHash
                       withBlock:(nonnull IRTransactionStatusBlock)block {
     TxStatusRequest *statusRequest = [[TxStatusRequest alloc] init];
-    statusRequest.txHash = transactionHash;
+    statusRequest.txHash = [transactionHash toHexString];
 
     __weak typeof(self) weakSelf = self;
 

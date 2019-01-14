@@ -4,7 +4,7 @@
 @class ToriiResponse;
 
 typedef NS_ENUM(NSUInteger, IRTransactionStatusResponseProtoError) {
-    IRTransactionStatusResponseProtoErrorUnexpedProtoStatus
+    IRTransactionStatusResponseProtoErrorInvalidField
 };
 
 @interface IRTransactionStatusResponse (Proto)

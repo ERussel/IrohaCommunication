@@ -103,7 +103,8 @@ typedef GPB_ENUM(AddSignatory_FieldNumber) {
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *accountId;
 
-@property(nonatomic, readwrite, copy, null_resettable) NSData *publicKey;
+/** hex string */
+@property(nonatomic, readwrite, copy, null_resettable) NSString *publicKey;
 
 @end
 
@@ -139,7 +140,8 @@ typedef GPB_ENUM(CreateAccount_FieldNumber) {
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *domainId;
 
-@property(nonatomic, readwrite, copy, null_resettable) NSData *publicKey;
+/** hex string */
+@property(nonatomic, readwrite, copy, null_resettable) NSString *publicKey;
 
 @end
 
@@ -187,7 +189,8 @@ typedef GPB_ENUM(RemoveSignatory_FieldNumber) {
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *accountId;
 
-@property(nonatomic, readwrite, copy, null_resettable) NSData *publicKey;
+/** hex string */
+@property(nonatomic, readwrite, copy, null_resettable) NSString *publicKey;
 
 @end
 

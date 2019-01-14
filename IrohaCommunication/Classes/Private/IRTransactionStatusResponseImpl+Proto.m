@@ -1,9 +1,23 @@
 #import "IRTransactionStatusResponseImpl+Proto.h"
 #import "Endpoint.pbobjc.h"
+#import <IrohaCrypto/NSData+Hex.h>
 
 @implementation IRTransactionStatusResponse (Proto)
 
 + (nullable instancetype)statusResponseWithToriiResponse:(nonnull ToriiResponse *)toriiResponse error:(NSError **)error {
+    NSData *transactionHash = [[NSData alloc] initWithHexString:toriiResponse.txHash];
+
+    if (!transactionHash) {
+        if (error) {
+            NSString *message = [NSString stringWithFormat:@"Unexpected hex transaction hash %@", toriiResponse.txHash];
+            *error = [NSError errorWithDomain:@"IRTransactionStatusResponseProtoError"
+                                         code:IRTransactionStatusResponseProtoErrorInvalidField
+                                     userInfo:@{NSLocalizedDescriptionKey: message}];
+        }
+
+        return nil;
+    }
+
     IRTransactionStatus status;
 
     switch (toriiResponse.txStatus) {
@@ -41,7 +55,7 @@
             if (error) {
                 NSString *message = [NSString stringWithFormat:@"Unexpected proto transaction status %@", @(toriiResponse.txStatus)];
                 *error = [NSError errorWithDomain:@"IRTransactionStatusResponseProtoError"
-                                             code:IRTransactionStatusResponseProtoErrorUnexpedProtoStatus
+                                             code:IRTransactionStatusResponseProtoErrorInvalidField
                                          userInfo:@{NSLocalizedDescriptionKey: message}];
             }
             return nil;
@@ -56,7 +70,7 @@
     }
 
     return [[IRTransactionStatusResponse alloc] initWithStatus:status
-                                               transactionHash:toriiResponse.txHash
+                                               transactionHash:transactionHash
                                                    description:statusDescription];
 }
 

@@ -3,6 +3,7 @@
 #import "Primitive.pbobjc.h"
 #import "IrohaCrypto/NSData+SHA3.h"
 #import "NSDate+IrohaCommunication.h"
+#import <IrohaCrypto/NSData+Hex.h>
 
 @implementation IRQueryRequest
 @synthesize creator = _creator;
@@ -88,8 +89,8 @@
 
     if (_peerSignature) {
         Signature *signature = [[Signature alloc] init];
-        signature.signature = _peerSignature.signature.rawData;
-        signature.publicKey = _peerSignature.publicKey.rawData;
+        signature.signature = [_peerSignature.signature.rawData toHexString];
+        signature.publicKey = [_peerSignature.publicKey.rawData toHexString];
 
         query.signature = signature;
     }

@@ -237,8 +237,8 @@ BOOL GrantablePermission_IsValidValue(int32_t value__) {
 
 typedef struct Signature__storage_ {
   uint32_t _has_storage_[1];
-  NSData *publicKey;
-  NSData *signature;
+  NSString *publicKey;
+  NSString *signature;
 } Signature__storage_;
 
 // This method is threadsafe because it is initially called
@@ -254,7 +254,7 @@ typedef struct Signature__storage_ {
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(Signature__storage_, publicKey),
         .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeBytes,
+        .dataType = GPBDataTypeString,
       },
       {
         .name = "signature",
@@ -263,7 +263,7 @@ typedef struct Signature__storage_ {
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(Signature__storage_, signature),
         .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeBytes,
+        .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =
@@ -292,7 +292,7 @@ typedef struct Signature__storage_ {
 typedef struct Peer__storage_ {
   uint32_t _has_storage_[1];
   NSString *address;
-  NSData *peerKey;
+  NSString *peerKey;
 } Peer__storage_;
 
 // This method is threadsafe because it is initially called
@@ -317,7 +317,7 @@ typedef struct Peer__storage_ {
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(Peer__storage_, peerKey),
         .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeBytes,
+        .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =

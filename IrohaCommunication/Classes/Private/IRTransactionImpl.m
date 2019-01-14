@@ -3,7 +3,8 @@
 #import "Commands.pbobjc.h"
 #import "Primitive.pbobjc.h"
 #import "IRProtobufTransformable.h"
-#import "IrohaCrypto/NSData+SHA3.h"
+#import <IrohaCrypto/NSData+SHA3.h>
+#import <IrohaCrypto/NSData+Hex.h>
 #import "NSDate+IrohaCommunication.h"
 
 @implementation IRTransaction
@@ -51,8 +52,8 @@
     NSMutableArray<Signature*> *rawSignatures = [NSMutableArray array];
     for (id<IRPeerSignature> signature in _signatures) {
         Signature *protobufSignature = [[Signature alloc] init];
-        protobufSignature.signature = [signature.signature rawData];
-        protobufSignature.publicKey = [signature.publicKey rawData];
+        protobufSignature.signature = [signature.signature.rawData toHexString];
+        protobufSignature.publicKey = [signature.publicKey.rawData toHexString];
 
         [rawSignatures addObject:protobufSignature];
     }
@@ -317,7 +318,14 @@
     if (pbBatchType != Transaction_Payload_BatchMeta_BatchType_GPBUnrecognizedEnumeratorValue) {
         Transaction_Payload_BatchMeta *pbBatchMeta = [[Transaction_Payload_BatchMeta alloc] init];
         pbBatchMeta.type = pbBatchType;
-        pbBatchMeta.reducedHashesArray = [_batchHashes mutableCopy];
+
+        NSMutableArray<NSString*> *pbReducedHashes = [NSMutableArray array];
+
+        for (NSData *batchHash in _batchHashes) {
+            [pbReducedHashes addObject:[batchHash toHexString]];
+        }
+
+        pbBatchMeta.reducedHashesArray = pbReducedHashes;
 
         payload.batch = pbBatchMeta;
     }

@@ -94,7 +94,19 @@
         return nil;
     }
 
-    id<IRPublicKeyProtocol> publicKey = [self createPublicKeyFromRawData:pbCommand.peer.peerKey
+    NSData *rawPublicKey = [[NSData alloc] initWithHexString:pbCommand.peer.peerKey];
+
+    if (!rawPublicKey) {
+        if (error) {
+            NSString *message = [NSString stringWithFormat:@"Invalid public key hex %@", pbCommand.peer.peerKey];
+            *error = [NSError errorWithDomain:NSStringFromClass([IRCommandProtoFactory class])
+                                         code:IRCommandProtoFactoryErrorInvalidArgument
+                                     userInfo:@{NSLocalizedDescriptionKey: message}];
+        }
+        return nil;
+    }
+
+    id<IRPublicKeyProtocol> publicKey = [self createPublicKeyFromRawData:rawPublicKey
                                                                    error:error];
 
     if (!publicKey) {
@@ -200,7 +212,19 @@
         return nil;
     }
 
-    id<IRPublicKeyProtocol> publicKey = [self createPublicKeyFromRawData:pbCommand.publicKey
+    NSData *rawPublicKey = [[NSData alloc] initWithHexString:pbCommand.publicKey];
+
+    if (!rawPublicKey) {
+        if (error) {
+            NSString *message = [NSString stringWithFormat:@"Invalid public key hex %@", pbCommand.publicKey];
+            *error = [NSError errorWithDomain:NSStringFromClass([IRCommandProtoFactory class])
+                                         code:IRCommandProtoFactoryErrorInvalidArgument
+                                     userInfo:@{NSLocalizedDescriptionKey: message}];
+        }
+        return nil;
+    }
+
+    id<IRPublicKeyProtocol> publicKey = [self createPublicKeyFromRawData:rawPublicKey
                                                                    error:error];
 
     if (!publicKey) {
@@ -251,7 +275,19 @@
         return nil;
     }
 
-    id<IRPublicKeyProtocol> publicKey = [self createPublicKeyFromRawData:pbCommand.publicKey
+    NSData *rawPublicKey = [[NSData alloc] initWithHexString:pbCommand.publicKey];
+
+    if (!rawPublicKey) {
+        if (error) {
+            NSString *message = [NSString stringWithFormat:@"Invalid public key hex %@", pbCommand.publicKey];
+            *error = [NSError errorWithDomain:NSStringFromClass([IRCommandProtoFactory class])
+                                         code:IRCommandProtoFactoryErrorInvalidArgument
+                                     userInfo:@{NSLocalizedDescriptionKey: message}];
+        }
+        return nil;
+    }
+
+    id<IRPublicKeyProtocol> publicKey = [self createPublicKeyFromRawData:rawPublicKey
                                                                    error:error];
 
     return [[IRCreateAccount alloc] initWithAccountId:accountId
@@ -327,7 +363,19 @@
         return nil;
     }
 
-    id<IRPublicKeyProtocol> publicKey = [self createPublicKeyFromRawData:pbCommand.publicKey
+    NSData *rawPublicKey = [[NSData alloc] initWithHexString:pbCommand.publicKey];
+
+    if (!rawPublicKey) {
+        if (error) {
+            NSString *message = [NSString stringWithFormat:@"Invalid public key hex %@", pbCommand.publicKey];
+            *error = [NSError errorWithDomain:NSStringFromClass([IRCommandProtoFactory class])
+                                         code:IRCommandProtoFactoryErrorInvalidArgument
+                                     userInfo:@{NSLocalizedDescriptionKey: message}];
+        }
+        return nil;
+    }
+
+    id<IRPublicKeyProtocol> publicKey = [self createPublicKeyFromRawData:rawPublicKey
                                                                    error:error];
 
     if (!publicKey) {

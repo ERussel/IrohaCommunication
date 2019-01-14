@@ -89,7 +89,7 @@ typedef GPB_ENUM(ToriiResponse_FieldNumber) {
 
 @property(nonatomic, readwrite) TxStatus txStatus;
 
-@property(nonatomic, readwrite, copy, null_resettable) NSData *txHash;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *txHash;
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *errOrCmdName;
 
@@ -119,7 +119,7 @@ typedef GPB_ENUM(TxStatusRequest_FieldNumber) {
 
 @interface TxStatusRequest : GPBMessage
 
-@property(nonatomic, readwrite, copy, null_resettable) NSData *txHash;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *txHash;
 
 @end
 

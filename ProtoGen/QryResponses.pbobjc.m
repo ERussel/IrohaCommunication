@@ -726,7 +726,7 @@ typedef struct SignatoriesResponse__storage_ {
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(SignatoriesResponse__storage_, keysArray),
         .flags = GPBFieldRepeated,
-        .dataType = GPBDataTypeBytes,
+        .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =

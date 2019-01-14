@@ -201,7 +201,7 @@ typedef struct Transaction_Payload_BatchMeta__storage_ {
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(Transaction_Payload_BatchMeta__storage_, reducedHashesArray),
         .flags = GPBFieldRepeated,
-        .dataType = GPBDataTypeBytes,
+        .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =

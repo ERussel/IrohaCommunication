@@ -1,7 +1,8 @@
 #import "IRBlockQueryRequestImpl.h"
 #import "Queries.pbobjc.h"
 #import "Primitive.pbobjc.h"
-#import "IrohaCrypto/NSData+SHA3.h"
+#import <IrohaCrypto/NSData+SHA3.h>
+#import <IrohaCrypto/NSData+Hex.h>
 #import "NSDate+IrohaCommunication.h"
 
 @implementation IRBlockQueryRequest
@@ -84,8 +85,8 @@
 
     if (_peerSignature) {
         Signature *signature = [[Signature alloc] init];
-        signature.signature = _peerSignature.signature.rawData;
-        signature.publicKey = _peerSignature.publicKey.rawData;
+        signature.signature = [_peerSignature.signature.rawData toHexString];
+        signature.publicKey = [_peerSignature.publicKey.rawData toHexString];
 
         query.signature = signature;
     }

@@ -156,7 +156,7 @@ typedef GPB_ENUM(GetTransactions_FieldNumber) {
 
 @interface GetTransactions : GPBMessage
 
-@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<NSData*> *txHashesArray;
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<NSString*> *txHashesArray;
 /** The number of items in @c txHashesArray without causing the array to be created. */
 @property(nonatomic, readonly) NSUInteger txHashesArray_Count;
 

@@ -114,7 +114,7 @@ typedef struct Block_v1_Payload__storage_ {
   uint32_t _has_storage_[1];
   uint32_t txNumber;
   NSMutableArray *transactionsArray;
-  NSData *prevBlockHash;
+  NSString *prevBlockHash;
   NSMutableArray *rejectedTransactionsHashesArray;
   uint64_t height;
   uint64_t createdTime;
@@ -160,7 +160,7 @@ typedef struct Block_v1_Payload__storage_ {
         .hasIndex = 2,
         .offset = (uint32_t)offsetof(Block_v1_Payload__storage_, prevBlockHash),
         .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeBytes,
+        .dataType = GPBDataTypeString,
       },
       {
         .name = "createdTime",
@@ -178,7 +178,7 @@ typedef struct Block_v1_Payload__storage_ {
         .hasIndex = GPBNoHasBit,
         .offset = (uint32_t)offsetof(Block_v1_Payload__storage_, rejectedTransactionsHashesArray),
         .flags = GPBFieldRepeated,
-        .dataType = GPBDataTypeBytes,
+        .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =

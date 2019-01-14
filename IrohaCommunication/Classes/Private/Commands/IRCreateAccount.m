@@ -1,5 +1,6 @@
 #import "IRCreateAccount.h"
 #import "Commands.pbobjc.h"
+#import <IrohaCrypto/NSData+Hex.h>
 
 @implementation IRCreateAccount
 @synthesize accountId = _accountId;
@@ -22,7 +23,7 @@
     CreateAccount *createAccount = [[CreateAccount alloc] init];
     createAccount.accountName = _accountId.name;
     createAccount.domainId = [_accountId.domain identifier];
-    createAccount.publicKey = [_publicKey rawData];
+    createAccount.publicKey = [_publicKey.rawData toHexString];
 
     Command *command = [[Command alloc] init];
     command.createAccount = createAccount;

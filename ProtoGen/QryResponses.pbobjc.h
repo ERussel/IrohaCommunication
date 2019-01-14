@@ -308,7 +308,7 @@ typedef GPB_ENUM(SignatoriesResponse_FieldNumber) {
 
 @interface SignatoriesResponse : GPBMessage
 
-@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<NSData*> *keysArray;
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<NSString*> *keysArray;
 /** The number of items in @c keysArray without causing the array to be created. */
 @property(nonatomic, readonly) NSUInteger keysArray_Count;
 

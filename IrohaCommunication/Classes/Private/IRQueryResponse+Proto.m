@@ -223,8 +223,20 @@
 
     NSMutableArray<id<IRPublicKeyProtocol>> *publicKeys = [NSMutableArray array];
 
-    for (NSData *rawRublicKey in pbResponse.keysArray) {
-        id<IRPublicKeyProtocol> publicKey = [[IREd25519PublicKey alloc] initWithRawData:rawRublicKey];
+    for (NSString *pbPublicKey in pbResponse.keysArray) {
+        NSData *rawPublicKey = [[NSData alloc] initWithHexString:pbPublicKey];
+
+        if (!rawPublicKey) {
+            if (error) {
+                NSString *message = [NSString stringWithFormat:@"Invalid public key hex string %@", pbPublicKey];
+                *error = [NSError errorWithDomain:NSStringFromClass([IRQueryResponseProtoFactory class])
+                                             code:IRQueryResponseFactoryErrorInvalidAgrument
+                                         userInfo:@{NSLocalizedDescriptionKey: message}];
+            }
+            return nil;
+        }
+
+        id<IRPublicKeyProtocol> publicKey = [[IREd25519PublicKey alloc] initWithRawData:rawPublicKey];
 
         if (!publicKey) {
             if (error) {
