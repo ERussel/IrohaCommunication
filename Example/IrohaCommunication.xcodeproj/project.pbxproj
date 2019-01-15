@@ -24,6 +24,9 @@
 		021C845B21ED12B40037F633 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		021C845C21ED12B40037F633 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		021C845D21ED12B40037F633 /* Pods_IrohaCommunication_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF608F629997F5F1F47D6E2 /* Pods_IrohaCommunication_Tests.framework */; };
+		0264DDF321EE6964009A89F4 /* IRIrohaContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0264DDF221EE6964009A89F4 /* IRIrohaContainer.m */; };
+		0264DDF621EE7F46009A89F4 /* IRCreateAccountTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0264DDF521EE7F46009A89F4 /* IRCreateAccountTest.m */; };
+		0264DDF921EE82BD009A89F4 /* IRBaseIrohaContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0264DDF821EE82BD009A89F4 /* IRBaseIrohaContainerTests.m */; };
 		02E3198B21D0FEF000B33B66 /* IRTransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */; };
 		02E319DD21DBB18500B33B66 /* IRPromiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E319DC21DBB18500B33B66 /* IRPromiseTests.m */; };
 		02E31A2721DC050E00B33B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E31A2621DC050E00B33B66 /* AppDelegate.swift */; };
@@ -72,6 +75,11 @@
 		021C844421EB54080037F633 /* Error+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+String.swift"; sourceTree = "<group>"; };
 		021C846321ED12B40037F633 /* IntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		021C846421ED12B40037F633 /* IntegrationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "IntegrationTests-Info.plist"; path = "/Users/rirussel/Documents/Projects/Soramitsu/Frameworks/IrohaCommunication/IrohaCommunication/Example/IntegrationTests-Info.plist"; sourceTree = "<absolute>"; };
+		0264DDF121EE6964009A89F4 /* IRIrohaContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRIrohaContainer.h; sourceTree = "<group>"; };
+		0264DDF221EE6964009A89F4 /* IRIrohaContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRIrohaContainer.m; sourceTree = "<group>"; };
+		0264DDF521EE7F46009A89F4 /* IRCreateAccountTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRCreateAccountTest.m; sourceTree = "<group>"; };
+		0264DDF721EE82BD009A89F4 /* IRBaseIrohaContainerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRBaseIrohaContainerTests.h; sourceTree = "<group>"; };
+		0264DDF821EE82BD009A89F4 /* IRBaseIrohaContainerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRBaseIrohaContainerTests.m; sourceTree = "<group>"; };
 		02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRTransactionTests.m; sourceTree = "<group>"; };
 		02E319DC21DBB18500B33B66 /* IRPromiseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRPromiseTests.m; sourceTree = "<group>"; };
 		02E31A2421DC050E00B33B66 /* IrohaExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IrohaExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,9 +173,30 @@
 		021C846521ED12D20037F633 /* IntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
+				0264DDF021EE6945009A89F4 /* IrohaContainer */,
+				0264DDF421EE7F00009A89F4 /* Scenarious */,
 				021C846421ED12B40037F633 /* IntegrationTests-Info.plist */,
 			);
 			path = IntegrationTests;
+			sourceTree = "<group>";
+		};
+		0264DDF021EE6945009A89F4 /* IrohaContainer */ = {
+			isa = PBXGroup;
+			children = (
+				0264DDF121EE6964009A89F4 /* IRIrohaContainer.h */,
+				0264DDF221EE6964009A89F4 /* IRIrohaContainer.m */,
+				0264DDF721EE82BD009A89F4 /* IRBaseIrohaContainerTests.h */,
+				0264DDF821EE82BD009A89F4 /* IRBaseIrohaContainerTests.m */,
+			);
+			path = IrohaContainer;
+			sourceTree = "<group>";
+		};
+		0264DDF421EE7F00009A89F4 /* Scenarious */ = {
+			isa = PBXGroup;
+			children = (
+				0264DDF521EE7F46009A89F4 /* IRCreateAccountTest.m */,
+			);
+			path = Scenarious;
 			sourceTree = "<group>";
 		};
 		02E3198921D0FED500B33B66 /* Transaction */ = {
@@ -526,6 +555,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0264DDF921EE82BD009A89F4 /* IRBaseIrohaContainerTests.m in Sources */,
+				0264DDF621EE7F46009A89F4 /* IRCreateAccountTest.m in Sources */,
+				0264DDF321EE6964009A89F4 /* IRIrohaContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
