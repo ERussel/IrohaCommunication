@@ -3,9 +3,16 @@
 static NSString* const DOCKER_HOST = @"http://localhost:49721";
 static NSString* const CONTAINER = @"5ba6cda09f91";
 
+static NSString * IROHA_IP = @"127.0.0.1";
+static NSString * IROHA_PORT = @"50051";
+
+static NSUInteger CONNECTION_TRIES = 10;
+static NSTimeInterval CONNECTION_TRY_DELAY = 1.0;
+
 @interface IRIrohaContainer()
 
 @property(strong, nonatomic)NSURLSession *session;
+@property(strong, nonatomic)IRNetworkService *irohaService;
 
 @end
 
@@ -16,6 +23,12 @@ static NSString* const CONTAINER = @"5ba6cda09f91";
 - (instancetype)init {
     if (self = [super init]) {
         _session = [NSURLSession sessionWithConfiguration:NSURLSessionConfiguration.defaultSessionConfiguration];
+
+        id<IRAddress> irohaAddress = [IRAddressFactory addressWithIp:IROHA_IP
+                                                                port:IROHA_PORT
+                                                               error:nil];
+
+        _iroha = [[IRNetworkService alloc] initWithAddress:irohaAddress];
     }
 
     return self;
@@ -88,6 +101,26 @@ static NSString* const CONTAINER = @"5ba6cda09f91";
     [daemonTaskExecutionTask resume];
 
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
+    if (resultError) {
+        return resultError;
+    }
+
+    BOOL connected = NO;
+
+    for(NSUInteger tryIndex = 0; tryIndex < CONNECTION_TRIES; tryIndex++) {
+        connected = [self checkConnectivity];
+
+        if (connected) {
+            break;
+        }
+
+        sleep(CONNECTION_TRY_DELAY);
+    }
+
+    if (!connected) {
+        resultError = [IRIrohaContainer errorForMessage:@"Couldn't establish socket connection"];
+    }
 
     return resultError;
 }
@@ -286,6 +319,32 @@ static NSString* const CONTAINER = @"5ba6cda09f91";
     }
 
     return [IRIrohaContainer errorForMessage:@"Unexpected response received on try to stop"];
+}
+
+#pragma mark - Iroha
+
+- (BOOL)checkConnectivity {
+    NSData *transactionHash = [[NSUUID UUID].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
+
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+    __block BOOL connected = NO;
+
+    [_iroha fetchTransactionStatus:transactionHash].onThen(^IRPromise * _Nullable(id result) {
+        connected = [result conformsToProtocol:@protocol(IRTransactionStatusResponse)];
+
+        dispatch_semaphore_signal(semaphore);
+
+        return nil;
+    }).onError(^IRPromise * _Nullable(NSError* error) {
+        dispatch_semaphore_signal(semaphore);
+
+        return nil;
+    });
+
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
+    return connected;
 }
 
 #pragma mark - Helper
