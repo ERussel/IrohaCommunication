@@ -29,6 +29,11 @@ static NSTimeInterval CONNECTION_TRY_DELAY = 1.0;
                                                                error:nil];
 
         _iroha = [[IRNetworkService alloc] initWithAddress:irohaAddress];
+
+        NSString *queueName = @"co.jp.soramitsu.irohacontainertest.queue";
+        dispatch_queue_t responseQueue = dispatch_queue_create((char*)[queueName cStringUsingEncoding:NSUTF8StringEncoding],
+                                                               DISPATCH_QUEUE_SERIAL);
+        _iroha.responseSerialQueue = responseQueue;
     }
 
     return self;

@@ -25,6 +25,8 @@
     if (self = [super init]) {
         [GRPCCall useInsecureConnectionsForHost:address.value];
 
+        _responseSerialQueue = dispatch_get_main_queue();
+
         _commandService = [[CommandService_v1 alloc] initWithHost:address.value];
         _queryService = [[QueryService_v1 alloc] initWithHost:address.value];
     }
@@ -70,6 +72,9 @@
                                            [promise fulfillWithResult:transactionHash];
                                        }
                                    }];
+
+    [call setResponseDispatchQueue:_responseSerialQueue];
+
     [call start];
 
     return promise;
@@ -91,13 +96,17 @@
         }
     };
 
-    [_commandService statusWithRequest:statusRequest
-                               handler:^(ToriiResponse * _Nullable response, NSError * _Nullable error) {
-                                   [weakSelf proccessTransactionStatusResponse:response
-                                                                         error:error
-                                                                          done:YES
-                                                                       handler:handler];
-                               }];
+    GRPCProtoCall *call = [_commandService RPCToStatusWithRequest:statusRequest
+                                                          handler:^(ToriiResponse * _Nullable response, NSError * _Nullable error) {
+                                                         [weakSelf proccessTransactionStatusResponse:response
+                                                                              error:error
+                                                                               done:YES
+                                                                            handler:handler];
+                                                     }];
+
+    [call setResponseDispatchQueue:_responseSerialQueue];
+
+    [call start];
 
     return promise;
 }
@@ -150,6 +159,8 @@
                                                            eventHandler:eventHandler];
     weakCall = call;
 
+    [call setResponseDispatchQueue:_responseSerialQueue];
+
     [call start];
 
     return promise;
@@ -162,13 +173,15 @@
 
     __weak typeof(self) weakSelf = self;
 
-    [_commandService statusStreamWithRequest: statusRequest
-                                eventHandler:^(BOOL done, ToriiResponse *response, NSError *error) {
-                                    [weakSelf proccessTransactionStatusResponse:response
-                                                                          error:error
-                                                                           done:done
-                                                                        handler:block];
-    }];
+    GRPCProtoCall *call = [_commandService RPCToStatusStreamWithRequest:statusRequest
+                                                           eventHandler:^(BOOL done, ToriiResponse *response, NSError *error) {
+                                                               [weakSelf proccessTransactionStatusResponse:response
+                                                                                                     error:error
+                                                                                                      done:done
+                                                                                                   handler:block];
+                                                           }];
+    [call setResponseDispatchQueue:_responseSerialQueue];
+    [call start];
 }
 
 #pragma mark - Query
@@ -194,21 +207,26 @@
         return promise;
     }
 
-    [_queryService findWithRequest:protobufQuery handler:^(QueryResponse* _Nullable response, NSError* _Nullable error) {
-        if (response) {
-            NSError *parsingError = nil;
-            id<IRQueryResponse> queryResponse = [IRQueryResponseProtoFactory responseFromProtobuf:response
-                                                                                            error:&parsingError];
+    GRPCProtoCall *call = [_queryService RPCToFindWithRequest:protobufQuery
+                                                      handler:^(QueryResponse* _Nullable response, NSError* _Nullable error) {
+                                                          if (response) {
+                                                              NSError *parsingError = nil;
+                                                              id<IRQueryResponse> queryResponse = [IRQueryResponseProtoFactory responseFromProtobuf:response
+                                                                                                                                              error:&parsingError];
 
-            if (queryResponse) {
-                [promise fulfillWithResult:queryResponse];
-            } else {
-                [promise fulfillWithResult:parsingError];
-            }
-        } else {
-            [promise fulfillWithResult:error];
-        }
-    }];
+                                                              if (queryResponse) {
+                                                                  [promise fulfillWithResult:queryResponse];
+                                                              } else {
+                                                                  [promise fulfillWithResult:parsingError];
+                                                              }
+                                                          } else {
+                                                              [promise fulfillWithResult:error];
+                                                          }
+                                                      }];
+
+    [call setResponseDispatchQueue:_responseSerialQueue];
+
+    [call start];
 
     return promise;
 }
@@ -234,17 +252,21 @@
         return;
     }
 
-    [_queryService fetchCommitsWithRequest:pbBlockQuery
-                              eventHandler:^(BOOL done, BlockQueryResponse * _Nullable pbResponse, NSError * _Nullable error) {
-                                  if (pbResponse) {
-                                      NSError *parsingError = nil;
-                                      id<IRBlockQueryResponse> response = [IRBlockQueryResponse responseFromPbResponse:pbResponse
-                                                                                                                 error:&parsingError];
-                                      block(response, done, parsingError);
-                                  } else {
-                                      block(nil, done, error);
-                                  }
-                              }];
+    GRPCProtoCall *call = [_queryService RPCToFetchCommitsWithRequest:pbBlockQuery
+                                                         eventHandler:^(BOOL done, BlockQueryResponse * _Nullable pbResponse, NSError * _Nullable error) {
+                                                             if (pbResponse) {
+                                                                 NSError *parsingError = nil;
+                                                                 id<IRBlockQueryResponse> response = [IRBlockQueryResponse responseFromPbResponse:pbResponse
+                                                                                                                                            error:&parsingError];
+                                                                 block(response, done, parsingError);
+                                                             } else {
+                                                                 block(nil, done, error);
+                                                             }
+                                                         }];
+
+    [call setResponseDispatchQueue:_responseSerialQueue];
+
+    [call start];
 }
 
 #pragma mark - Private

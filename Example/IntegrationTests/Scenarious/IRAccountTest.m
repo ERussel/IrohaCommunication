@@ -1,11 +1,11 @@
 @import XCTest;
 #import "IRBaseIrohaContainerTests.h"
 
-@interface IRCreateAccountTest : IRBaseIrohaContainerTests
+@interface IRAccountTest : IRBaseIrohaContainerTests
 
 @end
 
-@implementation IRCreateAccountTest
+@implementation IRAccountTest
 
 - (void)testCreateAccount {
     id<IRAccountId> newAccountId = [IRAccountIdFactory accountIdWithName:@"new"
