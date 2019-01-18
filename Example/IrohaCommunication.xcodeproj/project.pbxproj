@@ -29,6 +29,7 @@
 		02D656B721F12DC300AAA66A /* IRBaseIrohaContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D656AA21F12DC300AAA66A /* IRBaseIrohaContainerTests.m */; };
 		02D656B821F12DC300AAA66A /* IRIrohaContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D656AB21F12DC300AAA66A /* IRIrohaContainer.m */; };
 		02D656BF21F19F7500AAA66A /* IRCreateRoleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D656BD21F19F6B00AAA66A /* IRCreateRoleTest.m */; };
+		02D656CD21F285E100AAA66A /* IRCancellableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D656CC21F285E100AAA66A /* IRCancellableTests.m */; };
 		02E3198B21D0FEF000B33B66 /* IRTransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */; };
 		02E319DD21DBB18500B33B66 /* IRPromiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E319DC21DBB18500B33B66 /* IRPromiseTests.m */; };
 		02E31A2721DC050E00B33B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E31A2621DC050E00B33B66 /* AppDelegate.swift */; };
@@ -107,6 +108,7 @@
 		02D656AD21F12DC300AAA66A /* IRIrohaContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRIrohaContainer.h; sourceTree = "<group>"; };
 		02D656BC21F12E7700AAA66A /* IntegrationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IntegrationTests-Info.plist"; sourceTree = SOURCE_ROOT; };
 		02D656BD21F19F6B00AAA66A /* IRCreateRoleTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRCreateRoleTest.m; sourceTree = "<group>"; };
+		02D656CC21F285E100AAA66A /* IRCancellableTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRCancellableTests.m; sourceTree = "<group>"; };
 		02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRTransactionTests.m; sourceTree = "<group>"; };
 		02E319DC21DBB18500B33B66 /* IRPromiseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRPromiseTests.m; sourceTree = "<group>"; };
 		02E31A2421DC050E00B33B66 /* IrohaExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IrohaExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +227,7 @@
 		02D6569D21F12DC300AAA66A /* IntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
+				02D656CB21F285C500AAA66A /* Service */,
 				02D6569E21F12DC300AAA66A /* Scenarious */,
 				02D656A921F12DC300AAA66A /* IrohaContainer */,
 				02D656B921F12DD600AAA66A /* Supporting Files */,
@@ -261,6 +264,14 @@
 				02D656BC21F12E7700AAA66A /* IntegrationTests-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		02D656CB21F285C500AAA66A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				02D656CC21F285E100AAA66A /* IRCancellableTests.m */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		02E3198921D0FED500B33B66 /* Transaction */ = {
@@ -746,6 +757,7 @@
 				02D656BF21F19F7500AAA66A /* IRCreateRoleTest.m in Sources */,
 				02D656B721F12DC300AAA66A /* IRBaseIrohaContainerTests.m in Sources */,
 				02D656AF21F12DC300AAA66A /* IRCreateAccountTest.m in Sources */,
+				02D656CD21F285E100AAA66A /* IRCancellableTests.m in Sources */,
 				02D656AE21F12DC300AAA66A /* IRCreateAssetTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

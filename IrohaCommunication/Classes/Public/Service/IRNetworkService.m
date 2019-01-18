@@ -8,6 +8,7 @@
 #import "IRQueryResponse+Proto.h"
 #import "IRBlockQueryRequestImpl.h"
 #import "IRBlockQueryResponse+Proto.h"
+#import "GRPCProtoCall+Cancellable.h"
 #import <IrohaCrypto/NSData+Hex.h>
 
 @interface IRNetworkService()
@@ -172,8 +173,8 @@
     return promise;
 }
 
-- (void)streamTransactionStatus:(nonnull NSData*)transactionHash
-                      withBlock:(nonnull IRTransactionStatusBlock)block {
+- (id<IRCancellable>)streamTransactionStatus:(nonnull NSData*)transactionHash
+                                   withBlock:(nonnull IRTransactionStatusBlock)block {
     TxStatusRequest *statusRequest = [[TxStatusRequest alloc] init];
     statusRequest.txHash = [transactionHash toHexString];
 
@@ -188,6 +189,8 @@
                                                            }];
     [call setResponseDispatchQueue:_responseSerialQueue];
     [call start];
+
+    return call;
 }
 
 #pragma mark - Query
@@ -239,15 +242,15 @@
 
 #pragma mark - Commits
 
-- (void)streamCommits:(nonnull id<IRBlockQueryRequest>)request
-            withBlock:(nonnull IRCommitStreamBlock)block {
+- (id<IRCancellable>)streamCommits:(nonnull id<IRBlockQueryRequest>)request
+                         withBlock:(nonnull IRCommitStreamBlock)block {
     if (![request conformsToProtocol:@protocol(IRProtobufTransformable)]) {
         NSString *message = @"Unsupported block query request implementation";
         NSError *error = [NSError errorWithDomain:NSStringFromClass([IRNetworkService class])
                                              code:IRQueryRequestErrorSerialization
                                          userInfo:@{NSLocalizedDescriptionKey: message}];
         block(nil, true, error);
-        return;
+        return nil;
     }
 
     NSError *pbError = nil;
@@ -255,7 +258,7 @@
 
     if (!pbBlockQuery) {
         block(nil, true, pbError);
-        return;
+        return nil;
     }
 
     GRPCProtoCall *call = [_queryService RPCToFetchCommitsWithRequest:pbBlockQuery
@@ -273,6 +276,8 @@
     [call setResponseDispatchQueue:_responseSerialQueue];
 
     [call start];
+
+    return call;
 }
 
 #pragma mark - Private
