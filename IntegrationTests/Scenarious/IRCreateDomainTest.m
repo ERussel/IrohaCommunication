@@ -1,14 +1,13 @@
 @import XCTest;
-@import IrohaCommunication;
 #import "IRBaseIrohaContainerTests.h"
 
-@interface IRDomainTest : IRBaseIrohaContainerTests
+@interface IRCreateDomainTest : IRBaseIrohaContainerTests
 
 @end
 
-@implementation IRDomainTest
+@implementation IRCreateDomainTest
 
-- (void)testCreateRoleAndNewDomain {
+- (void)testCreateDomain {
     id<IRRoleName> userRole = [IRRoleNameFactory roleWithName:@"user"
                                                        error:nil];
 

@@ -1,11 +1,11 @@
 @import XCTest;
 #import "IRBaseIrohaContainerTests.h"
 
-@interface IRAccountTest : IRBaseIrohaContainerTests
+@interface IRCreateAccountTest : IRBaseIrohaContainerTests
 
 @end
 
-@implementation IRAccountTest
+@implementation IRCreateAccountTest
 
 - (void)testCreateAccount {
     id<IRAccountId> newAccountId = [IRAccountIdFactory accountIdWithName:@"new"
@@ -13,6 +13,8 @@
                                                                    error:nil];
 
     id<IRCryptoKeypairProtocol> keypair = [[[IREd25519KeyFactory alloc] init] createRandomKeypair];
+
+    id<IRSignatureCreatorProtocol> newAccountSigner = [[IREd25519Sha512Signer alloc] initWithPrivateKey:keypair.privateKey];
 
     IRTransactionBuilder* builder = [IRTransactionBuilder builderWithCreatorAccountId:self.adminAccountId];
     builder = [builder createAccount:newAccountId publicKey:keypair.publicKey];
@@ -29,12 +31,22 @@
 
     XCTestExpectation *expectation = [[XCTestExpectation alloc] init];
 
-    [self.iroha executeTransaction:transaction].onThen(^IRPromise * _Nullable(id result) {
-        if (!result) {
-            XCTFail();
-            return nil;
-        }
+    UInt32 quorum = 2;
 
+    [self.iroha executeTransaction:transaction].onThen(^IRPromise * _Nullable(id result) {
+        return [self.iroha onTransactionStatus:IRTransactionStatusCommitted withHash:result];
+    }).onThen(^IRPromise * _Nullable(id result) {
+        IRTransactionBuilder *transactionBuilder = [IRTransactionBuilder builderWithCreatorAccountId:newAccountId];
+        transactionBuilder = [transactionBuilder addSignatory:self.adminAccountId publicKey:self.adminPublicKey];
+        transactionBuilder = [transactionBuilder setAccountQuorum:newAccountId quorum:quorum];
+
+        NSError *error = nil;
+        id<IRTransaction> transaction = [[transactionBuilder build:&error] signedWithSignatories:@[newAccountSigner]
+                                                                             signatoryPublicKeys:@[keypair.publicKey]
+                                                                                           error:&error];
+
+        return [self.iroha executeTransaction:transaction];
+    }).onThen(^IRPromise * _Nullable(id result) {
         return [self.iroha onTransactionStatus:IRTransactionStatusCommitted withHash:result];
     }).onThen(^IRPromise * _Nullable(id result) {
         IRQueryBuilder *queryBuilder = [IRQueryBuilder builderWithCreatorAccountId:self.adminAccountId];

@@ -19,6 +19,8 @@ typedef NS_ENUM(NSUInteger, IRNetworkServiceError) {
 
 - (nonnull instancetype)initWithAddress:(nonnull id<IRAddress>)address;
 
+- (nonnull instancetype)initWithAddress:(nonnull id<IRAddress>)address useSecuredConnection:(BOOL)secured;
+
 - (nonnull IRPromise *)executeTransaction:(nonnull id<IRTransaction>)transaction;
 
 - (nonnull IRPromise *)onTransactionStatus:(IRTransactionStatus)transactionStatus

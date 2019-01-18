@@ -22,13 +22,19 @@
 #pragma mark - Initialize
 
 - (nonnull instancetype)initWithAddress:(nonnull id<IRAddress>)address {
-    if (self = [super init]) {
-        [GRPCCall useInsecureConnectionsForHost:address.value];
+    return [self initWithAddress:address useSecuredConnection:NO];
+}
 
+- (nonnull instancetype)initWithAddress:(nonnull id<IRAddress>)address useSecuredConnection:(BOOL)secured {
+    if (self = [super init]) {
         _responseSerialQueue = dispatch_get_main_queue();
 
         _commandService = [[CommandService_v1 alloc] initWithHost:address.value];
         _queryService = [[QueryService_v1 alloc] initWithHost:address.value];
+
+        if (!secured) {
+            [GRPCCall useInsecureConnectionsForHost:address.value];
+        }
     }
 
     return self;
@@ -145,7 +151,7 @@
             if (error) {
                 [promise fulfillWithResult:error];
             } else {
-                NSString *message = [NSString stringWithFormat:@"Received statuses [%@], but waited for %@. Streaming closed.",
+                NSString *message = [NSString stringWithFormat:@"Received statuses [%@], but waited for %@. Streaming closed",
                                      [receivedStatuses componentsJoinedByString:@","], @(transactionStatus)];
                 NSError *networkError = [NSError errorWithDomain:NSStringFromClass([IRNetworkService class])
                                                             code:IRNetworkServiceErrorTransactionStatusNotReceived

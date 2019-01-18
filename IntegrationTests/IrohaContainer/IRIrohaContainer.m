@@ -1,7 +1,7 @@
 #import "IRIrohaContainer.h"
 
 static NSString* const DOCKER_HOST = @"http://localhost:49721";
-static NSString* const CONTAINER = @"5ba6cda09f91";
+static NSString* const CONTAINER = @"649f761b58de";
 
 static NSString * IROHA_IP = @"127.0.0.1";
 static NSString * IROHA_PORT = @"50051";

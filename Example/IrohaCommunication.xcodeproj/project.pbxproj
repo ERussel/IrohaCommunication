@@ -23,11 +23,12 @@
 		021C845A21ED12B40037F633 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		021C845B21ED12B40037F633 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		021C845C21ED12B40037F633 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
-		021C845D21ED12B40037F633 /* Pods_IrohaCommunication_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF608F629997F5F1F47D6E2 /* Pods_IrohaCommunication_Tests.framework */; };
-		0264DDF321EE6964009A89F4 /* IRIrohaContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0264DDF221EE6964009A89F4 /* IRIrohaContainer.m */; };
-		0264DDF621EE7F46009A89F4 /* IRAccountTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0264DDF521EE7F46009A89F4 /* IRAccountTest.m */; };
-		0264DDF921EE82BD009A89F4 /* IRBaseIrohaContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0264DDF821EE82BD009A89F4 /* IRBaseIrohaContainerTests.m */; };
-		02D6569121EFDA7B00AAA66A /* IRDomainTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D6569021EFDA7B00AAA66A /* IRDomainTest.m */; };
+		02D656AE21F12DC300AAA66A /* IRCreateAssetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D6569F21F12DC300AAA66A /* IRCreateAssetTest.m */; };
+		02D656AF21F12DC300AAA66A /* IRCreateAccountTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D656A021F12DC300AAA66A /* IRCreateAccountTest.m */; };
+		02D656B021F12DC300AAA66A /* IRCreateDomainTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D656A121F12DC300AAA66A /* IRCreateDomainTest.m */; };
+		02D656B721F12DC300AAA66A /* IRBaseIrohaContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D656AA21F12DC300AAA66A /* IRBaseIrohaContainerTests.m */; };
+		02D656B821F12DC300AAA66A /* IRIrohaContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D656AB21F12DC300AAA66A /* IRIrohaContainer.m */; };
+		02D656BF21F19F7500AAA66A /* IRCreateRoleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D656BD21F19F6B00AAA66A /* IRCreateRoleTest.m */; };
 		02E3198B21D0FEF000B33B66 /* IRTransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */; };
 		02E319DD21DBB18500B33B66 /* IRPromiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E319DC21DBB18500B33B66 /* IRPromiseTests.m */; };
 		02E31A2721DC050E00B33B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E31A2621DC050E00B33B66 /* AppDelegate.swift */; };
@@ -37,17 +38,18 @@
 		02E31A3121DC050E00B33B66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02E31A2F21DC050E00B33B66 /* LaunchScreen.storyboard */; };
 		02ED8DC521EE8DD80068AF05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E31A2621DC050E00B33B66 /* AppDelegate.swift */; };
 		02ED8DC621EE8DD80068AF05 /* Error+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021C844421EB54080037F633 /* Error+String.swift */; };
-		02ED8DC821EE8DD80068AF05 /* Pods_IrohaExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F09ACAD13C939D198160D383 /* Pods_IrohaExample.framework */; };
 		02ED8DCA21EE8DD80068AF05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02E31A2F21DC050E00B33B66 /* LaunchScreen.storyboard */; };
 		02ED8DCB21EE8DD80068AF05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02E31A2D21DC050E00B33B66 /* Assets.xcassets */; };
 		02ED8DCC21EE8DD80068AF05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02E31A2A21DC050E00B33B66 /* Main.storyboard */; };
 		02ED8DD521EE8E740068AF05 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED8DD421EE8E740068AF05 /* ViewController.swift */; };
 		45A7E684E1D1F39915CA840F /* Pods_IrohaExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F09ACAD13C939D198160D383 /* Pods_IrohaExample.framework */; };
-		5747BFFD6B791F5D4E211A8F /* Pods_IrohaCommunication_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF608F629997F5F1F47D6E2 /* Pods_IrohaCommunication_Tests.framework */; };
+		5E884FDAF0C0DE06A95DD892 /* Pods_IntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA67C26A81EB59902096272 /* Pods_IntegrationTests.framework */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
+		7C8964A2BAE86B246752F5D5 /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872B4DCAED8E7A58AFC8B200 /* Pods_UnitTests.framework */; };
+		8CA1A478927FFA33BA30A5B4 /* Pods_IntegrationTestHost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175938D8DE70C85E0CEA25AF /* Pods_IntegrationTestHost.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,13 +98,15 @@
 		021C843C21EA6E950037F633 /* IRBlockQueryBuilderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRBlockQueryBuilderTests.m; sourceTree = "<group>"; };
 		021C844421EB54080037F633 /* Error+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+String.swift"; sourceTree = "<group>"; };
 		021C846321ED12B40037F633 /* IntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		021C846421ED12B40037F633 /* IntegrationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "IntegrationTests-Info.plist"; path = "/Users/rirussel/Documents/Projects/Soramitsu/Frameworks/IrohaCommunication/IrohaCommunication/Example/IntegrationTests-Info.plist"; sourceTree = "<absolute>"; };
-		0264DDF121EE6964009A89F4 /* IRIrohaContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRIrohaContainer.h; sourceTree = "<group>"; };
-		0264DDF221EE6964009A89F4 /* IRIrohaContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRIrohaContainer.m; sourceTree = "<group>"; };
-		0264DDF521EE7F46009A89F4 /* IRAccountTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRAccountTest.m; sourceTree = "<group>"; };
-		0264DDF721EE82BD009A89F4 /* IRBaseIrohaContainerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRBaseIrohaContainerTests.h; sourceTree = "<group>"; };
-		0264DDF821EE82BD009A89F4 /* IRBaseIrohaContainerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRBaseIrohaContainerTests.m; sourceTree = "<group>"; };
-		02D6569021EFDA7B00AAA66A /* IRDomainTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRDomainTest.m; sourceTree = "<group>"; };
+		02D6569F21F12DC300AAA66A /* IRCreateAssetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCreateAssetTest.m; sourceTree = "<group>"; };
+		02D656A021F12DC300AAA66A /* IRCreateAccountTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCreateAccountTest.m; sourceTree = "<group>"; };
+		02D656A121F12DC300AAA66A /* IRCreateDomainTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCreateDomainTest.m; sourceTree = "<group>"; };
+		02D656AA21F12DC300AAA66A /* IRBaseIrohaContainerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRBaseIrohaContainerTests.m; sourceTree = "<group>"; };
+		02D656AB21F12DC300AAA66A /* IRIrohaContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRIrohaContainer.m; sourceTree = "<group>"; };
+		02D656AC21F12DC300AAA66A /* IRBaseIrohaContainerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRBaseIrohaContainerTests.h; sourceTree = "<group>"; };
+		02D656AD21F12DC300AAA66A /* IRIrohaContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRIrohaContainer.h; sourceTree = "<group>"; };
+		02D656BC21F12E7700AAA66A /* IntegrationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IntegrationTests-Info.plist"; sourceTree = SOURCE_ROOT; };
+		02D656BD21F19F6B00AAA66A /* IRCreateRoleTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRCreateRoleTest.m; sourceTree = "<group>"; };
 		02E3198A21D0FEF000B33B66 /* IRTransactionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRTransactionTests.m; sourceTree = "<group>"; };
 		02E319DC21DBB18500B33B66 /* IRPromiseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRPromiseTests.m; sourceTree = "<group>"; };
 		02E31A2421DC050E00B33B66 /* IrohaExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IrohaExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,7 +119,14 @@
 		02ED8DD121EE8DD80068AF05 /* IntegrationTestHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntegrationTestHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02ED8DD221EE8DD90068AF05 /* IntegrationTestHost-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "IntegrationTestHost-Info.plist"; path = "/Users/rirussel/Documents/Projects/Soramitsu/Frameworks/IrohaCommunication/IrohaCommunication/Example/IntegrationTestHost-Info.plist"; sourceTree = "<absolute>"; };
 		02ED8DD421EE8E740068AF05 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		23FA10B0D24502974E9385B6 /* Pods-IrohaCommunication_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaCommunication_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaCommunication_Tests/Pods-IrohaCommunication_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		109EB0565C980D706D1D0911 /* Pods-Iroha-All-IrohaExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Iroha-All-IrohaExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Iroha-All-IrohaExample/Pods-Iroha-All-IrohaExample.debug.xcconfig"; sourceTree = "<group>"; };
+		175938D8DE70C85E0CEA25AF /* Pods_IntegrationTestHost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntegrationTestHost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DFCD90933C08A54D1B3AA8D /* Pods-IrohaExample-IntegrationTestHost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaExample-IntegrationTestHost.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaExample-IntegrationTestHost/Pods-IrohaExample-IntegrationTestHost.debug.xcconfig"; sourceTree = "<group>"; };
+		31FEE7B1F9E4A5606D72321F /* Pods-IntegrationTestHost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntegrationTestHost.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IntegrationTestHost/Pods-IntegrationTestHost.debug.xcconfig"; sourceTree = "<group>"; };
+		3432D55320A9387DC8836321 /* Pods-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		454C37BD32614589BBE894AA /* Pods-IrohaExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaExample/Pods-IrohaExample.debug.xcconfig"; sourceTree = "<group>"; };
+		46039629AA9ED80C7E9721D8 /* Pods-IntegrationTestHost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntegrationTestHost.release.xcconfig"; path = "Pods/Target Support Files/Pods-IntegrationTestHost/Pods-IntegrationTestHost.release.xcconfig"; sourceTree = "<group>"; };
+		55D980CEB7E9C5BA9DA95FC2 /* Pods-IntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntegrationTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IntegrationTests/Pods-IntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -124,14 +135,21 @@
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		6BF3097DA0B1239D7D3C0799 /* Pods-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UnitTests/Pods-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		74D33D817C5F7989BD3071B1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		84EA860F14455E442B5C9B29 /* IrohaCommunication.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = IrohaCommunication.podspec; path = ../IrohaCommunication.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		8EF608F629997F5F1F47D6E2 /* Pods_IrohaCommunication_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IrohaCommunication_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86F19532265991B547599707 /* Pods-IrohaExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaExample/Pods-IrohaExample.release.xcconfig"; sourceTree = "<group>"; };
+		872B4DCAED8E7A58AFC8B200 /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CA67C26A81EB59902096272 /* Pods_IntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B877F0064619F03D2B560C12 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		CA280E5B4FA46A10164A60F1 /* Pods-IrohaExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaExample/Pods-IrohaExample.debug.xcconfig"; sourceTree = "<group>"; };
-		E071421D678DD5101663263F /* Pods-IrohaExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaExample/Pods-IrohaExample.release.xcconfig"; sourceTree = "<group>"; };
+		BE1A149366A65576BDC46228 /* Pods-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IntegrationTests/Pods-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CDBA8FB052C0408339D3459F /* Pods-Iroha-All-IntegrationTestHost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Iroha-All-IntegrationTestHost.release.xcconfig"; path = "Pods/Target Support Files/Pods-Iroha-All-IntegrationTestHost/Pods-Iroha-All-IntegrationTestHost.release.xcconfig"; sourceTree = "<group>"; };
+		DF55521408D01989DF087B1D /* Pods-IrohaExample-IntegrationTestHost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaExample-IntegrationTestHost.release.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaExample-IntegrationTestHost/Pods-IrohaExample-IntegrationTestHost.release.xcconfig"; sourceTree = "<group>"; };
+		E07693A22A3171BB16EAA94E /* Pods-Iroha-All-IntegrationTestHost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Iroha-All-IntegrationTestHost.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Iroha-All-IntegrationTestHost/Pods-Iroha-All-IntegrationTestHost.debug.xcconfig"; sourceTree = "<group>"; };
+		E2382400CCF8AD81C516AE4F /* Pods-Iroha-All-IrohaExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Iroha-All-IrohaExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-Iroha-All-IrohaExample/Pods-Iroha-All-IrohaExample.release.xcconfig"; sourceTree = "<group>"; };
 		F09ACAD13C939D198160D383 /* Pods_IrohaExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IrohaExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FBEDEA9EB928BD52D49FE065 /* Pods-IrohaCommunication_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IrohaCommunication_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IrohaCommunication_Tests/Pods-IrohaCommunication_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		F3C2E3C307CA9E650EA3CF68 /* Pods-IntegrationTestHost-IrohaExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntegrationTestHost-IrohaExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-IntegrationTestHost-IrohaExample/Pods-IntegrationTestHost-IrohaExample.release.xcconfig"; sourceTree = "<group>"; };
+		F51A19C84977A821F9B19CB6 /* Pods-IntegrationTestHost-IrohaExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IntegrationTestHost-IrohaExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IntegrationTestHost-IrohaExample/Pods-IntegrationTestHost-IrohaExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +160,7 @@
 				021C845A21ED12B40037F633 /* XCTest.framework in Frameworks */,
 				021C845B21ED12B40037F633 /* UIKit.framework in Frameworks */,
 				021C845C21ED12B40037F633 /* Foundation.framework in Frameworks */,
-				021C845D21ED12B40037F633 /* Pods_IrohaCommunication_Tests.framework in Frameworks */,
+				5E884FDAF0C0DE06A95DD892 /* Pods_IntegrationTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02ED8DC821EE8DD80068AF05 /* Pods_IrohaExample.framework in Frameworks */,
+				8CA1A478927FFA33BA30A5B4 /* Pods_IntegrationTestHost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +187,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				5747BFFD6B791F5D4E211A8F /* Pods_IrohaCommunication_Tests.framework in Frameworks */,
+				7C8964A2BAE86B246752F5D5 /* Pods_UnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,34 +222,45 @@
 			path = ../../Tests/Query;
 			sourceTree = "<group>";
 		};
-		021C846521ED12D20037F633 /* IntegrationTests */ = {
+		02D6569D21F12DC300AAA66A /* IntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
-				0264DDF021EE6945009A89F4 /* IrohaContainer */,
-				0264DDF421EE7F00009A89F4 /* Scenarious */,
-				021C846421ED12B40037F633 /* IntegrationTests-Info.plist */,
+				02D6569E21F12DC300AAA66A /* Scenarious */,
+				02D656A921F12DC300AAA66A /* IrohaContainer */,
+				02D656B921F12DD600AAA66A /* Supporting Files */,
 			);
-			path = IntegrationTests;
+			name = IntegrationTests;
+			path = ../IntegrationTests;
 			sourceTree = "<group>";
 		};
-		0264DDF021EE6945009A89F4 /* IrohaContainer */ = {
+		02D6569E21F12DC300AAA66A /* Scenarious */ = {
 			isa = PBXGroup;
 			children = (
-				0264DDF121EE6964009A89F4 /* IRIrohaContainer.h */,
-				0264DDF221EE6964009A89F4 /* IRIrohaContainer.m */,
-				0264DDF721EE82BD009A89F4 /* IRBaseIrohaContainerTests.h */,
-				0264DDF821EE82BD009A89F4 /* IRBaseIrohaContainerTests.m */,
+				02D6569F21F12DC300AAA66A /* IRCreateAssetTest.m */,
+				02D656A021F12DC300AAA66A /* IRCreateAccountTest.m */,
+				02D656A121F12DC300AAA66A /* IRCreateDomainTest.m */,
+				02D656BD21F19F6B00AAA66A /* IRCreateRoleTest.m */,
+			);
+			path = Scenarious;
+			sourceTree = "<group>";
+		};
+		02D656A921F12DC300AAA66A /* IrohaContainer */ = {
+			isa = PBXGroup;
+			children = (
+				02D656AA21F12DC300AAA66A /* IRBaseIrohaContainerTests.m */,
+				02D656AB21F12DC300AAA66A /* IRIrohaContainer.m */,
+				02D656AC21F12DC300AAA66A /* IRBaseIrohaContainerTests.h */,
+				02D656AD21F12DC300AAA66A /* IRIrohaContainer.h */,
 			);
 			path = IrohaContainer;
 			sourceTree = "<group>";
 		};
-		0264DDF421EE7F00009A89F4 /* Scenarious */ = {
+		02D656B921F12DD600AAA66A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0264DDF521EE7F46009A89F4 /* IRAccountTest.m */,
-				02D6569021EFDA7B00AAA66A /* IRDomainTest.m */,
+				02D656BC21F12E7700AAA66A /* IntegrationTests-Info.plist */,
 			);
-			path = Scenarious;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		02E3198921D0FED500B33B66 /* Transaction */ = {
@@ -278,10 +307,22 @@
 		2EFE64D960ACD758C9C23090 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FBEDEA9EB928BD52D49FE065 /* Pods-IrohaCommunication_Tests.debug.xcconfig */,
-				23FA10B0D24502974E9385B6 /* Pods-IrohaCommunication_Tests.release.xcconfig */,
-				CA280E5B4FA46A10164A60F1 /* Pods-IrohaExample.debug.xcconfig */,
-				E071421D678DD5101663263F /* Pods-IrohaExample.release.xcconfig */,
+				BE1A149366A65576BDC46228 /* Pods-IntegrationTests.debug.xcconfig */,
+				55D980CEB7E9C5BA9DA95FC2 /* Pods-IntegrationTests.release.xcconfig */,
+				454C37BD32614589BBE894AA /* Pods-IrohaExample.debug.xcconfig */,
+				86F19532265991B547599707 /* Pods-IrohaExample.release.xcconfig */,
+				3432D55320A9387DC8836321 /* Pods-UnitTests.debug.xcconfig */,
+				6BF3097DA0B1239D7D3C0799 /* Pods-UnitTests.release.xcconfig */,
+				1DFCD90933C08A54D1B3AA8D /* Pods-IrohaExample-IntegrationTestHost.debug.xcconfig */,
+				DF55521408D01989DF087B1D /* Pods-IrohaExample-IntegrationTestHost.release.xcconfig */,
+				E07693A22A3171BB16EAA94E /* Pods-Iroha-All-IntegrationTestHost.debug.xcconfig */,
+				CDBA8FB052C0408339D3459F /* Pods-Iroha-All-IntegrationTestHost.release.xcconfig */,
+				109EB0565C980D706D1D0911 /* Pods-Iroha-All-IrohaExample.debug.xcconfig */,
+				E2382400CCF8AD81C516AE4F /* Pods-Iroha-All-IrohaExample.release.xcconfig */,
+				31FEE7B1F9E4A5606D72321F /* Pods-IntegrationTestHost.debug.xcconfig */,
+				46039629AA9ED80C7E9721D8 /* Pods-IntegrationTestHost.release.xcconfig */,
+				F51A19C84977A821F9B19CB6 /* Pods-IntegrationTestHost-IrohaExample.debug.xcconfig */,
+				F3C2E3C307CA9E650EA3CF68 /* Pods-IntegrationTestHost-IrohaExample.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -291,8 +332,8 @@
 			children = (
 				02ED8DD321EE8E430068AF05 /* IntegrationTestHost */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
+				02D6569D21F12DC300AAA66A /* IntegrationTests */,
 				6003F5B5195388D20070C39A /* Tests */,
-				021C846521ED12D20037F633 /* IntegrationTests */,
 				02E31A2521DC050E00B33B66 /* IrohaExample */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
@@ -318,8 +359,10 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				8EF608F629997F5F1F47D6E2 /* Pods_IrohaCommunication_Tests.framework */,
 				F09ACAD13C939D198160D383 /* Pods_IrohaExample.framework */,
+				9CA67C26A81EB59902096272 /* Pods_IntegrationTests.framework */,
+				872B4DCAED8E7A58AFC8B200 /* Pods_UnitTests.framework */,
+				175938D8DE70C85E0CEA25AF /* Pods_IntegrationTestHost.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -402,11 +445,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 02ED8DCE21EE8DD80068AF05 /* Build configuration list for PBXNativeTarget "IntegrationTestHost" */;
 			buildPhases = (
-				02ED8DC221EE8DD80068AF05 /* [CP] Check Pods Manifest.lock */,
+				624456EEB6C187247917F664 /* [CP] Check Pods Manifest.lock */,
 				02ED8DC321EE8DD80068AF05 /* Sources */,
 				02ED8DC721EE8DD80068AF05 /* Frameworks */,
 				02ED8DC921EE8DD80068AF05 /* Resources */,
-				02ED8DCD21EE8DD80068AF05 /* [CP] Embed Pods Frameworks */,
+				8A7F8EA690AB1FBF1F59EC5D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -542,71 +585,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-IrohaCommunication_Tests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-IntegrationTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		02ED8DC221EE8DD80068AF05 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-IrohaExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		02ED8DCD21EE8DD80068AF05 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-IrohaExample/Pods-IrohaExample-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/IrohaCommunication/IrohaCommunication.framework",
-				"${BUILT_PRODUCTS_DIR}/IrohaCrypto/IrohaCrypto.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IrohaCommunication.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IrohaCrypto.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IrohaExample/Pods-IrohaExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		20D9708930E539B477DDBC93 /* [CP] Check Pods Manifest.lock */ = {
@@ -624,7 +607,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-IrohaCommunication_Tests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-UnitTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -651,6 +634,66 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		624456EEB6C187247917F664 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IntegrationTestHost-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A7F8EA690AB1FBF1F59EC5D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-IntegrationTestHost/Pods-IntegrationTestHost-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/IrohaCommunication/IrohaCommunication.framework",
+				"${BUILT_PRODUCTS_DIR}/IrohaCrypto/IrohaCrypto.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IrohaCommunication.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IrohaCrypto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IntegrationTestHost/Pods-IntegrationTestHost-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F038CD8710A254DFB6ADBE4A /* [CP] Embed Pods Frameworks */ = {
@@ -698,10 +741,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0264DDF921EE82BD009A89F4 /* IRBaseIrohaContainerTests.m in Sources */,
-				0264DDF621EE7F46009A89F4 /* IRAccountTest.m in Sources */,
-				02D6569121EFDA7B00AAA66A /* IRDomainTest.m in Sources */,
-				0264DDF321EE6964009A89F4 /* IRIrohaContainer.m in Sources */,
+				02D656B821F12DC300AAA66A /* IRIrohaContainer.m in Sources */,
+				02D656B021F12DC300AAA66A /* IRCreateDomainTest.m in Sources */,
+				02D656BF21F19F7500AAA66A /* IRCreateRoleTest.m in Sources */,
+				02D656B721F12DC300AAA66A /* IRBaseIrohaContainerTests.m in Sources */,
+				02D656AF21F12DC300AAA66A /* IRCreateAccountTest.m in Sources */,
+				02D656AE21F12DC300AAA66A /* IRCreateAssetTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,7 +846,7 @@
 /* Begin XCBuildConfiguration section */
 		021C846121ED12B40037F633 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FBEDEA9EB928BD52D49FE065 /* Pods-IrohaCommunication_Tests.debug.xcconfig */;
+			baseConfigurationReference = BE1A149366A65576BDC46228 /* Pods-IntegrationTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = YLWWUD25VZ;
@@ -826,7 +871,7 @@
 		};
 		021C846221ED12B40037F633 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23FA10B0D24502974E9385B6 /* Pods-IrohaCommunication_Tests.release.xcconfig */;
+			baseConfigurationReference = 55D980CEB7E9C5BA9DA95FC2 /* Pods-IntegrationTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = YLWWUD25VZ;
@@ -847,7 +892,7 @@
 		};
 		02E31A3321DC050E00B33B66 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA280E5B4FA46A10164A60F1 /* Pods-IrohaExample.debug.xcconfig */;
+			baseConfigurationReference = 454C37BD32614589BBE894AA /* Pods-IrohaExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -890,7 +935,7 @@
 		};
 		02E31A3421DC050E00B33B66 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E071421D678DD5101663263F /* Pods-IrohaExample.release.xcconfig */;
+			baseConfigurationReference = 86F19532265991B547599707 /* Pods-IrohaExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -933,7 +978,7 @@
 		};
 		02ED8DCF21EE8DD80068AF05 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA280E5B4FA46A10164A60F1 /* Pods-IrohaExample.debug.xcconfig */;
+			baseConfigurationReference = 31FEE7B1F9E4A5606D72321F /* Pods-IntegrationTestHost.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -965,7 +1010,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = co.jp.soramitsu.IrohaExample;
+				PRODUCT_BUNDLE_IDENTIFIER = co.jp.soramitsu.IntegrationTestHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -976,7 +1021,7 @@
 		};
 		02ED8DD021EE8DD80068AF05 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E071421D678DD5101663263F /* Pods-IrohaExample.release.xcconfig */;
+			baseConfigurationReference = 46039629AA9ED80C7E9721D8 /* Pods-IntegrationTestHost.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1009,7 +1054,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = co.jp.soramitsu.IrohaExample;
+				PRODUCT_BUNDLE_IDENTIFIER = co.jp.soramitsu.IntegrationTestHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
@@ -1092,7 +1137,7 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FBEDEA9EB928BD52D49FE065 /* Pods-IrohaCommunication_Tests.debug.xcconfig */;
+			baseConfigurationReference = 3432D55320A9387DC8836321 /* Pods-UnitTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = YLWWUD25VZ;
@@ -1117,7 +1162,7 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23FA10B0D24502974E9385B6 /* Pods-IrohaCommunication_Tests.release.xcconfig */;
+			baseConfigurationReference = 6BF3097DA0B1239D7D3C0799 /* Pods-UnitTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = YLWWUD25VZ;
