@@ -37,7 +37,7 @@
         return [self.iroha onTransactionStatus:IRTransactionStatusCommitted withHash:result];
     }).onThen(^IRPromise * _Nullable(id result) {
         IRTransactionBuilder *transactionBuilder = [IRTransactionBuilder builderWithCreatorAccountId:newAccountId];
-        transactionBuilder = [transactionBuilder addSignatory:self.adminAccountId publicKey:self.adminPublicKey];
+        transactionBuilder = [transactionBuilder addSignatory:newAccountId publicKey:self.adminPublicKey];
         transactionBuilder = [transactionBuilder setAccountQuorum:newAccountId quorum:quorum];
 
         NSError *error = nil;
