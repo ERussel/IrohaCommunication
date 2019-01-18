@@ -8,6 +8,7 @@
 #import "IRQueryResponse+Proto.h"
 #import "IRBlockQueryRequestImpl.h"
 #import "IRBlockQueryResponse+Proto.h"
+#import "GRPCProtoCall+Cancellable.h"
 #import <IrohaCrypto/NSData+Hex.h>
 
 @interface IRNetworkService()
@@ -22,11 +23,19 @@
 #pragma mark - Initialize
 
 - (nonnull instancetype)initWithAddress:(nonnull id<IRAddress>)address {
+    return [self initWithAddress:address useSecuredConnection:NO];
+}
+
+- (nonnull instancetype)initWithAddress:(nonnull id<IRAddress>)address useSecuredConnection:(BOOL)secured {
     if (self = [super init]) {
-        [GRPCCall useInsecureConnectionsForHost:address.value];
+        _responseSerialQueue = dispatch_get_main_queue();
 
         _commandService = [[CommandService_v1 alloc] initWithHost:address.value];
         _queryService = [[QueryService_v1 alloc] initWithHost:address.value];
+
+        if (!secured) {
+            [GRPCCall useInsecureConnectionsForHost:address.value];
+        }
     }
 
     return self;
@@ -70,6 +79,9 @@
                                            [promise fulfillWithResult:transactionHash];
                                        }
                                    }];
+
+    [call setResponseDispatchQueue:_responseSerialQueue];
+
     [call start];
 
     return promise;
@@ -91,13 +103,17 @@
         }
     };
 
-    [_commandService statusWithRequest:statusRequest
-                               handler:^(ToriiResponse * _Nullable response, NSError * _Nullable error) {
-                                   [weakSelf proccessTransactionStatusResponse:response
-                                                                         error:error
-                                                                          done:YES
-                                                                       handler:handler];
-                               }];
+    GRPCProtoCall *call = [_commandService RPCToStatusWithRequest:statusRequest
+                                                          handler:^(ToriiResponse * _Nullable response, NSError * _Nullable error) {
+                                                         [weakSelf proccessTransactionStatusResponse:response
+                                                                              error:error
+                                                                               done:YES
+                                                                            handler:handler];
+                                                     }];
+
+    [call setResponseDispatchQueue:_responseSerialQueue];
+
+    [call start];
 
     return promise;
 }
@@ -136,7 +152,7 @@
             if (error) {
                 [promise fulfillWithResult:error];
             } else {
-                NSString *message = [NSString stringWithFormat:@"Received statuses [%@], but waited for %@. Streaming closed.",
+                NSString *message = [NSString stringWithFormat:@"Received statuses [%@], but waited for %@. Streaming closed",
                                      [receivedStatuses componentsJoinedByString:@","], @(transactionStatus)];
                 NSError *networkError = [NSError errorWithDomain:NSStringFromClass([IRNetworkService class])
                                                             code:IRNetworkServiceErrorTransactionStatusNotReceived
@@ -150,25 +166,31 @@
                                                            eventHandler:eventHandler];
     weakCall = call;
 
+    [call setResponseDispatchQueue:_responseSerialQueue];
+
     [call start];
 
     return promise;
 }
 
-- (void)streamTransactionStatus:(nonnull NSData*)transactionHash
-                      withBlock:(nonnull IRTransactionStatusBlock)block {
+- (id<IRCancellable>)streamTransactionStatus:(nonnull NSData*)transactionHash
+                                   withBlock:(nonnull IRTransactionStatusBlock)block {
     TxStatusRequest *statusRequest = [[TxStatusRequest alloc] init];
     statusRequest.txHash = [transactionHash toHexString];
 
     __weak typeof(self) weakSelf = self;
 
-    [_commandService statusStreamWithRequest: statusRequest
-                                eventHandler:^(BOOL done, ToriiResponse *response, NSError *error) {
-                                    [weakSelf proccessTransactionStatusResponse:response
-                                                                          error:error
-                                                                           done:done
-                                                                        handler:block];
-    }];
+    GRPCProtoCall *call = [_commandService RPCToStatusStreamWithRequest:statusRequest
+                                                           eventHandler:^(BOOL done, ToriiResponse *response, NSError *error) {
+                                                               [weakSelf proccessTransactionStatusResponse:response
+                                                                                                     error:error
+                                                                                                      done:done
+                                                                                                   handler:block];
+                                                           }];
+    [call setResponseDispatchQueue:_responseSerialQueue];
+    [call start];
+
+    return call;
 }
 
 #pragma mark - Query
@@ -194,36 +216,41 @@
         return promise;
     }
 
-    [_queryService findWithRequest:protobufQuery handler:^(QueryResponse* _Nullable response, NSError* _Nullable error) {
-        if (response) {
-            NSError *parsingError = nil;
-            id<IRQueryResponse> queryResponse = [IRQueryResponseProtoFactory responseFromProtobuf:response
-                                                                                            error:&parsingError];
+    GRPCProtoCall *call = [_queryService RPCToFindWithRequest:protobufQuery
+                                                      handler:^(QueryResponse* _Nullable response, NSError* _Nullable error) {
+                                                          if (response) {
+                                                              NSError *parsingError = nil;
+                                                              id<IRQueryResponse> queryResponse = [IRQueryResponseProtoFactory responseFromProtobuf:response
+                                                                                                                                              error:&parsingError];
 
-            if (queryResponse) {
-                [promise fulfillWithResult:queryResponse];
-            } else {
-                [promise fulfillWithResult:parsingError];
-            }
-        } else {
-            [promise fulfillWithResult:error];
-        }
-    }];
+                                                              if (queryResponse) {
+                                                                  [promise fulfillWithResult:queryResponse];
+                                                              } else {
+                                                                  [promise fulfillWithResult:parsingError];
+                                                              }
+                                                          } else {
+                                                              [promise fulfillWithResult:error];
+                                                          }
+                                                      }];
+
+    [call setResponseDispatchQueue:_responseSerialQueue];
+
+    [call start];
 
     return promise;
 }
 
 #pragma mark - Commits
 
-- (void)streamCommits:(nonnull id<IRBlockQueryRequest>)request
-            withBlock:(nonnull IRCommitStreamBlock)block {
+- (id<IRCancellable>)streamCommits:(nonnull id<IRBlockQueryRequest>)request
+                         withBlock:(nonnull IRCommitStreamBlock)block {
     if (![request conformsToProtocol:@protocol(IRProtobufTransformable)]) {
         NSString *message = @"Unsupported block query request implementation";
         NSError *error = [NSError errorWithDomain:NSStringFromClass([IRNetworkService class])
                                              code:IRQueryRequestErrorSerialization
                                          userInfo:@{NSLocalizedDescriptionKey: message}];
         block(nil, true, error);
-        return;
+        return nil;
     }
 
     NSError *pbError = nil;
@@ -231,20 +258,26 @@
 
     if (!pbBlockQuery) {
         block(nil, true, pbError);
-        return;
+        return nil;
     }
 
-    [_queryService fetchCommitsWithRequest:pbBlockQuery
-                              eventHandler:^(BOOL done, BlockQueryResponse * _Nullable pbResponse, NSError * _Nullable error) {
-                                  if (pbResponse) {
-                                      NSError *parsingError = nil;
-                                      id<IRBlockQueryResponse> response = [IRBlockQueryResponse responseFromPbResponse:pbResponse
-                                                                                                                 error:&parsingError];
-                                      block(response, done, parsingError);
-                                  } else {
-                                      block(nil, done, error);
-                                  }
-                              }];
+    GRPCProtoCall *call = [_queryService RPCToFetchCommitsWithRequest:pbBlockQuery
+                                                         eventHandler:^(BOOL done, BlockQueryResponse * _Nullable pbResponse, NSError * _Nullable error) {
+                                                             if (pbResponse) {
+                                                                 NSError *parsingError = nil;
+                                                                 id<IRBlockQueryResponse> response = [IRBlockQueryResponse responseFromPbResponse:pbResponse
+                                                                                                                                            error:&parsingError];
+                                                                 block(response, done, parsingError);
+                                                             } else {
+                                                                 block(nil, done, error);
+                                                             }
+                                                         }];
+
+    [call setResponseDispatchQueue:_responseSerialQueue];
+
+    [call start];
+
+    return call;
 }
 
 #pragma mark - Private

@@ -8,11 +8,21 @@
 
 @property(strong, nonatomic)IRPromiseErrorHandler _Nullable errorHandler;
 
+@property(strong, nonatomic)dispatch_semaphore_t semaphore;
+
 @end
 
 @implementation IRPromise
 
 #pragma mark - Init
+
+- (nonnull instancetype)init {
+    if (self = [super init]) {
+        _semaphore = dispatch_semaphore_create(1);
+    }
+
+    return self;
+}
 
 + (instancetype)promise {
     return [[IRPromise alloc] init];
@@ -31,6 +41,8 @@
     return ^(IRPromiseResultHandler block) {
         IRPromise* promise = [[IRPromise alloc] init];
 
+        dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+
         self.resultHandler = block;
         self.errorHandler = nil;
 
@@ -40,6 +52,8 @@
             [self triggerResultProcessing];
         }
 
+        dispatch_semaphore_signal(self.semaphore);
+
         return promise;
     };
 }
@@ -47,6 +61,8 @@
 - (IRPromise* _Nonnull (^)(IRPromiseErrorHandler _Nonnull))onError {
     return ^(IRPromiseErrorHandler block) {
         IRPromise* promise = [[IRPromise alloc] init];
+
+        dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
 
         self.resultHandler = nil;
         self.errorHandler = block;
@@ -56,11 +72,15 @@
             [self triggerResultProcessing];
         }
 
+        dispatch_semaphore_signal(self.semaphore);
+
         return promise;
     };
 }
 
 - (void)fulfillWithResult:(id _Nullable)result {
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+
     if (_isFulfilled) {
         return;
     }
@@ -71,6 +91,8 @@
     if (_next) {
         [self triggerResultProcessing];
     }
+
+    dispatch_semaphore_signal(self.semaphore);
 }
 
 - (void)triggerResultProcessing {
