@@ -10,13 +10,15 @@ For new iroha users we recommend to checkout iOS example project. It tries to es
 
 1. Follow instructions from [Iroha documentation](https://iroha.readthedocs.io/en/latest/getting_started/) to setup and run iroha peer in [Docker](https://www.docker.com) container.
 
-2. Clone current repositary and open IrohaCommunication.xcworkspace in XCode.
+2. Clone current repositary.
 
 3. cd Example directory and run ```pod install```.
 
-3. Build and Run the project.
+4. Open IrohaCommunication.xcworkspace in XCode
 
-4. Consider logs to see if the scenario completed successfully.
+6. Build and Run IrohaExample target.
+
+7. Consider logs to see if the scenario completed successfully.
 
 Feel free to experiment with example project and don't hesistate to ask any questions.
 
