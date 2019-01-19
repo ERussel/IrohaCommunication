@@ -12,6 +12,8 @@ For new iroha users we recommend to checkout iOS example project. It tries to es
 
 2. Clone current repositary and open IrohaCommunication.xcworkspace in XCode.
 
+3. cd Example directory and run ```pod install```.
+
 3. Build and Run the project.
 
 4. Consider logs to see if the scenario completed successfully.
